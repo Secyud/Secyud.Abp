@@ -1,10 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using BlazorComponent;
-using Masa.Blazor;
-using Masa.Blazor.Popup.Components;
-using Masa.Blazor.Presets;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Volo.Abp.AspNetCore.Components.Notifications;
 
@@ -14,8 +8,7 @@ public partial class UiNotificationAlert
 {
     [Inject] protected MasaBlazorUiNotificationService UiNotificationService { get; set; }
     
-    protected PToast ToastRef { get; set; }
-
+    [Inject] protected IStringLocalizerFactory StringLocalizerFactory { get; set; }
     [Parameter] public UiNotificationType NotificationType { get; set; }
 
     [Parameter] public string Message { get; set; }
@@ -28,6 +21,17 @@ public partial class UiNotificationAlert
 
     [Parameter] public EventCallback Closed { get; set; }
     
+    protected bool NotificationVisible { get; set; }
+    
+    protected virtual string NotificationIcon => NotificationType switch
+    {
+        UiNotificationType.Info => IconName.Info,
+        UiNotificationType.Success => IconName.Success,
+        UiNotificationType.Warning => IconName.Warning,
+        UiNotificationType.Error => IconName.Error,
+        _ => null,
+    };
+    
     protected virtual string NotificationColor => NotificationType switch
     {
         UiNotificationType.Info => IconColor.Info,
@@ -37,15 +41,9 @@ public partial class UiNotificationAlert
         _ => null,
     };
     
-    protected virtual AlertTypes AlertType => NotificationType switch
-    {
-        UiNotificationType.Info => AlertTypes.Info,
-        UiNotificationType.Success => AlertTypes.Success,
-        UiNotificationType.Warning => AlertTypes.Warning,
-        UiNotificationType.Error => AlertTypes.Error,
-        _ => AlertTypes.None,
-    };
-
+    protected virtual string OkButtonText
+        =>Options?.OkButtonText?.Localize(StringLocalizerFactory);
+    
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -60,17 +58,9 @@ public partial class UiNotificationAlert
         Title = e.Title;
         Options = e.Options;
         
-        var config = new ToastConfig
-        {
-            Type = AlertType,
-            Color = NotificationColor,
-            Dark = true,
-            Title = Title,
-            Content = Message,
-            Duration = 4096
-        };
-
-        await ToastRef.AddToast(config);
+        NotificationVisible = true;
+        
+        await InvokeAsync(StateHasChanged);
     }
 
     public virtual void Dispose()
