@@ -20,7 +20,7 @@ public partial class SubmitButton
 
     [Parameter] public string Text { get; set; } = "Save";
 
-    [Parameter] public EventCallback Clicked { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
 
     [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -37,7 +37,7 @@ public partial class SubmitButton
         try
         {
             Submiting = true;
-            await Clicked.InvokeAsync(null);
+            await OnClick.InvokeAsync(null);
         }
         finally
         {
