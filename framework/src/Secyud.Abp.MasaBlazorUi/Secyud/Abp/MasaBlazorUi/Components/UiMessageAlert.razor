@@ -1,0 +1,57 @@
+﻿@namespace Secyud.Abp.MasaBlazorUi.Components
+@implements IDisposable
+
+<MDialog @bind-Value="MessageVisible" Width="512">
+    <MCard>
+        <MCardTitle>
+            @Title
+        </MCardTitle>
+        <MCardText>
+            
+            @if (ShowMessageIcon)
+            {
+                <MIcon Color="@MessageColor">
+                    @MessageIcon
+                </MIcon>
+            }
+            <div>
+                @Message
+            </div>
+        </MCardText>
+        <MCardActions>
+            @if ( IsConfirmation )
+            {
+                <MButton Color="danger" Dark OnClick="@OnCancelClicked">
+                    @if ( Options?.CancelButtonIcon != null )
+                    {
+                        <MIcon Dark Left>
+                            @Options.CancelButtonIcon
+                        </MIcon>
+                    }
+                    @CancelButtonText
+                </MButton>
+                <MButton Color="primary" Dark OnClick="@OnConfirmClicked">
+                    @if ( Options?.ConfirmButtonIcon != null )
+                    {
+                        <MIcon Dark Left>
+                            @Options.ConfirmButtonIcon
+                        </MIcon>
+                    }
+                    @ConfirmButtonText
+                </MButton>
+            }
+            else
+            {
+                <MButton Color="primary" Dark OnClick="@OnOkClicked">
+                    @if ( Options?.OkButtonIcon != null )
+                    {
+                        <MIcon Dark Left>
+                            @Options.OkButtonIcon
+                        </MIcon>
+                    }
+                    @OkButtonText
+                </MButton>
+            }
+        </MCardActions>
+    </MCard>
+</MDialog>
