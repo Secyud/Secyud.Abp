@@ -1,0 +1,33 @@
+﻿@namespace Secyud.Abp.MasaBlazorUi.Components
+@typeparam TItem
+<MDataTable TItem="TItem"
+          Items="@Items"
+          Headers="@Headers"
+          OnOptionsUpdate="OnOptionsUpdate"
+          ServerItemsLength="TotalItems"
+          DisablePagination="DisablePagination"
+          Class="@Class"
+          Stripe Loading="@(!Items?.Any()==true)"
+          LoadingText="Loading..." >
+    <ItemColContent>
+        @if (context.Header.Value == "Actions")
+        {
+            <EntityActions TItem="TItem">
+                @foreach (var action in EntityActions)
+                {
+                    <EntityAction TItem="TItem"
+                                  Color="@(action.Color ?? StyleColor.Primary)"
+                                  Clicked="async () => await action.Clicked(context)"
+                                  ConfirmationMessage="action.ConfirmationMessage == null ? null : () => action.ConfirmationMessage.Invoke(context)"
+                                  Visible="@(action.Visible?.Invoke(context) ?? true)"
+                                  Text="@action.Text" Icon="@action.Icon"
+                                  Disabled="@action.Disabled"/>
+                }
+            </EntityActions>
+        }
+        else
+        {
+            @ColTemplate(context)
+        }
+    </ItemColContent>
+</MDataTable>
