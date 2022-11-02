@@ -25,24 +25,23 @@ public partial class UiNotificationAlert
     
     protected virtual string NotificationIcon => NotificationType switch
     {
-        UiNotificationType.Info => IconName.Info,
-        UiNotificationType.Success => IconName.Success,
-        UiNotificationType.Warning => IconName.Warning,
-        UiNotificationType.Error => IconName.Error,
+        UiNotificationType.Info => StyleIcon.Info,
+        UiNotificationType.Success => StyleIcon.Success,
+        UiNotificationType.Warning => StyleIcon.Warning,
+        UiNotificationType.Error => StyleIcon.Error,
         _ => null,
     };
     
     protected virtual string NotificationColor => NotificationType switch
     {
-        UiNotificationType.Info => IconColor.Info,
-        UiNotificationType.Success => IconColor.Success,
-        UiNotificationType.Warning => IconColor.Warning,
-        UiNotificationType.Error => IconColor.Error,
+        UiNotificationType.Info => StyleColor.Info,
+        UiNotificationType.Success => StyleColor.Success,
+        UiNotificationType.Warning => StyleColor.Warning,
+        UiNotificationType.Error => StyleColor.Error,
         _ => null,
     };
     
-    protected virtual string OkButtonText
-        =>Options?.OkButtonText?.Localize(StringLocalizerFactory);
+    protected virtual string OkButtonText =>Options?.OkButtonText?.Localize(StringLocalizerFactory);
     
     protected override void OnInitialized()
     {

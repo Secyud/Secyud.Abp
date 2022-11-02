@@ -1,0 +1,29 @@
+﻿@namespace Secyud.Abp.MasaBlazorUi.Components
+@typeparam TItem
+
+@if (Visible)
+{
+    if (ParentActions.Type == ActionType.Dropdown)
+    {
+        <MListItem OnClick="@ActionClickedAsync" Disabled=@Disabled>
+            <MListItemContent>
+                <MListItemTitle>
+                    @Text
+                </MListItemTitle>
+            </MListItemContent>
+        </MListItem>
+    }
+    else
+    {
+        <MButton Block Color="@Color" Text
+                 Icon="@(!string.IsNullOrEmpty(Icon))"
+                 OnClick="@ActionClickedAsync"
+                 Disabled=@Disabled>
+            @if (!string.IsNullOrEmpty(Icon))
+            {
+                <MIcon Name="@Icon"/>
+            }
+            @Text
+        </MButton>
+    }
+}

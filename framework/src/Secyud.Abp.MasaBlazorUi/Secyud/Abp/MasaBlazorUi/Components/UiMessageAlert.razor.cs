@@ -29,43 +29,37 @@ public partial class UiMessageAlert
 
     protected bool MessageVisible { get; set; }
 
-    protected virtual bool IsConfirmation
-        => MessageType == UiMessageType.Confirmation;
+    protected virtual bool IsConfirmation => MessageType == UiMessageType.Confirmation;
 
-    protected virtual bool CenterMessage
-        => Options?.CenterMessage ?? true;
+    protected virtual bool CenterMessage => Options?.CenterMessage ?? true;
 
-    protected virtual bool ShowMessageIcon
-        => Options?.ShowMessageIcon ?? true;
+    protected virtual bool ShowMessageIcon => Options?.ShowMessageIcon ?? true;
 
     protected virtual string MessageIcon => Options?.MessageIcon?.ToString() ?? MessageType switch
     {
-        UiMessageType.Info => IconName.Info,
-        UiMessageType.Success => IconName.Success,
-        UiMessageType.Warning => IconName.Warning,
-        UiMessageType.Error => IconName.Error,
-        UiMessageType.Confirmation => IconName.Confirmation,
+        UiMessageType.Info => StyleIcon.Info,
+        UiMessageType.Success => StyleIcon.Success,
+        UiMessageType.Warning => StyleIcon.Warning,
+        UiMessageType.Error => StyleIcon.Error,
+        UiMessageType.Confirmation => StyleIcon.Confirmation,
         _ => null,
     };
 
     protected virtual string MessageColor => MessageType switch
     {
-        UiMessageType.Info => IconColor.Info,
-        UiMessageType.Success => IconColor.Success,
-        UiMessageType.Warning => IconColor.Warning,
-        UiMessageType.Error => IconColor.Error,
-        UiMessageType.Confirmation => IconColor.Confirmation,
+        UiMessageType.Info => StyleColor.Info,
+        UiMessageType.Success => StyleColor.Success,
+        UiMessageType.Warning => StyleColor.Warning,
+        UiMessageType.Error => StyleColor.Error,
+        UiMessageType.Confirmation => StyleColor.Confirmation,
         _ => null,
     };
 
-    protected virtual string OkButtonText
-        => Options?.OkButtonText ?? "OK";
+    protected virtual string OkButtonText => Options?.OkButtonText ?? "OK";
 
-    protected virtual string ConfirmButtonText
-        => Options?.ConfirmButtonText ?? "Confirm";
+    protected virtual string ConfirmButtonText => Options?.ConfirmButtonText ?? "Confirm";
 
-    protected virtual string CancelButtonText
-        => Options?.CancelButtonText ?? "Cancel";
+    protected virtual string CancelButtonText => Options?.CancelButtonText ?? "Cancel";
 
     protected override void OnInitialized()
     {

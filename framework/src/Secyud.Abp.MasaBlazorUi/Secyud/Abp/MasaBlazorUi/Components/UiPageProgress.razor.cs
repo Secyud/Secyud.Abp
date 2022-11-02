@@ -16,7 +16,6 @@ public partial class UiPageProgress
 
     protected string Color { get; set; }
 
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -28,10 +27,10 @@ public partial class UiPageProgress
     {
         return pageProgressType switch
         {
-            UiPageProgressType.Info => IconColor.Info,
-            UiPageProgressType.Success => IconColor.Success,
-            UiPageProgressType.Warning => IconColor.Warning,
-            UiPageProgressType.Error => IconColor.Error,
+            UiPageProgressType.Info => StyleColor.Info,
+            UiPageProgressType.Success => StyleColor.Success,
+            UiPageProgressType.Warning => StyleColor.Warning,
+            UiPageProgressType.Error => StyleColor.Error,
             _ => null
         };
     }

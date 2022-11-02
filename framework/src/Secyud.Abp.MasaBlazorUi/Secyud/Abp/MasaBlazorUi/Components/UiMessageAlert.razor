@@ -7,7 +7,6 @@
             @Title
         </MCardTitle>
         <MCardText>
-
             @if (ShowMessageIcon)
             {
                 <MIcon Color="@MessageColor">
@@ -21,7 +20,7 @@
         <MCardActions>
             @if (IsConfirmation)
             {
-                <MButton Color="danger" OnClick="@OnCancelClicked">
+                <MButton Color="@StyleColor.Danger" OnClick="@OnCancelClicked">
                     @if (Options?.CancelButtonIcon != null)
                     {
                         <MIcon Left>
@@ -30,7 +29,7 @@
                     }
                     @CancelButtonText
                 </MButton>
-                <MButton Color="primary" OnClick="@OnConfirmClicked">
+                <MButton Color="@StyleColor.Primary" OnClick="@OnConfirmClicked">
                     @if (Options?.ConfirmButtonIcon != null)
                     {
                         <MIcon Left>
@@ -42,7 +41,7 @@
             }
             else
             {
-                <MButton Color="primary" OnClick="@OnOkClicked">
+                <MButton Color="@StyleColor.Primary" OnClick="@OnOkClicked">
                     @if (Options?.OkButtonIcon != null)
                     {
                         <MIcon Left>
