@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "MasaDemoApp": {
+      "path": "MasaDemoApp.abpmdl.json"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+﻿@using Secyud.Abp.AspNetCore.Mvc.UI.Theme.Masa.Views.Error.DefaultErrorComponent
+@model Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Views.Error.AbpErrorViewModel
+
+@(await Component.InvokeAsync<MasaErrorViewComponent>(new { model = Model, defaultErrorMessageKey = "404Message" }))

@@ -1,0 +1,25 @@
+@using System.Globalization
+@if (HasLanguages)
+{
+    <MMenu OffsetY>
+        <ActivatorContent>
+            <MButton @attributes="@context.Attrs" Icon>
+                @CurrentLanguageTwoLetters
+            </MButton>
+        </ActivatorContent>
+        <ChildContent>
+            <MList>
+                @foreach (var language in Languages.Where(u => u.CultureName != CurrentLanguage.CultureName))
+                {
+                    <MListItem OnClick="@(() => LanguagePlatformManager.ChangeAsync(language))">
+                        <MListItemContent>
+                            <MListItemTitle>
+                                @language.DisplayName / @(new CultureInfo(language.CultureName).TwoLetterISOLanguageName.ToUpper())
+                            </MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                }
+            </MList>
+        </ChildContent>
+    </MMenu>
+}

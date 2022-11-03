@@ -1,0 +1,60 @@
+﻿@implements IDisposable
+@if (Menu != null)
+{
+    <MNavigationDrawer @bind-MiniVariant="_mini"
+                       Permanent ExpandOnHover>
+        <AuthorizeView>
+            <Authorized>
+                <MListItem>
+                    <MListItemAvatar Size="40">
+                        <MImage Src="@ProfileImageUrl"/>
+                    </MListItemAvatar>
+                
+                    <MListItemTitle>@UserName</MListItemTitle>
+                    <MListItemSubtitle>@UserFullName</MListItemSubtitle>
+                    @if (!TenantName.IsNullOrEmpty())
+                    {
+                        <MListItemSubtitle>@TenantName</MListItemSubtitle>
+                    }
+                    @if (!UserEmail.IsNullOrEmpty())
+                    {
+                        <MListItemSubtitle>@UserEmail</MListItemSubtitle>
+                    }
+                    <MButton Icon OnClick="() => _mini = !_mini">
+                        <MIcon>mdi-chevron-left</MIcon>
+                    </MButton>
+                </MListItem>
+                
+                <MList Dense>
+                    @foreach (var menuItem in UserMenu.Items)
+                    {
+                        <MListItem Class="@menuItem.CssClass"
+                                   Id="@menuItem.ElementId"
+                                   Href="@menuItem.Url?.TrimStart('~')"
+                                   Target="@menuItem.Target">
+                            <MListItemIcon>@menuItem.Icon</MListItemIcon>
+                            <MListItemTitle>@menuItem.DisplayName</MListItemTitle>
+                        </MListItem>
+                    }
+                </MList>
+            </Authorized>
+            <NotAuthorized>
+                <MListItem Href="Account/Login">
+                    <MListItemAvatar Size="40">
+                        <MImage Src="@ProfileImageUrl"/>
+                    </MListItemAvatar>
+                </MListItem>
+            </NotAuthorized>
+        </AuthorizeView>
+       
+
+        <MDivider/>
+
+        <MList Dense Nav>
+            @foreach (var menuItem in Menu.Items)
+            {
+                <MainMenuItem Menu="@Menu" MenuItem="@menuItem"/>
+            }
+        </MList>
+    </MNavigationDrawer>
+}

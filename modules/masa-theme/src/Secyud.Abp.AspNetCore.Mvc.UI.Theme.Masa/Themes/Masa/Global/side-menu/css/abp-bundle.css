@@ -1,0 +1,163 @@
+.confirmation .confirmation-backdrop {
+  background: rgba(var(--masa-content-text-rgb), 0.5);
+}
+.confirmation .confirmation-dialog {
+  border: 0;
+  border-radius: var(--masa-radius);
+  background-color: var(--masa-card-bg);
+  box-shadow: var(--masa-shadow);
+}
+.confirmation .confirmation-dialog .icon-container .icon {
+  stroke: var(--masa-primary);
+  color: var(--masa-primary);
+}
+.confirmation .confirmation-dialog .icon-container.info .icon {
+  stroke: var(--masa-info);
+  color: var(--masa-info);
+}
+.confirmation .confirmation-dialog .icon-container.success .icon {
+  stroke: var(--masa-success);
+  color: var(--masa-success);
+}
+.confirmation .confirmation-dialog .icon-container.warning .icon {
+  stroke: var(--masa-warning);
+  color: var(--masa-warning);
+}
+.confirmation .confirmation-dialog .icon-container.error .icon {
+  stroke: var(--masa-danger);
+  color: var(--masa-danger);
+}
+.confirmation .confirmation-dialog .content .title,
+.confirmation .confirmation-dialog .content .message {
+  color: var(--masa-content-text);
+}
+.confirmation .confirmation-dialog .footer {
+  border-radius: 0 0 var(--masa-radius) var(--masa-radius);
+}
+.confirmation .confirmation-dialog .footer .confirmation-button {
+  background-color: var(--masa-primary);
+  color: #fff;
+  border-radius: var(--masa-radius);
+}
+.confirmation .confirmation-dialog .footer .confirmation-button:hover, .confirmation .confirmation-dialog .footer .confirmation-button:focus, .confirmation .confirmation-dialog .footer .confirmation-button:active {
+  background-color: rgba(var(--masa-primary-rgb), 0.5);
+}
+
+.content-header-title {
+  color: var(--masa-card-title-text-color);
+  font-size: 1.5em !important;
+  font-weight: 600;
+  margin-bottom: 1em;
+  margin-top: 0.3333333333em;
+}
+
+/* TODO: masa-page-header and masa-page-title classes not exist. Find related properties
+.entry-row {
+  @extend .masa-page-header;
+}
+
+.content-header-title {
+  @extend .masa-page-title;
+}
+
+*/
+#toast-container.toast-top-full-width, #toast-container.toast-top-center {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 20px 15px 100px;
+}
+#toast-container.toast-bottom-full-width, #toast-container.toast-bottom-center {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 100px 15px 20px 15px;
+}
+#toast-container.toast-top-right {
+  top: 8px;
+  right: 8px;
+}
+#toast-container.toast-top-left {
+  top: 8px;
+  left: 8px;
+}
+#toast-container.toast-bottom-left {
+  bottom: 8px;
+  left: 8px;
+}
+#toast-container.toast-bottom-right {
+  bottom: 8px;
+  right: 8px;
+}
+#toast-container > div {
+  opacity: 0.975;
+}
+#toast-container button.toast-close-button {
+  color: #000;
+}
+
+.dataTables_wrapper,
+.tab-content {
+  border-radius: var(--masa-radius);
+  background: var(--masa-card-bg);
+  box-shadow: var(--masa-shadow);
+  padding: 1.5rem !important;
+}
+
+.nav-tabs {
+  background: var(--masa-card-bg);
+  box-shadow: var(--masa-shadow);
+  padding: 0 1.5rem !important;
+  border-radius: var(--masa-radius);
+  margin-bottom: 1rem !important;
+}
+
+.card .nav-tabs {
+  background: none;
+  box-shadow: none;
+  padding: 0 !important;
+  border-radius: none;
+}
+.card .tab-content {
+  background: none;
+  box-shadow: none;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.tab-content .card {
+  background: none;
+  box-shadow: none;
+  padding: 0 !important;
+}
+
+.modal-body .tab-content {
+  background: none;
+  box-shadow: none;
+}
+
+.modal-body .nav-tabs,
+.card .nav-tabs,
+.tab-content .nav-tabs {
+  background: none;
+  box-shadow: none;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+hr {
+  opacity: 0.1 !important;
+}
+
+.abp-block-area {
+  background: var(--masa-card-bg);
+}
+
+/* TODO: build for only angular-abp-pro package
+// file management breadcrumb
+abp-file-management-breadcrumb {
+  .breadcrumb-item + .breadcrumb-item:before {
+    position: relative;
+    top: -3px;
+  }
+}
+*/
+.toastui-editor-main {
+  background-color: #fff;
+}

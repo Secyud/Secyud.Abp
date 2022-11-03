@@ -1,0 +1,53 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model ContentLayout
+@if (Model.ShouldShowBreadCrumb())
+{
+    <nav aria-label="breadcrumb" class="masa-breadcrumb-container">
+        <ol class="masa-breadcrumb">
+            
+            @if (Model.BreadCrumb.ShowHome)
+            {
+                <li class="masa-breadcrumb-item">
+                <i class="masa-breadcrumb-item-icon bi-house-door-fill" aria-hidden="true"></i>
+                
+                <a href="~/"></a>
+                
+                </li>
+            }
+            
+            @foreach (var breadCrumbItem in Model.BreadCrumb.Items)
+            {
+                <li class="masa-breadcrumb-separator"><i class="masa-icon bi bi-chevron-right"></i></li>
+                
+                if (breadCrumbItem.Url.IsNullOrWhiteSpace())
+                {
+                    <li class="masa-breadcrumb-item">
+                        <i class="masa-breadcrumb-item-icon" aria-hidden="true"></i>
+                
+                        <a href="#">@breadCrumbItem.Text</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="masa-breadcrumb-item">
+                        <i class="masa-breadcrumb-item-icon" aria-hidden="true"></i>
+                
+                        <a href="@breadCrumbItem.Url">@breadCrumbItem.Text</a>
+                    </li>
+                }
+                
+            }
+            
+            @if (Model.BreadCrumb.ShowCurrent)
+            {                
+                <li class="masa-breadcrumb-separator"><i class="masa-icon bi bi-chevron-right"></i></li>
+                
+                <li class="masa-breadcrumb-item">
+                    <i class="masa-breadcrumb-item-icon" aria-hidden="true"></i>
+                
+                    <a href="#">@Model.Title</a>
+                </li>
+            }
+        </ol>
+    </nav>
+}

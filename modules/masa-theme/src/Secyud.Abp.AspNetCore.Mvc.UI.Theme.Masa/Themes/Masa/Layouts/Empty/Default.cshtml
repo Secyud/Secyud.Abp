@@ -1,0 +1,87 @@
+﻿@using Microsoft.Extensions.Localization
+@using Microsoft.Extensions.Options
+@using Secyud.Abp.AspNetCore.Mvc.UI.Theme.Masa
+@using Secyud.Abp.AspNetCore.Mvc.UI.Theme.Masa.Bundling
+@using Volo.Abp.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Components.LayoutHook
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetScripts
+@using Volo.Abp.AspNetCore.Mvc.UI.Widgets.Components.WidgetStyles
+@using Volo.Abp.Ui.Branding
+@using Volo.Abp.AspNetCore.Mvc.AntiForgery
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Volo.Abp.AspNetCore.Mvc.UI.Bundling.TagHelpers
+@using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.Localization
+@using Volo.Abp.MultiTenancy
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IBrandingProvider BrandingProvider
+@inject MasaStyleProvider MasaStyleProvider
+@inject IStringLocalizer<AbpUiMultiTenancyResource> MultiTenancyStringLocalizer
+@inject ITenantResolveResultAccessor TenantResolveResultAccessor
+@inject IOptions<AbpMultiTenancyOptions> MultiTenancyOptions
+@inject ICurrentTenant CurrentTenant
+
+@{
+    AbpAntiForgeryManager.SetCookie();
+    var langDir = CultureHelper.IsRtl ? "rtl" : string.Empty;
+    var title = ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title;
+
+    var logoUrl = BrandingProvider.LogoUrl == null ? null : "--masa-logo: url(" + BrandingProvider.LogoUrl + ");";
+    var logoReverseUrl = BrandingProvider.LogoReverseUrl == null ? null : "--masa-logo: url(" +
+    BrandingProvider.LogoReverseUrl + ");";
+    var selectedStyle = await MasaStyleProvider.GetSelectedStyleAsync();
+    
+    var selectedStyleFileName = CultureHelper.IsRtl ? selectedStyle + ".rtl" : selectedStyle;
+}
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@langDir">
+
+<head>
+
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.Head.First, StandardLayouts.Empty)
+
+    <title>@title</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="description" content="@ViewBag.MetaDescription">
+
+	<link rel="icon" href="~/images/favicon/logo-favicon_1.svg" type="image/svg+xml">
+    <link rel="manifest" href="~/images/favicon/site.webmanifest">
+
+    <abp-style-bundle name="@MasaThemeBundles.Styles.Global" />
+
+    <link href="/Themes/Masa/Global/side-menu/css/bootstrap-@(selectedStyleFileName).css" type="text/css" rel="stylesheet" id="masa-theme-bootstrap-@selectedStyle" />
+    <link href="/Themes/Masa/Global/side-menu/css/@(selectedStyleFileName).css" type="text/css" rel="stylesheet" id="masa-theme-color-@selectedStyle" />
+
+    @await Component.InvokeAsync(typeof(WidgetStylesViewComponent))
+    @await RenderSectionAsync("styles", false)
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.Head.Last, StandardLayouts.Empty)
+
+    @*TODO move it to -*SCRIPRTS*-*@
+    <script type="text/javascript" src="~/Abp/ApplicationConfigurationScript"></script>
+    <script type="text/javascript" src="~/Abp/ServiceProxyScript"></script>
+</head>
+
+<body>
+
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.Body.First, StandardLayouts.Empty)
+
+    <div id="masa-wrapper">
+        <div class="masa-content">
+            <abp-card class="m-5">
+                <abp-card-body>
+                    @RenderBody()
+                </abp-card-body>
+            </abp-card>
+        </div>
+    </div>
+
+    <abp-script-bundle name="@MasaThemeBundles.Scripts.Global" />
+
+    @await Component.InvokeAsync(typeof(WidgetScriptsViewComponent))
+    @await RenderSectionAsync("scripts", false)
+
+    @await Component.InvokeLayoutHookAsync(LayoutHooks.Body.Last, StandardLayouts.Empty)
+</body>
+</html>
