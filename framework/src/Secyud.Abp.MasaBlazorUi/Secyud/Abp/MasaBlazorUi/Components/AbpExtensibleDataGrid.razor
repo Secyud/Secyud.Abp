@@ -19,7 +19,7 @@
                     @foreach (var action in EntityActions)
                     {
                         <EntityAction TItem="TItem"
-                                      Color="@(action.Color ?? StyleColor.Primary)"
+                                      Color="@(action.Color.ToString() ?? StyleColor.Primary)"
                                       Clicked="async () => await action.Clicked(context)"
                                       ConfirmationMessage="action.ConfirmationMessage == null ? null : () => action.ConfirmationMessage.Invoke(context)"
                                       Visible="@(action.Visible?.Invoke(context) ?? true)"
