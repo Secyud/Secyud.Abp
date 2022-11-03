@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\..\props\common.props" />
+  <Import Project="..\..\..\..\..\props\fileembedded.props" />
+  <Import Project="..\..\..\..\..\props\nupkg.props" />
+
+  <PropertyGroup>
+    <RootNamespace>SuperCreation.Abp.CodeDocs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Validation" Version="5.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\CodeDocs\*.json" />
+    <Content Remove="Localization\CodeDocs\*.json" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties localization_4codedocs_4zh-hans_1json__JsonSchema="https://citation-file-format.github.io/1.2.0/schema.json" /></VisualStudio></ProjectExtensions>
+
+</Project>

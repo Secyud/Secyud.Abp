@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\..\..\..\props\common.props" />
+  <Import Project="..\..\..\..\..\props\blazor.props" />
+  <Import Project="..\..\..\..\..\props\nupkg.props" />
+
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="5.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\framework\src\SuperCreation.Abp.AspNetCore.Components.Web.Theming\SuperCreation.Abp.AspNetCore.Components.Web.Theming.csproj" />
+    <ProjectReference Include="..\SuperCreation.Abp.CodeDocs.Application.Contracts\SuperCreation.Abp.CodeDocs.Application.Contracts.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\..\props\common.props" />
+  <Import Project="..\..\..\..\..\props\nupkg.props" />
+
+  <PropertyGroup>
+    <RootNamespace>SuperCreation.Abp.CodeDocs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="5.3.3" />
+    <ProjectReference Include="..\SuperCreation.Abp.CodeDocs.Domain\SuperCreation.Abp.CodeDocs.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

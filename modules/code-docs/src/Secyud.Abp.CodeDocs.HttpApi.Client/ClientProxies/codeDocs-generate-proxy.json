@@ -1,0 +1,876 @@
+{
+  "modules": {
+    "codeDocs": {
+      "rootPath": "codeDocs",
+      "remoteServiceName": "CodeDocs",
+      "controllers": {
+        "SuperCreation.Abp.CodeDocs.Code.ClassParameterController": {
+          "controllerName": "ClassParameter",
+          "controllerGroupName": "ClassParameter",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "SuperCreation.Abp.CodeDocs.Code.ClassParameterController",
+          "interfaces": [
+            {
+              "type": "SuperCreation.Abp.CodeDocs.Code.IClassParameterAppService"
+            }
+          ],
+          "actions": {
+            "GetAllWithClassIdAsyncByClassId": {
+              "uniqueName": "GetAllWithClassIdAsyncByClassId",
+              "name": "GetAllWithClassIdAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/class-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "classId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "classId",
+                  "name": "classId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SuperCreation.Abp.CodeDocs.Code.ClassParameterDto>",
+                "typeSimple": "[SuperCreation.Abp.CodeDocs.Code.ClassParameterDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IClassParameterAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/code-docs/class-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IClassParameterAppService"
+            },
+            "DeleteAsyncByClassIdAndName": {
+              "uniqueName": "DeleteAsyncByClassIdAndName",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/code-docs/class-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "classId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "name",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "classId",
+                  "name": "classId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "name",
+                  "name": "name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IClassParameterAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/code-docs/class-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.ClassParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IClassParameterAppService"
+            }
+          }
+        },
+        "SuperCreation.Abp.CodeDocs.Code.CodeClassController": {
+          "controllerName": "CodeClass",
+          "controllerGroupName": "CodeClass",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassController",
+          "interfaces": [
+            {
+              "type": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            }
+          ],
+          "actions": {
+            "GetSelectListAsync": {
+              "uniqueName": "GetSelectListAsync",
+              "name": "GetSelectListAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-class/select-list",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SuperCreation.Abp.CodeDocs.Code.CodeClassSelectDto>",
+                "typeSimple": "[SuperCreation.Abp.CodeDocs.Code.CodeClassSelectDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "GetBrowseListAsync": {
+              "uniqueName": "GetBrowseListAsync",
+              "name": "GetBrowseListAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-class/browse-list",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SuperCreation.Abp.CodeDocs.Code.CodeClassSelectDto>",
+                "typeSimple": "[SuperCreation.Abp.CodeDocs.Code.CodeClassSelectDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/code-docs/code-class",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/code-docs/code-class",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "GetWithDetailsAsyncById": {
+              "uniqueName": "GetWithDetailsAsyncById",
+              "name": "GetWithDetailsAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-class/with-details",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassDto",
+                "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-class/get-list",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.CodeClassGetListDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassGetListDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassGetListDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Sorting",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<SuperCreation.Abp.CodeDocs.Code.CodeClassLookupDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<SuperCreation.Abp.CodeDocs.Code.CodeClassLookupDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-class",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassDto",
+                "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/code-docs/code-class",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeClassCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeClassAppService"
+            }
+          }
+        },
+        "SuperCreation.Abp.CodeDocs.Code.CodeFunctionController": {
+          "controllerName": "CodeFunction",
+          "controllerGroupName": "CodeFunction",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionController",
+          "interfaces": [
+            {
+              "type": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            }
+          ],
+          "actions": {
+            "GetAllWithClassIdAsyncByClassId": {
+              "uniqueName": "GetAllWithClassIdAsyncByClassId",
+              "name": "GetAllWithClassIdAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-function",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "classId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "classId",
+                  "name": "classId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SuperCreation.Abp.CodeDocs.Code.CodeFunctionDto>",
+                "typeSimple": "[SuperCreation.Abp.CodeDocs.Code.CodeFunctionDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            },
+            "GetWithDetailsAsyncById": {
+              "uniqueName": "GetWithDetailsAsyncById",
+              "name": "GetWithDetailsAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/code-function/details",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionDto",
+                "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/code-docs/code-function",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/code-docs/code-function",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/code-docs/code-function",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.CodeFunctionCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.ICodeFunctionAppService"
+            }
+          }
+        },
+        "SuperCreation.Abp.CodeDocs.Code.FunctionParameterController": {
+          "controllerName": "FunctionParameter",
+          "controllerGroupName": "FunctionParameter",
+          "isRemoteService": true,
+          "apiVersion": null,
+          "type": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterController",
+          "interfaces": [
+            {
+              "type": "SuperCreation.Abp.CodeDocs.Code.IFunctionParameterAppService"
+            }
+          ],
+          "actions": {
+            "GetAllWithFunctionIdAsyncByFunctionId": {
+              "uniqueName": "GetAllWithFunctionIdAsyncByFunctionId",
+              "name": "GetAllWithFunctionIdAsync",
+              "httpMethod": "GET",
+              "url": "api/code-docs/function-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "functionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "functionId",
+                  "name": "functionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Collections.Generic.List<SuperCreation.Abp.CodeDocs.Code.FunctionParameterDto>",
+                "typeSimple": "[SuperCreation.Abp.CodeDocs.Code.FunctionParameterDto]"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IFunctionParameterAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/code-docs/function-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IFunctionParameterAppService"
+            },
+            "DeleteAsyncByClassIdAndName": {
+              "uniqueName": "DeleteAsyncByClassIdAndName",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/code-docs/function-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "classId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "name",
+                  "typeAsString": "System.String, System.Private.CoreLib",
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "classId",
+                  "name": "classId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "name",
+                  "name": "name",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IFunctionParameterAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/code-docs/function-parameter",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto, SuperCreation.Abp.CodeDocs.Application.Contracts",
+                  "type": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "typeSimple": "SuperCreation.Abp.CodeDocs.Code.FunctionParameterCreateUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Boolean",
+                "typeSimple": "boolean"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "SuperCreation.Abp.CodeDocs.Code.IFunctionParameterAppService"
+            }
+          }
+        }
+      }
+    }
+  },
+  "types": {}
+}

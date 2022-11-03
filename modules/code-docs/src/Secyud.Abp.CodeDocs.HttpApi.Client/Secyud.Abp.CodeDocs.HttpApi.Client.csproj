@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\..\props\common.props" />
+  <Import Project="..\..\..\..\..\props\nupkg.props" />
+
+  <PropertyGroup>
+    <RootNamespace>SuperCreation.Abp.CodeDocs</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Http.Client" Version="5.3.3" />
+    <ProjectReference Include="..\SuperCreation.Abp.CodeDocs.Application.Contracts\SuperCreation.Abp.CodeDocs.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*generate-proxy.json" />
+    <Content Remove="**\*generate-proxy.json" />
+  </ItemGroup>
+
+</Project>

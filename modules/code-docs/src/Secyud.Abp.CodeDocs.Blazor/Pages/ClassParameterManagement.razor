@@ -1,0 +1,62 @@
+﻿@using SuperCreation.Abp.CodeDocs.Code
+@inherits CodeDocsComponentBase
+
+<MDataTable FixedRight Stripe Dense
+            Headers="DataTableHeaders"
+            Items="Entities" FooterProps="FooterProps">
+    <TopContent>
+        <MToolbar Flat>
+            <MToolbarTitle>@L["ClassParameterManagement"]</MToolbarTitle>
+            <MDivider Inset Vertical /><MSpacer />
+            <MButton OnClick="OnCreateClickAsync">
+                <MIcon>
+                    new-box
+                </MIcon>
+                @L["NewItem"]
+            </MButton>
+        </MToolbar>
+    </TopContent>
+    <ItemColContent>
+        @switch (context.Header.Value)
+        {
+            case "actions":
+                <MIcon Small OnClick="() => OnUpdateClickAsync(context.Item)">edit</MIcon>
+                <MIcon Small OnClick="() => OnDeleteClickAsync(context.Item)">delete</MIcon>
+                break;
+            case nameof(ClassParameterDto.IsPublic):
+            {
+                bool tmp = (bool)(context.Value);
+                <MIcon Color="@( tmp? "green accent-4" : "deep-orange accent-4")" Small>
+                    @(tmp ? "done" : "clear")"
+                </MIcon>
+            }
+                break;
+            case $"{nameof(FunctionParameterDto.Type)}.{nameof(CodeClassLookupDto.Name)}":
+                @context.Item.Type.Name
+                break;
+            default:
+                @context.Value
+                break;
+        }
+    </ItemColContent>
+</MDataTable>
+
+
+<EntityModal @ref="CreateModal" Modal="EntityCreateDto" Title="@L["CreateEntity"]" OnSave="OnCreateAsync">
+    <MTextField Label="@L["Name"]" @bind-Value="EntityCreateDto.Name" />
+    <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EntityCreateDto.Annotation" />
+    <MCheckbox Label="@L["IsPublic"]" @bind-Value="EntityCreateDto.IsPublic" />
+    <MAutocomplete Label="@L["Type"]" TItem="CodeClassSelectDto" TValue="Guid" TItemValue="Guid"
+                   Items="SelectItems" @bind-Value="EntityCreateDto.TypeId"
+                   ItemText="r=>r.Name"
+                   ItemValue="r=>r.Id" />
+</EntityModal>
+
+<EntityModal @ref="UpdateModal" Modal="EntityUpdateDto" Title="@L["UpdateEntity"]" OnSave="OnUpdateAsync">
+    <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EntityUpdateDto.Annotation" />
+    <MCheckbox Label="@L["IsPublic"]" @bind-Value="EntityUpdateDto.IsPublic" />
+    <MAutocomplete Label="@L["Type"]" TItem="CodeClassSelectDto" TValue="Guid" TItemValue="Guid"
+                   Items="SelectItems" @bind-Value="EntityUpdateDto.TypeId"
+                   ItemText="r=>r.Name"
+                   ItemValue="r=>r.Id" />
+</EntityModal>

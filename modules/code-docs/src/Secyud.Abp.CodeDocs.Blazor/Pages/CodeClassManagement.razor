@@ -1,0 +1,92 @@
+﻿@using SuperCreation.Abp.CodeDocs.Code
+@using Microsoft.AspNetCore.Authorization
+@using SuperCreation.Abp.CodeDocs.Permissions
+@using Masa.Blazor.Presets
+@page "/code-docs/management"
+@inherits CodeDocsComponentBase
+@attribute [Authorize(CodeDocsPermissions.CodeDocsBasic.Default)]
+<MCard>
+    <MCardTitle>@L["CodeDocsManagement"]</MCardTitle>
+    <MCardSubtitle><MBreadcrumbs Items="@BreadcrumbItems" /></MCardSubtitle>
+    <MCardText>
+        <MDataTable FixedRight Stripe Dense Loading="Loading"
+                    ServerItemsLength="ServerItemsLength"
+                    Headers="DataTableHeaders"
+                    Items="Entities" FooterProps="FooterProps"
+                    OnOptionsUpdate="OnOptionsUpdate">
+            <TopContent>
+                <MToolbar Flat Dense>
+                    <MToolbarTitle>@L["CodeClassManagement"]</MToolbarTitle>
+                    <MDivider Inset Vertical /><MSpacer />
+                    <MButton OnClick="OnCreateClickAsync">
+                        <MIcon>
+                            new-box
+                        </MIcon>
+                        @L["NewItem"]
+                    </MButton>
+                </MToolbar>
+                <MTextField Class="mx-4" Dense OnKeyDown="OnSearchEnter" @bind-Value="EntityGetListDto.Filter" AppendOuterIcon="search" OnAppendOuterClick="GetEntitiesAsync" Clearable />
+
+            </TopContent>
+            <ItemColContent>
+                @switch (context.Header.Value)
+                {
+                    case "actions":
+                        <MIcon Small OnClick="@(() => OnDetailClickAsync(context.Item))">text_snippet</MIcon>
+                        <MIcon Small OnClick="@(() => OnUpdateClickAsync(context.Item))">edit</MIcon>
+                        <MIcon Small OnClick="@(() => OnDeleteClickAsync(context.Item))">delete</MIcon>
+                        break;
+                    case nameof(CodeClassLookupDto.IsVisible):
+                        {
+                            bool tmp = (bool)(context.Value);
+                            <MIcon Color="@(tmp ? "green accent-4" : "deep-orange accent-4")" Small>
+                                @(tmp ? "done" : "clear")"
+                            </MIcon>
+                        }
+                        break;
+                    default:
+                        @context.Value
+                        break;
+                }
+            </ItemColContent>
+        </MDataTable>
+    </MCardText>
+</MCard>
+
+@if (Detail is not null)
+{
+    <PDrawer @bind-Value="Drawer" Left
+             AutoScrollToTop
+             Title="@Detail.Name"
+             Width="500"
+             OnCancel="() => Detail = null">
+
+        <MCard>
+            <ClassParameterManagement ClassId="Detail.Id" SelectItems="SelectItems" />
+        </MCard>
+
+        <CodeFunctionManagement ClassId="Detail.Id" SelectItems="SelectItems" />
+    </PDrawer>
+}
+
+<EntityModal @ref="CreateModal" Modal="EntityCreateDto" Title="@L["CreateEntity"]" OnSave="OnCreateAsync">
+    <MTextField Label="@L["Name"]" @bind-Value="EntityCreateDto.Name" />
+    <MTextarea AutoGrow Label="@L["Description"]" @bind-Value="EntityCreateDto.Description" />
+    <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EntityCreateDto.Annotation" />
+    <MCheckbox Label="@L["IsVisible"]" @bind-Value="EntityCreateDto.IsVisible" />
+    <MAutocomplete Label="@L["ParentClass"]" TItem="CodeClassSelectDto" TValue="Guid?" TItemValue="Guid"
+                   Items="SelectItems" @bind-Value="EntityCreateDto.ParentId" Clearable
+                   ItemText="r=>r.Name" OnClearClick="()=>EntityCreateDto.ParentId=null"
+                   ItemValue="r=>r.Id" />
+</EntityModal>
+
+<EntityModal @ref="UpdateModal" Modal="EntityUpdateDto" Title="@L["UpdateEntity"]" OnSave="OnUpdateAsync">
+    <MTextField Label="@L["Name"]" @bind-Value="EntityUpdateDto.Name" />
+    <MTextarea AutoGrow Label="@L["Description"]" @bind-Value="EntityUpdateDto.Description" />
+    <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EntityUpdateDto.Annotation" />
+    <MCheckbox Label="@L["IsVisible"]" @bind-Value="EntityUpdateDto.IsVisible" />
+    <MAutocomplete Label="@L["ParentClass"]" TItem="CodeClassSelectDto" TValue="Guid?" TItemValue="Guid?"
+                   Items="SelectItems" @bind-Value="EntityUpdateDto.ParentId" Clearable
+                   ItemText="r=>r.Name" OnClearClick="()=>EntityUpdateDto.ParentId=null"
+                   ItemValue="r=>r.Id" />
+</EntityModal>

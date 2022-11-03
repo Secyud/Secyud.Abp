@@ -1,0 +1,122 @@
+﻿@page "/code-docs/browse/{Id:guid}"
+@inherits CodeDocsComponentBase
+
+<MCard Elevation="6">
+    @if (CodeClassDto is not null)
+    {
+        <MCardTitle>
+            @{
+                string name = CodeClassDto.Name;
+                @if (CodeClassDto.Parent is not null)
+                {
+                    name += $" : {CodeClassDto.Parent.Name}";
+                    @name
+                    <MIcon OnClick="()=>NavigateTo(CodeClassDto.Parent.Id)">mdi-vector-link</MIcon>
+                }
+                else
+                {
+                    @name
+                }
+            }
+        </MCardTitle>
+        <MCardText>
+            <MCard>
+                <MCardSubtitle>
+                    @L["Annotation"]
+                </MCardSubtitle>
+                <MCardText>
+                    @CodeClassDto.Annotation
+                </MCardText>
+            </MCard>
+            <MCard>
+                <MCardSubtitle>
+                    @L["Description"]
+                </MCardSubtitle>
+                <MCardText>
+                    @CodeClassDto.Description
+                </MCardText>
+            </MCard>
+            <MCard>
+                <MCardSubtitle>
+                    @L["Parameters"]
+                </MCardSubtitle>
+                <MCardText>
+                    <MExpansionPanels>
+                        @foreach (var parameter in CodeClassDto.Parameters)
+                        {
+                            <MExpansionPanel>
+                                <MExpansionPanelHeader>
+                                    <code>
+                                        @($"{(parameter.IsPublic ? "public" : "private")} {parameter.Type.Name} {parameter.Name}")
+                                    </code>
+                                </MExpansionPanelHeader>
+                                <MExpansionPanelContent>
+                                    <MIcon OnClick="()=>NavigateTo(parameter.Type.Id)" Small>mdi-vector-link</MIcon>
+                                    @parameter.Annotation
+                                </MExpansionPanelContent>
+                            </MExpansionPanel>
+                        }
+                    </MExpansionPanels>
+                </MCardText>
+            </MCard>
+            <MCard>
+                <MCardSubtitle>
+                    @L["Functions"]
+                </MCardSubtitle>
+                <MCardText>
+                    <MExpansionPanels>
+                        @foreach (var function in CodeClassDto.Functions)
+                        {
+                            <MExpansionPanel>
+                                <MExpansionPanelHeader>
+                                    <code>
+                                        @{
+                                            string parameters = function.Parameters.Select(u => $"{u.Type.Name} {u.Name}").JoinAsString(", ");
+                                        }
+                                        @($"{(function.Return is null ? "void" : function.Return.Name)} {function.Name}({parameters})")
+                                        @if (function.Return is not null)
+                                        {
+                                            <MIcon OnClick="()=>NavigateTo(function.Return.Id)" Small>mdi-vector-link</MIcon>
+                                        }
+                                        @if (function.IsStatic)
+                                        {
+                                            <MIcon Small Color="orange">
+                                                mdi-alpha-s-circle
+                                            </MIcon>
+                                        }
+                                        @if (function.IsStatic)
+                                        {
+                                            <MIcon Small Color="light-blue">
+                                                mdi-alpha-v-circle
+                                            </MIcon>
+                                        }
+                                    </code>
+                                </MExpansionPanelHeader>
+                                <MExpansionPanelContent>
+                                    @foreach (var parameter in function.Parameters)
+                                    {
+                                        <MSubheader>
+                                            <code>
+                                                @($"{parameter.Type.Name} {parameter.Name}")
+                                            </code>
+                                            <MIcon OnClick="()=>NavigateTo(parameter.Type.Id)" Small>mdi-vector-link</MIcon>
+                                        </MSubheader>
+                                        @parameter.Annotation
+                                    }
+                                </MExpansionPanelContent>
+                            </MExpansionPanel>
+                        }
+                    </MExpansionPanels>
+                </MCardText>
+            </MCard>
+        </MCardText>
+    }
+    else
+    {
+        <MProgressLinear Color="deep-purple accent-4"
+                     Indeterminate
+                     Rounded
+                     Height="6">
+        </MProgressLinear>
+    }
+</MCard>

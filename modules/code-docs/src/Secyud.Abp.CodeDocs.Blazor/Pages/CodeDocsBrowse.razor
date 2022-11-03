@@ -1,0 +1,31 @@
+﻿@page "/code-docs/browse"
+@inherits CodeDocsComponentBase
+
+<MCard>
+    <MCardTitle>
+        @L["CodeDocsBrowse"]
+    </MCardTitle>
+    <MCardText>
+        @if (!AllLinks.IsNullOrEmpty()){
+            char i = 'z';
+            foreach (var links in AllLinks)
+            {
+                if (links.Name.First() != i)
+                {
+                    i = links.Name.FirstOrDefault();
+                    <h6>@i</h6>
+                }
+                <a href="@GetClassLink(links.Id)">@links.Name</a>
+                <br/>
+            }
+        }
+        else
+        {
+            <MProgressLinear Color="deep-purple accent-4"
+                             Indeterminate
+                             Rounded
+                             Height="6">
+            </MProgressLinear>
+        }
+    </MCardText>
+</MCard>
