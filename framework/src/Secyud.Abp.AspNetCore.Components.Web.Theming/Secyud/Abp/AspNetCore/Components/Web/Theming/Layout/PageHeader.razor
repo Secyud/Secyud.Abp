@@ -5,14 +5,14 @@
 <MRow>
     @if (Options.Value.RenderPageTitle)
     {
-        <MCol Md="@("auto")">
+        <MCol >
             <h1>@Title</h1>
         </MCol>
     }
 
     @if (Options.Value.RenderBreadcrumbs && BreadcrumbItems.Any())
     {
-        <MCol Md="@("auto")">
+        <MCol >
             <MBreadcrumbs Items="BreadcrumbItems"></MBreadcrumbs>
         </MCol>
     }
@@ -28,7 +28,7 @@
 
                 @foreach (var toolbarItemRender in ToolbarItemRenders)
                 {
-                    <MCol Md="@("auto")">
+                    <MCol >
                         @toolbarItemRender
                     </MCol>
                 }
