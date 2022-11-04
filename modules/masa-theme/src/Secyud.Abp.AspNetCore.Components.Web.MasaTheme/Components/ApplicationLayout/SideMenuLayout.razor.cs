@@ -9,27 +9,30 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationL
 
 public partial class SideMenuLayout
 {
-    
     [Inject] protected IAbpUtilsService UtilsService { get; set; }
 
     [Inject] protected IOptions<MasaThemeOptions> Options { get; set; }
         
-    [Inject] protected MasaThemeManager MasaThemeManager { get; set; }
+    [Inject] protected MasaThemeManager ThemeManager { get; set; }
     
     public bool CascadingIsDark { get; set; }
 
-    public SideMenuLayout()
+    public const int HeaderHeight = 48;
+    protected override Task OnInitializedAsync()
     {
-        MasaThemeManager.ThemeChangeEvent += ChangeTheme;
+        ThemeManager.ThemeChangeEvent += ChangeTheme;
+
+        return base.OnInitializedAsync();
     }
-    public async Task ChangeTheme(object sender, MasaThemeChangeEventArgs args)
+
+    public void ChangeTheme(object sender, ThemeChangeEventArgs args)
     {
         CascadingIsDark = args.ThemeName == MasaStyleNames.Dark;
-        await InvokeAsync(StateHasChanged);
+        StateHasChanged();
     }
     
     public void Dispose()
     {
-        MasaThemeManager.ThemeChangeEvent -= ChangeTheme;
+        ThemeManager.ThemeChangeEvent -= ChangeTheme;
     }
 }

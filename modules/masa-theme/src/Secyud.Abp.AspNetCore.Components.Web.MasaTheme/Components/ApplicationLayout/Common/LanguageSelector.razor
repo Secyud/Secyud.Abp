@@ -8,10 +8,10 @@
             </MButton>
         </ActivatorContent>
         <ChildContent>
-            <MList>
+            <MList Dense>
                 @foreach (var language in Languages.Where(u => u.CultureName != CurrentLanguage.CultureName))
                 {
-                    <MListItem OnClick="@(() => LanguagePlatformManager.ChangeAsync(language))">
+                    <MListItem OnClick="@(() => LanguagePlatformManager.ChangeAsync(language))" Dense>
                         <MListItemContent>
                             <MListItemTitle>
                                 @language.DisplayName / @(new CultureInfo(language.CultureName).TwoLetterISOLanguageName.ToUpper())

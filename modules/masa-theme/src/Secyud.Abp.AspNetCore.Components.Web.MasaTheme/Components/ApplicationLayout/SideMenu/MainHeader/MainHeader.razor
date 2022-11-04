@@ -2,7 +2,8 @@
 @inherits AbpComponentBase
 @implements IDisposable
 
-<MAppBar>
+<MAppBar Fixed Height="@($"{SideMenuLayout.HeaderHeight}px")"
+         Src="@(CascadingIsDark ? DarkThemeBackGround : LightThemeBackGround)">
 	<MToolbarTitle>
 		<MainHeaderBranding/>
 	</MToolbarTitle>

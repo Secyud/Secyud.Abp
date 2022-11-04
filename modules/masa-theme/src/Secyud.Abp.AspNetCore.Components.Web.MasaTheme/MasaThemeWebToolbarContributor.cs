@@ -15,7 +15,7 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme
                 var options = context.ServiceProvider.GetRequiredService<IOptions<MasaThemeBlazorOptions>>().Value;
 
                 context.Toolbar.Items.Add(new ToolbarItem(typeof(LanguageSelector)));
-                context.Toolbar.Items.Add(new ToolbarItem(typeof(ThemeSelecter)));
+                context.Toolbar.Items.Add(new ToolbarItem(typeof(MasaThemeSelector)));
             }
 
             return Task.CompletedTask;

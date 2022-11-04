@@ -6,20 +6,20 @@ using Secyud.Abp.MasaTheme.Shared;
 
 namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.Common;
 
-public partial class ThemeSelecter
+public partial class MasaThemeSelector
 {
     //TODO(secyud): icon
     [Inject] public IOptions<MasaThemeOptions> ThemeOptions { get; private set; }
 
     [Inject] public IOptions<MasaThemeBlazorOptions> BlazorOptions { get; private set; }
 
-    [Inject] protected MasaThemeManager MasaThemeManager { get; set; }
+    [Inject] protected IThemeManager ThemeManager { get; set; }
 
     [CascadingParameter(Name = "IsDark")] public bool CascadingIsDark { get; set; }
 
-    public async Task ChangeTheme()
+    public async Task ChangeThemeAsync()
     {
-        await MasaThemeManager.ChangeThemeAsync(new()
+        await ThemeManager.ChangeThemeAsync(new ThemeChangeEventArgs
         {
             ThemeName = CascadingIsDark ? MasaStyleNames.Light : MasaStyleNames.Dark
         });

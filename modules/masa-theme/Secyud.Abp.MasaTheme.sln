@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Secyud.Abp.AspNetCore.Compo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Secyud.Abp.AspNetCore.Components.Server.MasaTheme", "src\Secyud.Abp.AspNetCore.Components.Server.MasaTheme\Secyud.Abp.AspNetCore.Components.Server.MasaTheme.csproj", "{86A5911C-C1F3-466B-BAEC-802CA1B8F5BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1A540186-BDF2-4842-AA05-C0F1BDAFA98B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo", "test\Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo\Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo.csproj", "{81C2BD42-AF92-4048-9ADA-B5B00B2F4590}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{86A5911C-C1F3-466B-BAEC-802CA1B8F5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86A5911C-C1F3-466B-BAEC-802CA1B8F5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86A5911C-C1F3-466B-BAEC-802CA1B8F5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C2BD42-AF92-4048-9ADA-B5B00B2F4590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C2BD42-AF92-4048-9ADA-B5B00B2F4590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C2BD42-AF92-4048-9ADA-B5B00B2F4590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C2BD42-AF92-4048-9ADA-B5B00B2F4590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{E0E58D92-9318-4C62-A65B-6E8AB0A7CC48} = {0199EB47-651E-42FC-BAC2-FF330D3A5AAA}
 		{0FDA2506-3136-4877-88A2-69B61058A49F} = {0199EB47-651E-42FC-BAC2-FF330D3A5AAA}
 		{86A5911C-C1F3-466B-BAEC-802CA1B8F5BC} = {0199EB47-651E-42FC-BAC2-FF330D3A5AAA}
+		{81C2BD42-AF92-4048-9ADA-B5B00B2F4590} = {1A540186-BDF2-4842-AA05-C0F1BDAFA98B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {387FA832-6F30-89DB-4047-AFE557A294D3}

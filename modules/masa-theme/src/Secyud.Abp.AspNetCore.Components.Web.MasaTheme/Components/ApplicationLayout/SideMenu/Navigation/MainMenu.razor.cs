@@ -20,8 +20,6 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationL
         [Inject] protected ICurrentTenant CurrentTenant { get; set; }
 
         [Parameter] public EventCallback OnClickCallback { get; set; }
-
-        private bool _mini;
         
         protected MenuViewModel Menu { get; set; }
         

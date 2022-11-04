@@ -1,7 +1,9 @@
-﻿@implements IDisposable
+﻿@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout
+@implements IDisposable
 @if (Menu != null)
 {
-    <MNavigationDrawer @bind-MiniVariant="_mini"
+    <MNavigationDrawer Fixed Class="overflow-y-auto"
+                       Style="@($"margin-top: {SideMenuLayout.HeaderHeight}px;")"
                        Permanent ExpandOnHover>
         <AuthorizeView>
             <Authorized>
@@ -20,9 +22,6 @@
                     {
                         <MListItemSubtitle>@UserEmail</MListItemSubtitle>
                     }
-                    <MButton Icon OnClick="() => _mini = !_mini">
-                        <MIcon>mdi-chevron-left</MIcon>
-                    </MButton>
                 </MListItem>
                 
                 <MList Dense>
@@ -39,10 +38,10 @@
                 </MList>
             </Authorized>
             <NotAuthorized>
-                <MListItem Href="Account/Login">
-                    <MListItemAvatar Size="40">
-                        <MImage Src="@ProfileImageUrl"/>
-                    </MListItemAvatar>
+                <MListItem>
+                    <MButton Icon Href="Account/Login">
+                        <MIcon>mdi-account</MIcon>
+                    </MButton>
                 </MListItem>
             </NotAuthorized>
         </AuthorizeView>

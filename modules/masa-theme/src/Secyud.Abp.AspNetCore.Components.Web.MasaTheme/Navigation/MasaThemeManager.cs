@@ -1,17 +1,18 @@
+using System;
 using System.Threading.Tasks;
+using Volo.Abp.AspNetCore.Components.Notifications;
 using Volo.Abp.DependencyInjection;
 
 namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
 
-public class MasaThemeManager:IScopedDependency
+[Dependency(ReplaceServices = true)]
+public class MasaThemeManager:IThemeManager,IScopedDependency
 {
-    public event MasaThemeChangeEvent ThemeChangeEvent;
+    public event EventHandler<ThemeChangeEventArgs> ThemeChangeEvent;
     
-    public async Task ChangeThemeAsync(MasaThemeChangeEventArgs args)
+    public Task ChangeThemeAsync(ThemeChangeEventArgs args)
     {
-        if (ThemeChangeEvent is not null)
-        {
-            await ThemeChangeEvent.Invoke(this,args);
-        }
+        ThemeChangeEvent?.Invoke(this,args);
+        return Task.CompletedTask;
     }
 }
