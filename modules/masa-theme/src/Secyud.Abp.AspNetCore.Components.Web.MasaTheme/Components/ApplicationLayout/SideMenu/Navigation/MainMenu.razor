@@ -2,9 +2,7 @@
 @implements IDisposable
 @if (Menu != null)
 {
-    <MNavigationDrawer Fixed Class="overflow-y-auto"
-                       Style="@($"margin-top: {SideMenuLayout.HeaderHeight}px;")"
-                       Permanent ExpandOnHover>
+    <MNavigationDrawer Permanent ExpandOnHover>
         <AuthorizeView>
             <Authorized>
                 <MListItem>

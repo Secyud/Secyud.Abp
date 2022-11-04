@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
@@ -14,15 +15,20 @@ public partial class SideMenuLayout
     [Inject] protected IOptions<MasaThemeOptions> Options { get; set; }
         
     [Inject] protected MasaThemeManager ThemeManager { get; set; }
+
     
     public bool CascadingIsDark { get; set; }
-
-    public const int HeaderHeight = 48;
-    protected override Task OnInitializedAsync()
+    
+    protected override async Task OnInitializedAsync()
     {
+        if (await ThemeManager.GetCookiesThemeAsync() == MasaStyleNames.Dark)
+        {
+            CascadingIsDark = true;
+        }
+
         ThemeManager.ThemeChangeEvent += ChangeTheme;
 
-        return base.OnInitializedAsync();
+        await base.OnInitializedAsync();
     }
 
     public void ChangeTheme(object sender, ThemeChangeEventArgs args)

@@ -6,11 +6,17 @@
 
 <CascadingValue Value="@CascadingIsDark" Name="IsDark">
     <MApp>
-        <MainHeader/>
-        <MainMenu/>
-        <div style="margin-top:48px;margin-left:64px;">
-            @Body
-        </div>
+        <MRow>
+            <MainHeader/>
+        </MRow>
+        <MRow>
+            <MCol Md="@("auto")">
+                <MainMenu/>
+            </MCol>
+            <MCol>
+                @Body
+            </MCol>
+        </MRow>
         <DynamicLayoutComponent/>
         <UiMessageAlert/>
         <UiNotificationAlert/>
