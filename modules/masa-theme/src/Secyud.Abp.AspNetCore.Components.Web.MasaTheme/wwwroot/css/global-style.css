@@ -5,19 +5,17 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
-    background: rgba(0, 0, 0, 0.15);
+    box-shadow: inset 3px 0 5px #c0c0c0;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
-}
+    ::-webkit-scrollbar-thumb:hover {
+        box-shadow: inset 0 0 10px #808080;
+    }
 
 
 ::-webkit-scrollbar-track {
     border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-    background: rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 5px #f8f8f8;
 }
 
 
