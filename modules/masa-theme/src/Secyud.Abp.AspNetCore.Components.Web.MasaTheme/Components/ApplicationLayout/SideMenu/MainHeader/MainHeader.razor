@@ -1,11 +1,16 @@
 ﻿@using Volo.Abp.AspNetCore.Components
 @inherits AbpComponentBase
 @implements IDisposable
+@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.Navigation
 
-<MAppBar ScrollOffScreen Src="@(CascadingIsDark ? DarkThemeBackGround : LightThemeBackGround)">
-	<MToolbarTitle>
-		<MainHeaderBranding/>
-	</MToolbarTitle>
-	<MSpacer/>
-	<MainHeaderToolbar/>
+<MAppBar App Height="48"
+         Src="@(CascadingIsDark ? DarkThemeBackGround : LightThemeBackGround)" >
+	<ChildContent>
+		<MAppBarTitle>
+			<MainHeaderBranding/>
+		</MAppBarTitle>
+		<MSpacer/>
+		<MainHeaderToolbar/>
+		
+	</ChildContent>
 </MAppBar>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
@@ -8,7 +7,7 @@ using Volo.Abp.AspNetCore.Components.Web;
 
 namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout;
 
-public partial class SideMenuLayout
+public partial class MasaSideMenuLayout
 {
     [Inject] protected IAbpUtilsService UtilsService { get; set; }
 

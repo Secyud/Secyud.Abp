@@ -1,0 +1,20 @@
+﻿@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.Navigation
+@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.MainHeader
+@using Secyud.Abp.AspNetCore.Components.Web.Theming.Components;
+@inherits LayoutComponentBase
+@implements IDisposable
+
+<CascadingValue Value="@CascadingIsDark" Name="IsDark">
+    <MApp Class="overflow-hidden">
+        <MainHeader/>
+        <MainMenu/>
+        <MMain>
+            <MContainer Fluid>
+                @Body
+            </MContainer>
+        </MMain>
+        <DynamicLayoutComponent/>
+        <UiMessageAlert/>
+        <UiNotificationAlert/>
+    </MApp>
+</CascadingValue>

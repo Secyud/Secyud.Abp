@@ -8,7 +8,6 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationL
 
 public partial class MasaThemeSelector
 {
-    //TODO(secyud): icon
     [Inject] public IOptions<MasaThemeOptions> ThemeOptions { get; private set; }
 
     [Inject] public IOptions<MasaThemeBlazorOptions> BlazorOptions { get; private set; }
