@@ -16,7 +16,9 @@ public partial class MasaSideMenuLayout
     [Inject] protected MasaThemeManager ThemeManager { get; set; }
 
     
-    public bool CascadingIsDark { get; set; }
+    private bool CascadingIsDark { get; set; }
+    
+    private bool NavBarCollapsed { get; set; }
     
     protected override async Task OnInitializedAsync()
     {

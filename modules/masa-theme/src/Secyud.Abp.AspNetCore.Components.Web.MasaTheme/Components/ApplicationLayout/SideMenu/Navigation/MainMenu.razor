@@ -1,12 +1,11 @@
-﻿@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout
-@implements IDisposable
+﻿@implements IDisposable
 @if (Menu != null)
 {
-    <MNavigationDrawer Clipped ExpandOnHover App>
+    <MNavigationDrawer @bind-Value="@Value" Clipped App>
         <AuthorizeView>
             <Authorized>
                 <MListItem>
-                    <MListItemAvatar Size="40">
+                    <MListItemAvatar>
                         <MImage Src="@ProfileImageUrl"/>
                     </MListItemAvatar>
                 
@@ -36,10 +35,8 @@
                 </MList>
             </Authorized>
             <NotAuthorized>
-                <MListItem>
-                    <MButton Icon Href="Account/Login">
+                <MListItem  Href="Account/Login">
                         <MIcon>mdi-account</MIcon>
-                    </MButton>
                 </MListItem>
             </NotAuthorized>
         </AuthorizeView>

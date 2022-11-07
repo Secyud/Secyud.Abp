@@ -20,9 +20,11 @@
 }
 else
 {
-	<MListGroup Value="@MenuItem.IsOpen" ValueChanged="@ToggleMenu"
+	<MListGroup Value="@MenuItem.IsOpen" 
+	            ValueChanged="@ToggleMenu"
 	            Class="@MenuItem.MenuItem.CssClass"
-	            PrependIcon="@MenuItem.MenuItem.Icon">
+	            PrependIcon="@MenuItem.MenuItem.Icon"
+	            NoAction SubGroup>
 		<ActivatorContent>
 			<MListItemTitle>@MenuItem.MenuItem.DisplayName</MListItemTitle>
 		</ActivatorContent>

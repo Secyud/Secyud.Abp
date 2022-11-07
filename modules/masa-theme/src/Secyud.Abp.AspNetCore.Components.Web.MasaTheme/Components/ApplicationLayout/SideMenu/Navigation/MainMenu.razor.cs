@@ -18,8 +18,10 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationL
         [Inject] protected ICurrentUser CurrentUser { get; set; }
         
         [Inject] protected ICurrentTenant CurrentTenant { get; set; }
-
-        [Parameter] public EventCallback OnClickCallback { get; set; }
+        
+        [Parameter] public bool Value { get; set; }
+        
+        [Parameter] public EventCallback<bool> ValueChanged { get; set; }
         
         protected MenuViewModel Menu { get; set; }
         

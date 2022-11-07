@@ -1,14 +1,12 @@
 ﻿@using Volo.Abp.AspNetCore.Components
 @inherits AbpComponentBase
 @implements IDisposable
-@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.Navigation
 
 <MAppBar App ClippedLeft Src="@(CascadingIsDark ? DarkThemeBackGround : LightThemeBackGround)">
-	<ChildContent>
-		<MAppBarTitle>
-			<MainHeaderBranding/>
-		</MAppBarTitle>
-		<MSpacer/>
-		<MainHeaderToolbar/>
-    </ChildContent>
+	<MAppBarNavIcon @onclick="OnToggle"/>
+	<MAppBarTitle>
+		<MainHeaderBranding/>
+	</MAppBarTitle>
+	<MSpacer/>
+	<MainHeaderToolbar/>
 </MAppBar>

@@ -9,7 +9,9 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationL
     public partial class MainHeader 
     {
         [Inject] protected MainMenuProvider MainMenuProvider { get; set; }
-
+        
+        [Parameter] public EventCallback OnToggle { get; set; }
+        
         protected MenuViewModel Menu { get; set; }
 
         [CascadingParameter(Name = "IsDark")] public bool CascadingIsDark { get; set; }

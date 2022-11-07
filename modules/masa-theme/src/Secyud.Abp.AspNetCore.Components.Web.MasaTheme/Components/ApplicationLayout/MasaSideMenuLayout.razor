@@ -6,8 +6,8 @@
 
 <CascadingValue Value="@CascadingIsDark" Name="IsDark">
     <MApp Class="overflow-hidden">
-        <MainHeader/>
-        <MainMenu/>
+        <MainHeader OnToggle="()=>NavBarCollapsed=!NavBarCollapsed"/>
+        <MainMenu @bind-Value="@NavBarCollapsed"/>
         <MMain>
             <MContainer Fluid>
                 @Body

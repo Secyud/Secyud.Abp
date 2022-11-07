@@ -19,7 +19,7 @@ public class MasaThemeDemoMenuContributor : IMenuContributor
 
     private void AddMainMenuItems(MenuConfigurationContext context)
     {
-        var menuItem = new ApplicationMenuItem(MasaThemeDemoMenus.Components.Root, "Components");
+        var menuItem = new ApplicationMenuItem(MasaThemeDemoMenus.Components.Root, "Components",icon:"mdi-folder-outline");
 
         var items = new List<ApplicationMenuItem>()
         {
