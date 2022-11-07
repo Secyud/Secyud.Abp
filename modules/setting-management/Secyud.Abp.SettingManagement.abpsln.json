@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Secyud.Abp.SettingManagement": {
+      "path": "Secyud.Abp.SettingManagement.abpmdl.json"
+    }
+  }
+}
