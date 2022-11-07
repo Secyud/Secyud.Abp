@@ -1,7 +1,7 @@
 ﻿using Secyud.Abp.AspNetCore.Components.Server.Theming;
 using Volo.Abp.Modularity;
 
-namespace Secyud.Abp.PermissionManagement.Blazor.Server;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(AbpAspNetCoreComponentsServerThemingModule),

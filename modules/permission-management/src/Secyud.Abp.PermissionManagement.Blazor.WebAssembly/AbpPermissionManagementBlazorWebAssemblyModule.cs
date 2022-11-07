@@ -2,7 +2,7 @@
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 
-namespace Secyud.Abp.PermissionManagement.Blazor.WebAssembly;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(AbpPermissionManagementBlazorModule),
