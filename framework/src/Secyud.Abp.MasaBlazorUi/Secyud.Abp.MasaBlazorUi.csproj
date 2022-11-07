@@ -19,4 +19,12 @@
       <_ContentIncludedByDefault Remove="Secyud\Abp\MasaBlazorUi\Components\ObjectExtending\CheckExtensionProperty.razor" />
       <_ContentIncludedByDefault Remove="Layout\PageHeader.razor" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="C:\Users\zangwanyu\.nuget\packages\masa.blazor\0.6.0-rc.9\contentFiles\any\net6.0\package.json" />
+    </ItemGroup>
 </Project>
