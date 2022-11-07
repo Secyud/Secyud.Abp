@@ -107,26 +107,23 @@ public partial class PermissionManagementModal
     {
         try
         {
-            var updateDto = new UpdatePermissionsDto
-            {
-                Permissions = Groups
-                    .SelectMany(g => g.Permissions)
-                    .Select(p =>
-                        new UpdatePermissionDto
-                        {
-                            IsGranted = p.IsGranted,
-                            Name = p.Name
-                        })
-                    .ToArray()
-            };
+            UpdateDto.Permissions = Groups
+                .SelectMany(g => g.Permissions)
+                .Select(p =>
+                    new UpdatePermissionDto
+                    {
+                        IsGranted = p.IsGranted,
+                        Name = p.Name
+                    })
+                .ToArray();
 
-            if (!updateDto.Permissions.Any(x => x.IsGranted) &&
+            if (!UpdateDto.Permissions.Any(x => x.IsGranted) &&
                 !await Message.Confirm(L["SaveWithoutAnyPermissionsWarningMessage"]))
             {
                 return;
             }
 
-            await AppService.UpdateAsync(ProviderName, ProviderKey, updateDto);
+            await AppService.UpdateAsync(ProviderName, ProviderKey, UpdateDto);
 
             await CurrentApplicationConfigurationCacheResetService.ResetAsync();
 

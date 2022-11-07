@@ -9,7 +9,7 @@ namespace Secyud.Abp.PermissionManagement.Blazor.WebAssembly;
     typeof(AbpPermissionManagementHttpApiClientModule),
     typeof(AbpAspNetCoreComponentsWebAssemblyThemingModule)
     )]
-public class PermissionManagementBlazorWebAssemblyModule : AbpModule
+public class AbpPermissionManagementBlazorWebAssemblyModule : AbpModule
 {
 
 }

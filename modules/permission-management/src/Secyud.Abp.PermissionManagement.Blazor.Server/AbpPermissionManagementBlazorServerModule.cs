@@ -7,6 +7,6 @@ namespace Secyud.Abp.PermissionManagement.Blazor.Server;
     typeof(AbpAspNetCoreComponentsServerThemingModule),
     typeof(AbpPermissionManagementBlazorModule)
 )]
-public class PermissionManagementBlazorServerModule : AbpModule
+public class AbpPermissionManagementBlazorServerModule : AbpModule
 {
 }
