@@ -23,7 +23,7 @@ public class MasaThemeDemoMenuContributor : IMenuContributor
 
         var items = new List<ApplicationMenuItem>()
         {
-            new(MasaThemeDemoMenus.Components.Alerts, "Alerts", url: "/Components/Alerts"),
+            new(MasaThemeDemoMenus.Components.Alerts, "Alerts", "/Components/Alerts","mdi-alert"),
             new(MasaThemeDemoMenus.Components.Badges, "Badges", url: "/Components/Badges"),
             new(MasaThemeDemoMenus.Components.Borders, "Borders", url: "/Components/Borders"),
             new(MasaThemeDemoMenus.Components.Breadcrumbs, "Breadcrumbs", url: "/Components/Breadcrumbs"),

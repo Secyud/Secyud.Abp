@@ -6,11 +6,13 @@
 
 	var url = MenuItem.MenuItem.Url == null  ? "#" : MenuItem.MenuItem.Url.TrimStart('/', '~');
 
-	<MListItem Href="@(currentUri.PathAndQuery == MenuItem.MenuItem.Url?.TrimStart('~')?null:url)">
+	<MListItem Dense Href="@(currentUri.PathAndQuery == MenuItem.MenuItem.Url?.TrimStart('~')?null:url)">
 		@if (!MenuItem.MenuItem.Icon.IsNullOrEmpty() || MenuItem.Parent is null)
 		{
 			<MListItemIcon>
-				@MenuItem.MenuItem.Icon
+				<MIcon>
+					@MenuItem.MenuItem.Icon
+				</MIcon>
 			</MListItemIcon>
 		}
 		<MListItemTitle>
@@ -20,7 +22,7 @@
 }
 else
 {
-	<MListGroup Value="@MenuItem.IsOpen" 
+	<MListGroup Value="@MenuItem.IsOpen"
 	            ValueChanged="@ToggleMenu"
 	            Class="@MenuItem.MenuItem.CssClass"
 	            PrependIcon="@MenuItem.MenuItem.Icon"
