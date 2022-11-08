@@ -3,7 +3,7 @@ using Volo.Abp.Application;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 
-namespace SuperCreation.Abp.CodeDocs;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(CodeDocsDomainModule),

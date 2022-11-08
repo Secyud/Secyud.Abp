@@ -1,15 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SuperCreation.Abp.AspNetCore.Components.Web.Theming;
-using SuperCreation.Abp.AspNetCore.Components.Web.Theming.Routing;
+using Secyud.Abp.AspNetCore.Components.Web.Theming;
+using Secyud.Abp.AspNetCore.Components.Web.Theming.Routing;
+using Secyud.Abp.Menus;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 
-namespace SuperCreation.Abp.CodeDocs.Blazor;
+namespace Secyud.Abp;
 
 [DependsOn(
-    typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(CodeDocsApplicationContractsModule),
+    typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(AbpAutoMapperModule)
     )]
 public class CodeDocsBlazorModule : AbpModule

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SuperCreation.Abp.CodeDocs.Code;
+using Secyud.Abp.CodeDocsManagement;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.DependencyInjection;
 using Volo.Abp.Modularity;
 
-namespace SuperCreation.Abp.CodeDocs.EntityFrameworkCore;
+namespace Secyud.Abp.EntityFrameworkCore;
 
 [DependsOn(
     typeof(CodeDocsDomainModule),
@@ -17,32 +17,22 @@ public class CodeDocsEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<CodeDocsDbContext>(options =>
         {
-            options.AddDefaultRepositories<ICodeDocsDbContext>();
             options.AddRepository<CodeClass, EfCoreCodeClassRepository>();
             options.AddRepository<CodeFunction, EfCoreCodeFunctionRepository>();
-            options.AddRepository<ClassParameter, EfCoreClassParameterRepository>();
-            options.AddRepository<FunctionParameter, EfCoreFunctionParameterRepository>();
+            options.AddDefaultRepositories<ICodeDocsDbContext>();
         });
         Configure<AbpEntityOptions>(options =>
         {
             options.Entity<CodeClass>(orderOptions =>
             {
-                orderOptions.DefaultWithDetailsFunc = query => query.Include(o => o.Parent);
+                orderOptions.DefaultWithDetailsFunc = query => query
+                    .Include(u => u.Parameters);
             });
 
             options.Entity<CodeFunction>(orderOptions =>
             {
-                orderOptions.DefaultWithDetailsFunc = query => query.Include(o => o.Return).Include(o => o.Parameters);
-            });
-
-            options.Entity<FunctionParameter>(orderOptions =>
-            {
-                orderOptions.DefaultWithDetailsFunc = query => query.Include(o => o.Type);
-            });
-
-            options.Entity<ClassParameter>(orderOptions =>
-            {
-                orderOptions.DefaultWithDetailsFunc = query => query.Include(o => o.Type);
+                orderOptions.DefaultWithDetailsFunc = query => query
+                    .Include(u => u.Parameters);
             });
         });
     }

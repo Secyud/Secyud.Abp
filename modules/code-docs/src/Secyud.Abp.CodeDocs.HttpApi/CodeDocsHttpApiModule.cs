@@ -1,11 +1,11 @@
 ﻿using Localization.Resources.AbpUi;
 using Microsoft.Extensions.DependencyInjection;
-using SuperCreation.Abp.CodeDocs.Localization;
+using Secyud.Abp.Localization;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 
-namespace SuperCreation.Abp.CodeDocs;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(CodeDocsApplicationContractsModule),

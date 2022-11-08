@@ -3,7 +3,7 @@ using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 
-namespace SuperCreation.Abp.CodeDocs;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(CodeDocsApplicationContractsModule),
@@ -12,7 +12,7 @@ public class CodeDocsHttpApiClientModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.AddStaticHttpClientProxies(
+        context.Services.AddHttpClientProxies(
             typeof(CodeDocsApplicationContractsModule).Assembly,
             CodeDocsRemoteServiceConsts.RemoteServiceName
         );
@@ -21,5 +21,6 @@ public class CodeDocsHttpApiClientModule : AbpModule
         {
             options.FileSets.AddEmbedded<CodeDocsHttpApiClientModule>();
         });
+
     }
 }

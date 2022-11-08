@@ -1,4 +1,4 @@
-﻿namespace SuperCreation.Abp.CodeDocs;
+﻿namespace Secyud.Abp;
 
 public static class CodeDocsErrorCodes
 {

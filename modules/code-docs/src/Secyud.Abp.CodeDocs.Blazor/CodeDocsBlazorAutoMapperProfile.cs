@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
-using SuperCreation.Abp.CodeDocs.Code;
 
-namespace SuperCreation.Abp.CodeDocs.Blazor;
+namespace Secyud.Abp;
 
 public class CodeDocsBlazorAutoMapperProfile : Profile
 {
     public CodeDocsBlazorAutoMapperProfile()
     {
-        CreateMap<CodeClassDto, CodeClassCreateUpdateDto>();
-        CreateMap<FunctionParameterDto, FunctionParameterCreateUpdateDto>();
-        CreateMap<CodeFunctionDto, CodeFunctionCreateUpdateDto>();
-        CreateMap<ClassParameterDto, ClassParameterCreateUpdateDto>();
+        /* You can configure your AutoMapper mapping configuration here.
+         * Alternatively, you can split your mapping configurations
+         * into multiple profile classes for a better organization. */
     }
 }

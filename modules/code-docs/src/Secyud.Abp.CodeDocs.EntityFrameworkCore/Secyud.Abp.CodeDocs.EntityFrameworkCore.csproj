@@ -1,15 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\..\..\..\props\common.props" />
-  <Import Project="..\..\..\..\..\props\nupkg.props" />
+  <Import Project="..\..\..\..\common.props" />
 
   <PropertyGroup>
-    <RootNamespace>SuperCreation.Abp.CodeDocs</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Secyud.Abp</RootNamespace>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="5.3.3" />
-    <ProjectReference Include="..\SuperCreation.Abp.CodeDocs.Domain\SuperCreation.Abp.CodeDocs.Domain.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="6.0.1" />
+    <ProjectReference Include="..\Secyud.Abp.CodeDocs.Domain\Secyud.Abp.CodeDocs.Domain.csproj" />
   </ItemGroup>
 
 </Project>

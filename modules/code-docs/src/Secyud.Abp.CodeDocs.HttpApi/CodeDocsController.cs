@@ -1,7 +1,7 @@
-﻿using SuperCreation.Abp.CodeDocs.Localization;
+﻿using Secyud.Abp.Localization;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace SuperCreation.Abp.CodeDocs;
+namespace Secyud.Abp;
 
 public abstract class CodeDocsController : AbpControllerBase
 {

@@ -1,4 +1,4 @@
-﻿using SuperCreation.Abp.CodeDocs.Localization;
+﻿using Secyud.Abp.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
@@ -6,7 +6,7 @@ using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
-namespace SuperCreation.Abp.CodeDocs;
+namespace Secyud.Abp;
 
 [DependsOn(
     typeof(AbpValidationModule)
