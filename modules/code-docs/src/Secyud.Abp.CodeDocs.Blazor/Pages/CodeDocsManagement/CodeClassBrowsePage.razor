@@ -1,22 +1,23 @@
-﻿@page "/code-docs/browse"
+﻿@page "/code-docs/browse/{Id:guid}"
+@namespace Secyud.Abp.Pages.CodeDocsManagement
 @inherits CodeDocsComponentBase
 
 <MCard>
     <MCardTitle>
-        @L["CodeDocsBrowse"]
+        @L["CodeClassBrowse"]
     </MCardTitle>
     <MCardText>
-        @if (!AllLinks.IsNullOrEmpty()){
-            char i = 'z';
-            foreach (var links in AllLinks)
+        @if (!CodeClassNameValues.IsNullOrEmpty())
+        {
+            foreach (var group in CodeClassNameValues)
             {
-                if (links.Name.First() != i)
+                <h6>@group.Key</h6>
+
+                foreach (var link in group.Value)
                 {
-                    i = links.Name.FirstOrDefault();
-                    <h6>@i</h6>
+                    <a href="@NavUrl(link.Value)">@link.Name</a>
+                    <br/>
                 }
-                <a href="@GetClassLink(links.Id)">@links.Name</a>
-                <br/>
             }
         }
         else

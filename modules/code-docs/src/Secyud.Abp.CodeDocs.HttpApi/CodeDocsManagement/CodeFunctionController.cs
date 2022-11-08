@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 
 namespace Secyud.Abp.CodeDocsManagement;
@@ -45,4 +46,15 @@ public class CodeFunctionController : CodeDocsController, ICodeFunctionAppServic
         return _codeFunctionAppService.DeleteAsync(id);
     }
 
+    [HttpGet,Route("name-value-list")]
+    public Task<List<NameValue<Guid>>> GetNameValueListAsync(CodeFunctionGetListInput input)
+    {
+        return _codeFunctionAppService.GetNameValueListAsync(input);
+    }
+
+    [HttpGet,Route("detailed-list")]
+    public Task<List<CodeFunctionDto>> GetListWithDetailsAsync(CodeFunctionGetListInput input)
+    {
+        return _codeFunctionAppService.GetListWithDetailsAsync(input);
+    }
 }

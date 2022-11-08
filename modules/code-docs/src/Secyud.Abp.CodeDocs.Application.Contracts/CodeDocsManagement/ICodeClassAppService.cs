@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -14,5 +15,5 @@ public interface ICodeClassAppService :
         CodeClassCreateInput,
         CodeClassUpdateInput>
 {
-    
+    Task<List<NameValue<Guid>>> GetNameValueListAsync(CodeClassGetListInput input);
 }

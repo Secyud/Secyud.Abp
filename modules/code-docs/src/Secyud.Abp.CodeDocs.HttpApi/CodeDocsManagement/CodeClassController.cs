@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -29,7 +30,7 @@ public class CodeClassController : CodeDocsController, ICodeClassAppService
     {
         return _codeClassAppService.GetListAsync(input);
     }
-
+    
     [HttpPost]
     public Task<CodeClassDto> CreateAsync(CodeClassCreateInput input)
     {
@@ -46,5 +47,11 @@ public class CodeClassController : CodeDocsController, ICodeClassAppService
     public Task DeleteAsync(Guid id)
     {
         return _codeClassAppService.DeleteAsync(id);
+    }
+
+    [HttpGet,Route("name-value-list")]
+    public Task<List<NameValue<Guid>>> GetNameValueListAsync(CodeClassGetListInput input)
+    {
+        return _codeClassAppService.GetNameValueListAsync(input);
     }
 }

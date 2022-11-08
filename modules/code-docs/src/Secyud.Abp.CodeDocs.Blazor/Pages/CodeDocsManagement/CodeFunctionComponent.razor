@@ -1,26 +1,25 @@
-﻿@page "/code-docs/class"
-@namespace Secyud.Abp.Pages.CodeDocsManagement
-@inherits AbpCrudPageBase<ICodeClassAppService, CodeClassDto, Guid, CodeClassGetListInput, CodeClassCreateInput, CodeClassUpdateInput>
-@attribute [Authorize(CodeDocsPermissions.CodeClass.Default)]
+﻿@namespace Secyud.Abp.Pages.CodeDocsManagement
+@inherits AbpCrudPageBase<ICodeFunctionAppService, CodeFunctionDto, Guid, CodeFunctionGetListInput, CodeFunctionCreateInput, CodeFunctionUpdateInput>
+@attribute [Authorize(CodeDocsPermissions.CodeFunction.Default)]
 
 <MCard>
     <MCardTitle>
-        <PageHeader Title="@L["CodeClass"]"
-                    BreadcrumbItems="@BreadcrumbItems"
-                    Toolbar="@Toolbar"/>
+        <PageHeader Title="@L["CodeFunction"]"
+                    Toolbar="Toolbar"/>
     </MCardTitle>
     <MCardText>
-        <AbpExtensibleDataGrid TItem="CodeClassDto"
-                               Items="@Entities"
-                               Headers="CodeClassHeaders"
-                               EntityActions="CodeClassEntityActions"
-                               OnOptionsUpdate="@OnOptionsUpdateAsync"
+        <AbpExtensibleDataGrid TItem="CodeFunctionDto"
+                               Items="Entities"
                                TotalItems="TotalCount"
-                               ActionType="ActionType.Button">
+                               ActionType="ActionType.Button"
+                               EntityActions="CodeFunctionEntityActions"
+                               OnOptionsUpdate="OnOptionsUpdateAsync"
+                               Headers="CodeFunctionHeaders">
             <ColTemplate>
                 @switch (context.Header.Value)
                 {
-                    case nameof(CodeClassDto.IsVisible):
+                    case nameof(CodeFunctionDto.IsStatic):
+                    case nameof(CodeFunctionDto.IsVirtual):
                         if ((bool)context.Value)
                         {
                             <MIcon Color="green accent-4" Small>
@@ -34,11 +33,8 @@
                             </MIcon>
                         }
                         break;
-                    case nameof(CodeClassDto.ParentId):
-                        if ((Guid)context.Value != default)
-                        {
-                            @CodeClassSelectList.FirstOrDefault(u => u.Value == (Guid)context.Value)?.Name
-                        }
+                    case nameof(CodeFunctionDto.ReturnId):
+                        @CodeClassNameValueList.FirstOrDefault(u => u.Value == (Guid)context.Value)?.Name
                         break;
                     default:
                         @context.Value
@@ -48,23 +44,22 @@
         </AbpExtensibleDataGrid>
     </MCardText>
 </MCard>
-
 <PModal @bind-Value="CreateModalVisible"
         FormModel="@NewEntity"
         Title="@L["CreateEntity"]"
         OnSave="@CreateEntityAsync"
         OnCancel="CloseCreateModalAsync">
     <MTextField Label="@L["Name"]" @bind-Value="NewEntity.Name"/>
-    <MTextarea AutoGrow Label="@L["Description"]" @bind-Value="NewEntity.Description"/>
     <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="NewEntity.Annotation"/>
-    <MCheckbox Label="@L["IsVisible"]" @bind-Value="NewEntity.IsVisible"/>
+    <MCheckbox Label="@L["IsStatic"]" @bind-Value="NewEntity.IsStatic"/>
+    <MCheckbox Label="@L["IsVirtual"]" @bind-Value="NewEntity.IsVirtual"/>
     <MAutocomplete TItem="NameValue<Guid>" TValue="Guid" TItemValue="Guid"
-                   @bind-Value="NewEntity.ParentId"
+                   @bind-Value="NewEntity.ReturnId"
                    Label="@L["ParentClass"]"
-                   Items="@CodeClassSelectList" Clearable
+                   Items="@CodeClassNameValueList" Clearable
                    ItemText="r => r.Name"
                    ItemValue="r => r.Value"
-                   OnClearClick="() => NewEntity.ParentId = default"/>
+                   OnClearClick="() => NewEntity.ReturnId = default"/>
 </PModal>
 
 <PModal @bind-Value="EditModalVisible"
@@ -73,14 +68,14 @@
         OnSave="UpdateEntityAsync"
         OnCancel="CloseEditModalAsync">
     <MTextField Label="@L["Name"]" @bind-Value="EditingEntity.Name"/>
-    <MTextarea AutoGrow Label="@L["Description"]" @bind-Value="EditingEntity.Description"/>
     <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EditingEntity.Annotation"/>
-    <MCheckbox Label="@L["IsVisible"]" @bind-Value="EditingEntity.IsVisible"/>
-    <MAutocomplete TItem="NameValue<Guid>" TValue="Guid" TItemValue="Guid" 
-                   @bind-Value="EditingEntity.ParentId" 
-                   Label="@L["ParentClass"]" 
-                   Items="CodeClassSelectList" Clearable
+    <MCheckbox Label="@L["IsStatic"]" @bind-Value="EditingEntity.IsStatic"/>
+    <MCheckbox Label="@L["IsVirtual"]" @bind-Value="EditingEntity.IsVirtual"/>
+    <MAutocomplete TItem="NameValue<Guid>" TValue="Guid" TItemValue="Guid"
+                   @bind-Value="EditingEntity.ReturnId"
+                   Label="@L["ParentClass"]"
+                   Items="CodeClassNameValueList" Clearable
                    ItemText="r => r.Name"
                    ItemValue="r => r.Value"
-                   OnClearClick="() => EditingEntity.ParentId = default"/>
+                   OnClearClick="() => EditingEntity.ReturnId = default"/>
 </PModal>

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Entities;
 
 namespace Secyud.Abp.CodeDocsManagement;
 
-public class CodeClassDto : EntityDto<Guid>
+public class CodeClassDto : ExtensibleEntityDto<Guid>
 {
     public string Name { get; set; }
 

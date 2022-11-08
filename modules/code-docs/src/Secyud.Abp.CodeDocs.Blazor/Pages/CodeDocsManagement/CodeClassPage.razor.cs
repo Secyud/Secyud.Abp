@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorComponent;
 using Masa.Blazor;
 using Microsoft.AspNetCore.Components.Web;
+using Secyud.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 using Secyud.Abp.CodeDocsManagement;
 using Secyud.Abp.Localization;
 using Secyud.Abp.MasaBlazorUi.Components;
 using Secyud.Abp.Permissions;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 
@@ -15,9 +18,12 @@ namespace Secyud.Abp.Pages.CodeDocsManagement;
 
 public partial class CodeClassPage
 {
-    protected List<DataTableHeader<CodeClassDto>> CodeClassHeaders =>TableHeaders.Get<CodeClassPage>();
+    protected readonly PageToolbar Toolbar = new();
+    protected List<DataTableHeader<CodeClassDto>> CodeClassHeaders => TableHeaders.Get<CodeClassPage>();
     protected List<EntityAction> CodeClassEntityActions => EntityActions.Get<CodeClassPage>();
-  
+
+    protected List<NameValue<Guid>> CodeClassSelectList;
+
     public CodeClassPage()
     {
         LocalizationResource = typeof(CodeDocsResource);
@@ -26,19 +32,14 @@ public partial class CodeClassPage
         UpdatePolicyName = CodeDocsPermissions.CodeClass.Update;
         DeletePolicyName = CodeDocsPermissions.CodeClass.Delete;
     }
-    
-    protected override async Task OnInitializedAsync()
+
+    protected override async Task GetEntitiesAsync()
     {
-        
-        DataTableHeaders.AddRange(new DataTableHeader<CodeClassLookupDto>[]
+        CodeClassSelectList = await AppService.GetNameValueListAsync(new CodeClassGetListInput()
         {
-            new() { Text = L["Name"], Sortable = true, Value = nameof(CodeClassLookupDto.Name), Filterable = true },
-            new() { Text = L["ParentClass"], Sortable = false, Value = nameof(CodeClassLookupDto.ParentName) },
-            new() { Text = L["IsVisible"], Value = nameof(CodeClassLookupDto.IsVisible) },
-            new() { Text = "Actions", Value = "actions", Sortable = false, Width = "100px", Align = "center" }
+            MaxResultCount = int.MaxValue
         });
-        Loading = true;
-        await GetEntitiesAsync();
+        await base.GetEntitiesAsync();
     }
 
     protected override ValueTask SetBreadcrumbItemsAsync()
@@ -46,7 +47,7 @@ public partial class CodeClassPage
         BreadcrumbItems.AddRange(new BreadcrumbItem[]
         {
             new() { Text = L["CodeDocs"] },
-            new() { Text = L["CodeDocsManagement"]  }
+            new() { Text = L["CodeClass"] }
         });
 
         return base.SetBreadcrumbItemsAsync();
@@ -57,15 +58,50 @@ public partial class CodeClassPage
         CodeClassHeaders.AddRange(new DataTableHeader<CodeClassDto>[]
         {
             new() { Text = L["Name"], Sortable = true, Value = nameof(CodeClassDto.Name), Filterable = true },
-            new() { Text = L["ParentId"], Sortable = false, Value = nameof(CodeClassDto.ParentId) },
+            new() { Text = L["Parent"], Sortable = true, Value = nameof(CodeClassDto.ParentId) },
+            new() { Text = L["Description"], Sortable = true, Value = nameof(CodeClassDto.Description) },
+            new() { Text = L["Annotation"], Sortable = true, Value = nameof(CodeClassDto.Annotation) },
             new() { Text = L["IsVisible"], Value = nameof(CodeClassDto.IsVisible) },
-            new() { Text = "Actions", Value = "actions", Sortable = false, Width = "100px", Align = "center" }
+            new() { Text = "Actions", Value = ActionColName }
         });
-        
+
         return base.SetTableHeadersAsync();
     }
 
-    protected virtual async Task OnSearchEnter(KeyboardEventArgs  e)
+    protected override ValueTask SetEntityActionsAsync()
+    {
+        CodeClassEntityActions.AddRange(new EntityAction[]
+        {
+            new()
+            {
+                Text = L["Update"],
+                Icon = "mdi-pencil",
+                Clicked = obj => OpenEditModalAsync(obj as CodeClassDto),
+                Visible = _ => HasUpdatePermission
+            },
+            new()
+            {
+                Text = L["Delete"],
+                Icon = "mdi-delete",
+                Clicked = obj => DeleteEntityAsync(obj as CodeClassDto),
+                Visible = _ => HasDeletePermission,
+                ConfirmationMessage = _ => L["DeleteCodeClassConfirmationMessage"]
+            },
+        });
+        return base.SetEntityActionsAsync();
+    }
+
+    protected override ValueTask SetToolbarItemsAsync()
+    {
+        Toolbar.AddButton(
+            text: L["NewEntity"],
+            onclick: OpenCreateModalAsync,
+            icon: "mdi-new-box",
+            requiredPolicyName: CreatePolicyName);
+        return base.SetToolbarItemsAsync();
+    }
+
+    protected virtual async Task OnSearchEnter(KeyboardEventArgs e)
     {
         if (e.Code is "Enter" or "NumpadEnter") await GetEntitiesAsync();
     }
