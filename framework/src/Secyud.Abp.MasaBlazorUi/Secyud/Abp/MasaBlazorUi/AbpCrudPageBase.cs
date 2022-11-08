@@ -235,9 +235,7 @@ public abstract class AbpCrudPageBase<
     private IReadOnlyList<TListViewModel> MapToListViewModel(IReadOnlyList<TGetListOutputDto> dtos)
     {
         if (typeof(TGetListOutputDto) == typeof(TListViewModel))
-        {
             return dtos.As<IReadOnlyList<TListViewModel>>();
-        }
 
         return ObjectMapper.Map<IReadOnlyList<TGetListOutputDto>, List<TListViewModel>>(dtos);
     }
@@ -256,7 +254,7 @@ public abstract class AbpCrudPageBase<
         return Task.CompletedTask;
     }
 
-    protected virtual async Task OnDataOptions(DataOptions dataOptions)
+    protected virtual async Task OnOptionsUpdateAsync(DataOptions dataOptions)
     {
         Page = dataOptions.Page;
         ItemsPerPage = dataOptions.ItemsPerPage;
@@ -464,9 +462,7 @@ public abstract class AbpCrudPageBase<
     protected virtual async Task CheckPolicyAsync([CanBeNull] string policyName)
     {
         if (string.IsNullOrEmpty(policyName))
-        {
             return;
-        }
 
         await AuthorizationService.CheckAsync(policyName);
     }
