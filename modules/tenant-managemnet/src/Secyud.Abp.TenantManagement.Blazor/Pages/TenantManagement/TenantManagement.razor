@@ -12,8 +12,7 @@
     <MCardTitle>
         <PageHeader Title="@L["Tenants"]"
                     BreadcrumbItems="@BreadcrumbItems"
-                    Toolbar="@Toolbar">
-        </PageHeader>
+                    Toolbar="@Toolbar"/>
     </MCardTitle>
     <MCardText>
         <AbpExtensibleDataGrid TItem="TenantDto"
@@ -21,8 +20,7 @@
                                TotalItems="@TotalCount"
                                EntityActions="@TenantManagementEntityActions"
                                Headers="@TenantManagementTableHeaders"
-                               OnOptionsUpdate="OnDataOptions">
-        </AbpExtensibleDataGrid>
+                               OnOptionsUpdate="OnDataOptions"/>
     </MCardText>
 </MCard>
 
@@ -47,9 +45,8 @@
     </PModal>
 }
 
-@if ( HasUpdatePermission )
+@if (HasUpdatePermission)
 {
-    
     <PModal @bind-Value="EditModalVisible"
             Title="@L["Edit"]"
             FormModel="@EditingEntity"
@@ -59,7 +56,6 @@
                     Label="@($"{L["TenantName"]} *")"
                     Autofocus/>
     </PModal>
-                            
 }
 
 @if (HasManageFeaturesPermission)
