@@ -28,9 +28,13 @@
                     }
                 </EntityActions>
             }
-            else
+            else if (ColTemplate is not null)
             {
                 @ColTemplate(context)
+            }
+            else
+            {
+                @context.Value
             }
         </ItemColContent>
     </MDataTable>
