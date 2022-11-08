@@ -9,13 +9,13 @@
                 OnOptionsUpdate="OnOptionsUpdate"
                 ServerItemsLength="TotalItems"
                 DisablePagination="DisablePagination"
-                Class="@Class"
-                Stripe Loading="@(!Items?.Any()==true)"
+                Class="@Class" Stripe 
+                Loading="@(Items?.Any() != true)"
                 LoadingText="Loading..." >
         <ItemColContent>
-            @if (context.Header.Value == "Actions")
+            @if (context.Header.Value == MasaBlazorUiConsts.ActionColName)
             {
-                <EntityActions TItem="TItem">
+                <EntityActions TItem="TItem" Type="@ActionType">
                     @foreach (var action in EntityActions)
                     {
                         <EntityAction TItem="TItem"

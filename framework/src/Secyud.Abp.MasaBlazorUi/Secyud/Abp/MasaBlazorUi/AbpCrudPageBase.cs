@@ -170,6 +170,8 @@ public abstract class AbpCrudPageBase<
     [Inject] protected TAppService AppService { get; set; }
     [Inject] protected IStringLocalizer<AbpUiResource> UiLocalizer { get; set; }
 
+    protected string ActionColName => MasaBlazorUiConsts.ActionColName;
+    
     protected int ItemsPerPage  = LimitedResultRequestDto.DefaultMaxResultCount;
     protected int Page = 1;
     protected string Sorting;
@@ -192,7 +194,6 @@ public abstract class AbpCrudPageBase<
     public bool HasCreatePermission { get; set; }
     public bool HasUpdatePermission { get; set; }
     public bool HasDeletePermission { get; set; }
-
 
     protected override async Task OnInitializedAsync()
     {

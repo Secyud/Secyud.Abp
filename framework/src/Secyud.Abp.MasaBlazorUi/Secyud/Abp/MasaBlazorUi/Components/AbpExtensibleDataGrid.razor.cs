@@ -29,6 +29,8 @@ public partial class AbpExtensibleDataGrid<TItem> : ComponentBase
     
     [Parameter] public RenderFragment<ItemColProps<TItem>> ColTemplate { get; set; }
 
+    [Parameter] public ActionType ActionType { get; set; } = ActionType.Dropdown;
+
     protected const string DataFieldAttributeName = "Data";
 
     protected Regex ExtensionPropertiesRegex = new Regex(@"ExtraProperties\[(.*?)\]");

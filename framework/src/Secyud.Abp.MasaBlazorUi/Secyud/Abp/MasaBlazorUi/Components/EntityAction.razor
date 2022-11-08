@@ -15,15 +15,10 @@
     }
     else
     {
-        <MButton Block Color="@Color" Text
-                 Icon="@(!string.IsNullOrEmpty(Icon))"
-                 OnClick="@ActionClickedAsync"
-                 Disabled=@Disabled>
-            @if (!string.IsNullOrEmpty(Icon))
-            {
-                <MIcon Name="@Icon"/>
-            }
-            @Text
-        </MButton>
+        <MIcon Small Color="@Color" 
+               OnClick="@ActionClickedAsync" 
+               Disabled=@Disabled>
+            @Icon
+        </MIcon>
     }
 }
