@@ -35,7 +35,7 @@ public partial class CodeClassPage
 
     protected override async Task GetEntitiesAsync()
     {
-        CodeClassSelectList = await AppService.GetNameValueListAsync(new CodeClassGetListInput()
+        CodeClassSelectList = await AppService.GetNameValueListAsync(new GetCodeClassListInput()
         {
             MaxResultCount = int.MaxValue
         });
@@ -75,14 +75,14 @@ public partial class CodeClassPage
             new()
             {
                 Text = L["Update"],
-                Icon = "mdi-pencil",
+                Icon = IconName.Update,
                 Clicked = obj => OpenEditModalAsync(obj as CodeClassDto),
                 Visible = _ => HasUpdatePermission
             },
             new()
             {
                 Text = L["Delete"],
-                Icon = "mdi-delete",
+                Icon = IconName.Delete,
                 Clicked = obj => DeleteEntityAsync(obj as CodeClassDto),
                 Visible = _ => HasDeletePermission,
                 ConfirmationMessage = _ => L["DeleteCodeClassConfirmationMessage"]
@@ -96,7 +96,7 @@ public partial class CodeClassPage
         Toolbar.AddButton(
             text: L["NewEntity"],
             onclick: OpenCreateModalAsync,
-            icon: "mdi-new-box",
+            icon: IconName.Create,
             requiredPolicyName: CreatePolicyName);
         return base.SetToolbarItemsAsync();
     }

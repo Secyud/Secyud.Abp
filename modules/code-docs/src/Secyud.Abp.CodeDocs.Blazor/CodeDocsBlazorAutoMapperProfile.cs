@@ -8,13 +8,13 @@ public class CodeDocsBlazorAutoMapperProfile : Profile
 {
     public CodeDocsBlazorAutoMapperProfile()
     {
-        CreateMap<CodeClassDto, CodeClassCreateInput>()
+        CreateMap<CodeClassDto, CreateCodeClassInput>()
             .Ignore(u => u.ConcurrencyStamp);
-        CreateMap<CodeClassDto, CodeClassUpdateInput>()
+        CreateMap<CodeClassDto, UpdateCodeClassInput>()
             .Ignore(u => u.ConcurrencyStamp);
-        CreateMap<CodeFunctionDto, CodeFunctionCreateInput>()
+        CreateMap<CodeFunctionDto, CreateCodeFunctionInput>()
             .Ignore(u => u.ConcurrencyStamp);
-        CreateMap<CodeFunctionDto, CodeFunctionUpdateInput>()
+        CreateMap<CodeFunctionDto, UpdateCodeFunctionInput>()
             .Ignore(u => u.ConcurrencyStamp);
     }
 }

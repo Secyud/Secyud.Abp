@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components;
 using Secyud.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 using Secyud.Abp.CodeDocsManagement;
 using Secyud.Abp.Localization;
+using Secyud.Abp.MasaBlazorUi.Components;
 using Secyud.Abp.Permissions;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
@@ -39,7 +40,7 @@ public partial class CodeFunctionComponent
     {
         GetListInput.ClassId = CodeClassId;
         
-        CodeClassNameValueList = await CodeClassAppService.GetNameValueListAsync(new CodeClassGetListInput()
+        CodeClassNameValueList = await CodeClassAppService.GetNameValueListAsync(new GetCodeClassListInput()
         {
             MaxResultCount = int.MaxValue
         });
@@ -69,14 +70,14 @@ public partial class CodeFunctionComponent
             new() 
             { 
                 Text = L["Update"] ,
-                Icon = "mdi-pencil", 
+                Icon = IconName.Update, 
                 Clicked = obj => OpenEditModalAsync(obj as CodeFunctionDto),
                 Visible = _ => HasUpdatePermission
             },
             new()
             {
                 Text = L["Delete"],
-                Icon = "mdi-delete",
+                Icon = IconName.Delete,
                 Clicked = obj => DeleteEntityAsync(obj as CodeFunctionDto),
                 Visible = _ => HasDeletePermission,
                 ConfirmationMessage = _ => L["DeleteCodeFunctionConfirmationMessage"]
@@ -90,8 +91,15 @@ public partial class CodeFunctionComponent
         Toolbar.AddButton(
             text: L["NewEntity"],
             onclick: OpenCreateModalAsync,
-            icon: "mdi-new-box",
+            icon: IconName.Create,
             requiredPolicyName: CreatePolicyName);
         return base.SetToolbarItemsAsync();
+    }
+
+    protected override Task OnCreatingEntityAsync()
+    {
+        NewEntity.ClassId = CodeClassId;
+        
+        return base.OnCreatingEntityAsync();
     }
 }

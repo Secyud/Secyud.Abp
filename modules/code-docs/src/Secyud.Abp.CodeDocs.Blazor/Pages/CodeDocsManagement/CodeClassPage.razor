@@ -1,6 +1,6 @@
 ﻿@page "/code-docs/class"
 @namespace Secyud.Abp.Pages.CodeDocsManagement
-@inherits AbpCrudPageBase<ICodeClassAppService, CodeClassDto, Guid, CodeClassGetListInput, CodeClassCreateInput, CodeClassUpdateInput>
+@inherits AbpCrudPageBase<ICodeClassAppService, CodeClassDto, Guid, GetCodeClassListInput, CreateCodeClassInput, UpdateCodeClassInput>
 @attribute [Authorize(CodeDocsPermissions.CodeClass.Default)]
 
 <MCard>
@@ -10,6 +10,13 @@
                     Toolbar="@Toolbar"/>
     </MCardTitle>
     <MCardText>
+        <MRow>
+            <MTextField @bind-Value="GetListInput.Name" 
+                        Label="@L["SearchName"]" 
+                        Clearable 
+                        AppendIcon="@IconName.Search"/>
+        </MRow>
+        
         <AbpExtensibleDataGrid TItem="CodeClassDto"
                                Items="@Entities"
                                Headers="CodeClassHeaders"
