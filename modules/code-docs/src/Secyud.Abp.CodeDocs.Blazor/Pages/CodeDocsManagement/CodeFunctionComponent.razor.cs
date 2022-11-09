@@ -15,17 +15,10 @@ namespace Secyud.Abp.Pages.CodeDocsManagement;
 
 public partial class CodeFunctionComponent
 {
-    [Inject] protected ICodeClassAppService CodeClassAppService { get; set; }
-    
-    [Parameter] public Guid CodeClassId { get; set; }
-
     protected readonly PageToolbar Toolbar = new();
-    
-    protected List<DataTableHeader<CodeFunctionDto>> CodeFunctionHeaders => TableHeaders.Get<CodeFunctionDto>();
-    protected List<EntityAction> CodeFunctionEntityActions => EntityActions.Get<CodeClassPage>();
 
     protected List<NameValue<Guid>> CodeClassNameValueList;
-    
+
     public CodeFunctionComponent()
     {
         LocalizationResource = typeof(CodeDocsResource);
@@ -33,18 +26,24 @@ public partial class CodeFunctionComponent
         CreatePolicyName = CodeDocsPermissions.CodeFunction.Create;
         UpdatePolicyName = CodeDocsPermissions.CodeFunction.Update;
         DeletePolicyName = CodeDocsPermissions.CodeFunction.Delete;
-        
     }
+
+    [Inject] protected ICodeClassAppService CodeClassAppService { get; set; }
+
+    [Parameter] public Guid CodeClassId { get; set; }
+
+    protected List<DataTableHeader<CodeFunctionDto>> CodeFunctionHeaders => TableHeaders.Get<CodeFunctionDto>();
+    protected List<EntityAction> CodeFunctionEntityActions => EntityActions.Get<CodeClassPage>();
 
     protected override async Task OnInitializedAsync()
     {
         GetListInput.ClassId = CodeClassId;
-        
-        CodeClassNameValueList = await CodeClassAppService.GetNameValueListAsync(new GetCodeClassListInput()
+
+        CodeClassNameValueList = await CodeClassAppService.GetNameValueListAsync(new GetCodeClassListInput
         {
             MaxResultCount = int.MaxValue
         });
-        
+
         await base.OnInitializedAsync();
     }
 
@@ -67,10 +66,10 @@ public partial class CodeFunctionComponent
     {
         CodeFunctionEntityActions.AddRange(new EntityAction[]
         {
-            new() 
-            { 
-                Text = L["Update"] ,
-                Icon = IconName.Update, 
+            new()
+            {
+                Text = L["Update"],
+                Icon = IconName.Update,
                 Clicked = obj => OpenEditModalAsync(obj as CodeFunctionDto),
                 Visible = _ => HasUpdatePermission
             },
@@ -81,17 +80,17 @@ public partial class CodeFunctionComponent
                 Clicked = obj => DeleteEntityAsync(obj as CodeFunctionDto),
                 Visible = _ => HasDeletePermission,
                 ConfirmationMessage = _ => L["DeleteCodeFunctionConfirmationMessage"]
-            },
+            }
         });
         return base.SetEntityActionsAsync();
     }
-    
+
     protected override ValueTask SetToolbarItemsAsync()
     {
         Toolbar.AddButton(
-            text: L["NewEntity"],
-            onclick: OpenCreateModalAsync,
-            icon: IconName.Create,
+            L["NewEntity"],
+            OpenCreateModalAsync,
+            IconName.Create,
             requiredPolicyName: CreatePolicyName);
         return base.SetToolbarItemsAsync();
     }
@@ -99,7 +98,7 @@ public partial class CodeFunctionComponent
     protected override Task OnCreatingEntityAsync()
     {
         NewEntity.ClassId = CodeClassId;
-        
+
         return base.OnCreatingEntityAsync();
     }
 }

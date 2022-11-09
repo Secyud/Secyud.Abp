@@ -23,21 +23,21 @@ public static class CodeDocsDbContextModelCreatingExtensions
             b.HasMany(x => x.Parameters)
                 .WithOne()
                 .HasForeignKey(x => x.ClassId);
-            
+
             b.HasIndex(u => u.Name);
         });
-        
+
         builder.Entity<ClassParameter>(b =>
         {
             b.ToTable(nameof(ClassParameter));
             b.ConfigureByConvention();
-            
+
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
 
-            b.HasKey(u => new {u.ClassId, u.Name,  });
+            b.HasKey(u => new { u.ClassId, u.Name });
         });
-        
+
         builder.Entity<CodeFunction>(b =>
         {
             b.ToTable(nameof(CodeFunction));
@@ -51,15 +51,15 @@ public static class CodeDocsDbContextModelCreatingExtensions
 
             b.HasIndex(u => u.ClassId);
         });
-        
+
         builder.Entity<FunctionParameter>(b =>
         {
             b.ToTable(nameof(FunctionParameter));
             b.ConfigureByConvention();
-            
+
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
-            b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength); 
-            
+            b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
+
             b.HasKey(u => new { u.FunctionId, u.Name });
         });
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Entities;
 
 namespace Secyud.Abp.CodeDocsManagement;
 
@@ -14,8 +13,8 @@ public class CodeClassDto : ExtensibleEntityDto<Guid>
     public string Annotation { get; set; }
 
     public Guid ParentId { get; set; }
-    
+
     public bool IsVisible { get; set; }
-    
+
     public List<ClassParameterDto> Parameters { get; set; }
 }

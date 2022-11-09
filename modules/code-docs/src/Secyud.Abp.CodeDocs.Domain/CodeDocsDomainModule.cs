@@ -9,5 +9,4 @@ namespace Secyud.Abp;
 )]
 public class CodeDocsDomainModule : AbpModule
 {
-
 }

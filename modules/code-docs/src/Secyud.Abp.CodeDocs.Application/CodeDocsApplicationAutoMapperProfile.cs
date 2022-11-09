@@ -8,28 +8,28 @@ public class CodeDocsApplicationAutoMapperProfile : Profile
 {
     public CodeDocsApplicationAutoMapperProfile()
     {
-        CreateMap<ClassParameter,ClassParameterDto>();
-        
-        CreateMap<CodeClass,CodeClassDto>();
-        CreateMap<CreateCodeClassInput,CodeClass>()
-            .Ignore(u=>u.Id)
-            .Ignore(u=>u.Parameters)
+        CreateMap<ClassParameter, ClassParameterDto>();
+
+        CreateMap<CodeClass, CodeClassDto>();
+        CreateMap<CreateCodeClassInput, CodeClass>()
+            .Ignore(u => u.Id)
+            .Ignore(u => u.Parameters)
             .IgnoreFullAuditedObjectProperties();
-        CreateMap<UpdateCodeClassInput,CodeClass>()
-            .Ignore(u=>u.Id)
-            .Ignore(u=>u.Parameters)
+        CreateMap<UpdateCodeClassInput, CodeClass>()
+            .Ignore(u => u.Id)
+            .Ignore(u => u.Parameters)
             .IgnoreFullAuditedObjectProperties();
 
-        CreateMap<FunctionParameter,FunctionParameterDto>();
+        CreateMap<FunctionParameter, FunctionParameterDto>();
 
-        CreateMap<CodeFunction,CodeFunctionDto>();
-        CreateMap<CreateCodeFunctionInput,CodeFunction>()
-            .Ignore(u=>u.Id)
-            .Ignore(u=>u.Parameters)
+        CreateMap<CodeFunction, CodeFunctionDto>();
+        CreateMap<CreateCodeFunctionInput, CodeFunction>()
+            .Ignore(u => u.Id)
+            .Ignore(u => u.Parameters)
             .IgnoreAuditedObjectProperties();
-        CreateMap<UpdateCodeFunctionInput,CodeFunction>()
-            .Ignore(u=>u.Id)
-            .Ignore(u=>u.Parameters)
+        CreateMap<UpdateCodeFunctionInput, CodeFunction>()
+            .Ignore(u => u.Id)
+            .Ignore(u => u.Parameters)
             .IgnoreAuditedObjectProperties();
     }
 }

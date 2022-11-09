@@ -53,11 +53,11 @@ public static class PageToolbarExtensions
         toolbar.AddComponent<ToolbarButton>(
             new Dictionary<string, object>
             {
-                    { nameof(ToolbarButton.Color), color ?? StyleColor.Primary},
-                    { nameof(ToolbarButton.Text), text},
-                    { nameof(ToolbarButton.Disabled), disabled},
-                    { nameof(ToolbarButton.Icon), icon},
-                    { nameof(ToolbarButton.OnClick),onclick},
+                { nameof(ToolbarButton.Color), color ?? StyleColor.Primary },
+                { nameof(ToolbarButton.Text), text },
+                { nameof(ToolbarButton.Disabled), disabled },
+                { nameof(ToolbarButton.Icon), icon },
+                { nameof(ToolbarButton.OnClick), onclick }
             },
             order,
             requiredPolicyName

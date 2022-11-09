@@ -10,7 +10,7 @@ namespace Secyud.Abp.AspNetCore.Components.Server.Theming;
     typeof(AbpAspNetCoreComponentsServerModule),
     typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(AbpAspNetCoreMvcUiBundlingModule)
-    )]
+)]
 public class AbpAspNetCoreComponentsServerThemingModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -19,17 +19,11 @@ public class AbpAspNetCoreComponentsServerThemingModule : AbpModule
         {
             options
                 .StyleBundles
-                .Add(BlazorStandardBundles.Styles.Global, bundle =>
-                {
-                    bundle.AddContributors(typeof(BlazorGlobalStyleContributor));
-                });
+                .Add(BlazorStandardBundles.Styles.Global, bundle => { bundle.AddContributors(typeof(BlazorGlobalStyleContributor)); });
 
             options
                 .ScriptBundles
-                .Add(BlazorStandardBundles.Scripts.Global, bundle =>
-                {
-                    bundle.AddContributors(typeof(BlazorGlobalScriptContributor));
-                });
+                .Add(BlazorStandardBundles.Scripts.Global, bundle => { bundle.AddContributors(typeof(BlazorGlobalScriptContributor)); });
         });
     }
 }

@@ -7,8 +7,7 @@ namespace Secyud.Abp.AspNetCore.Components.Web.Theming;
 [DependsOn(
     typeof(AbpMasaBlazorUiModule),
     typeof(AbpUiNavigationModule)
-    )]
+)]
 public class AbpAspNetCoreComponentsWebThemingModule : AbpModule
 {
-
 }

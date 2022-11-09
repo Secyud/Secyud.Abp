@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using JetBrains.Annotations;
 using Volo.Abp.Application.Dtos;
 
 namespace Secyud.Abp.CodeDocsManagement;

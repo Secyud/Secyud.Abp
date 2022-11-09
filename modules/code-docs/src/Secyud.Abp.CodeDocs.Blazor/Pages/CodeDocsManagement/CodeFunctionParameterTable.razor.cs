@@ -10,23 +10,21 @@ namespace Secyud.Abp.Pages.CodeDocsManagement;
 
 public partial class CodeFunctionParameterTable
 {
-    [Inject] public ICodeFunctionAppService CodeFunctionAppService { get; set; }
-
-    [Parameter] public Guid CodeFunctionId { get; set; }
-
-    protected CodeFunctionDto FunctionDto;
-
-    protected FunctionParameterDto EntityAddDto = new();
-
     protected readonly List<EntityAction> EntityActions = new();
 
     protected readonly List<DataTableHeader<FunctionParameterDto>> TableHeaders = new();
 
     protected bool AddModalVisible;
 
+    protected FunctionParameterDto EntityAddDto = new();
+
+    protected CodeFunctionDto FunctionDto;
+    [Inject] public ICodeFunctionAppService CodeFunctionAppService { get; set; }
+
+    [Parameter] public Guid CodeFunctionId { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
-
         await GetEntitiesAsync();
     }
 
@@ -34,13 +32,10 @@ public partial class CodeFunctionParameterTable
     {
         TableHeaders.AddRange(new DataTableHeader<FunctionParameterDto>[]
         {
-            
-            
-            
         });
         return ValueTask.CompletedTask;
     }
-    
+
     protected virtual async Task GetEntitiesAsync()
     {
         FunctionDto = await CodeFunctionAppService.GetAsync(CodeFunctionId);
@@ -48,13 +43,13 @@ public partial class CodeFunctionParameterTable
 
     protected virtual async Task OnOpenAddModalAsync()
     {
-        EntityAddDto = new()
+        EntityAddDto = new FunctionParameterDto
         {
             FunctionId = CodeFunctionId
         };
 
         AddModalVisible = true;
-        
+
         await Task.CompletedTask;
     }
 

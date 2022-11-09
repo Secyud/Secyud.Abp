@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Volo.Abp.AspNetCore.Components.Progression;
 
 namespace Secyud.Abp.MasaBlazorUi.Components;
@@ -7,14 +6,20 @@ namespace Secyud.Abp.MasaBlazorUi.Components;
 public partial class UiPageProgress
 {
     [Inject] protected IUiPageProgressService UiPageProgressService { get; set; }
-    
+
     protected int Percentage { get; set; }
 
     protected bool Visible { get; set; }
-    
+
     protected bool Indeterminate { get; set; }
 
     protected string Color { get; set; }
+
+    public virtual void Dispose()
+    {
+        if (UiPageProgressService != null)
+            UiPageProgressService.ProgressChanged -= OnProgressChanged;
+    }
 
     protected override void OnInitialized()
     {
@@ -22,7 +27,7 @@ public partial class UiPageProgress
 
         UiPageProgressService.ProgressChanged += OnProgressChanged;
     }
-    
+
     protected virtual string GetColor(UiPageProgressType pageProgressType)
     {
         return pageProgressType switch
@@ -44,11 +49,4 @@ public partial class UiPageProgress
 
         await InvokeAsync(StateHasChanged);
     }
-
-    public virtual void Dispose()
-    {
-        if (UiPageProgressService != null)
-            UiPageProgressService.ProgressChanged -= OnProgressChanged;
-    }
-
 }

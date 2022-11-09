@@ -22,12 +22,13 @@ public class CodeFunctionController : CodeDocsController, ICodeFunctionAppServic
         return _codeFunctionAppService.GetAsync(id);
     }
 
-    [HttpGet,Route("list")]
+    [HttpGet]
+    [Route("list")]
     public Task<PagedResultDto<CodeFunctionDto>> GetListAsync(GetCodeFunctionListInput input)
     {
         return _codeFunctionAppService.GetListAsync(input);
     }
-    
+
     [HttpPost]
     public Task<CodeFunctionDto> CreateAsync(CreateCodeFunctionInput input)
     {
@@ -46,31 +47,36 @@ public class CodeFunctionController : CodeDocsController, ICodeFunctionAppServic
         return _codeFunctionAppService.DeleteAsync(id);
     }
 
-    [HttpGet,Route("name-value-list")]
+    [HttpGet]
+    [Route("name-value-list")]
     public Task<List<NameValue<Guid>>> GetNameValueListAsync(GetCodeFunctionListInput input)
     {
         return _codeFunctionAppService.GetNameValueListAsync(input);
     }
 
-    [HttpGet,Route("detailed-list")]
+    [HttpGet]
+    [Route("detailed-list")]
     public Task<List<CodeFunctionDto>> GetListWithDetailsAsync(GetCodeFunctionListInput input)
     {
         return _codeFunctionAppService.GetListWithDetailsAsync(input);
     }
 
-    [HttpPost,Route("parameter")]
+    [HttpPost]
+    [Route("parameter")]
     public Task<CodeFunctionDto> AddParameterAsync(Guid id, string name, Guid typeId)
     {
         return _codeFunctionAppService.AddParameterAsync(id, name, typeId);
     }
 
-    [HttpDelete,Route("parameter")]
+    [HttpDelete]
+    [Route("parameter")]
     public Task<CodeFunctionDto> RemoveParameterAsync(Guid id, string name)
     {
         return _codeFunctionAppService.RemoveParameterAsync(id, name);
     }
 
-    [HttpPut,Route("parameter/annotation")]
+    [HttpPut]
+    [Route("parameter/annotation")]
     public Task<CodeFunctionDto> SetParameterAnnotationAsync(Guid id, string name, string annotation)
     {
         return _codeFunctionAppService.SetParameterAnnotationAsync(id, name, annotation);

@@ -7,15 +7,12 @@ namespace Secyud.Abp.MasaTheme.Shared;
 
 [DependsOn(
     typeof(AbpVirtualFileSystemModule)
-    )]
+)]
 public class AbpAspNetCoreMasaSharedModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpVirtualFileSystemOptions>(options =>
-        {
-            options.FileSets.AddEmbedded<AbpAspNetCoreMasaSharedModule>();
-        });
+        Configure<AbpVirtualFileSystemOptions>(options => { options.FileSets.AddEmbedded<AbpAspNetCoreMasaSharedModule>(); });
 
         Configure<AbpLocalizationOptions>(options =>
         {

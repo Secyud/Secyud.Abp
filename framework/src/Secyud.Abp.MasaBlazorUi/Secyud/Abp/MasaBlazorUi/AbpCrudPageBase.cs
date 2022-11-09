@@ -167,29 +167,29 @@ public abstract class AbpCrudPageBase<
     where TCreateViewModel : class, new()
     where TUpdateViewModel : class, new()
 {
+    protected readonly TGetListInput GetListInput = new();
+    protected List<BreadcrumbItem> BreadcrumbItems = new(2);
+    protected bool CreateModalVisible;
+    protected TUpdateViewModel EditingEntity = new();
+    protected TKey EditingEntityId;
+    protected bool EditModalVisible;
+    protected IReadOnlyList<TListViewModel> Entities = Array.Empty<TListViewModel>();
+
+    protected int ItemsPerPage = LimitedResultRequestDto.DefaultMaxResultCount;
+    protected TCreateViewModel NewEntity = new();
+    protected int Page = 1;
+    protected string Sorting;
+    protected int TotalCount;
     [Inject] protected TAppService AppService { get; set; }
     [Inject] protected IStringLocalizer<AbpUiResource> UiLocalizer { get; set; }
 
     protected string ActionColName => MasaBlazorUiConsts.ActionColName;
-    
-    protected int ItemsPerPage  = LimitedResultRequestDto.DefaultMaxResultCount;
-    protected int Page = 1;
-    protected string Sorting;
-    protected int TotalCount;
-    protected readonly TGetListInput GetListInput = new();
-    protected IReadOnlyList<TListViewModel> Entities = Array.Empty<TListViewModel>();
-    protected TCreateViewModel NewEntity = new();
-    protected TKey EditingEntityId;
-    protected TUpdateViewModel EditingEntity = new();
-    protected bool CreateModalVisible;
-    protected bool EditModalVisible;
-    protected List<BreadcrumbItem> BreadcrumbItems = new(2);
     protected EntityActionDictionary EntityActions { get; set; } = new();
     protected TableHeaderDictionary<TListViewModel> TableHeaders { get; set; } = new();
 
     protected string CreatePolicyName { get; set; } = null;
-    protected string UpdatePolicyName { get; set; }= null;
-    protected string DeletePolicyName { get; set; }= null;
+    protected string UpdatePolicyName { get; set; } = null;
+    protected string DeletePolicyName { get; set; } = null;
 
     public bool HasCreatePermission { get; set; }
     public bool HasUpdatePermission { get; set; }
@@ -259,12 +259,12 @@ public abstract class AbpCrudPageBase<
         Page = dataOptions.Page;
         ItemsPerPage = dataOptions.ItemsPerPage;
 
-        var sort = dataOptions.SortBy.Select(u=>u.ShallowClone()).ToArray();
+        var sort = dataOptions.SortBy.Select(u => u.ShallowClone()).ToArray();
         for (var i = 0; i < sort.Length; i++)
             if (dataOptions.SortDesc[i])
                 sort[i] += " DESC";
         Sorting = sort.JoinAsString(",");
-        
+
         await GetEntitiesAsync();
 
         await InvokeAsync(StateHasChanged);
@@ -307,7 +307,7 @@ public abstract class AbpCrudPageBase<
             EditingEntityId = entity.Id;
             EditingEntity = MapToEditingEntity(entityDto);
 
-            await InvokeAsync( () =>
+            await InvokeAsync(() =>
             {
                 EditModalVisible = true;
                 StateHasChanged();
@@ -326,16 +326,12 @@ public abstract class AbpCrudPageBase<
 
     protected virtual TCreateInput MapToCreateInput(TCreateViewModel createViewModel)
     {
-        return typeof(TCreateInput) == typeof(TCreateViewModel) ? 
-            createViewModel.As<TCreateInput>() : 
-            ObjectMapper.Map<TCreateViewModel, TCreateInput>(createViewModel);
+        return typeof(TCreateInput) == typeof(TCreateViewModel) ? createViewModel.As<TCreateInput>() : ObjectMapper.Map<TCreateViewModel, TCreateInput>(createViewModel);
     }
 
     protected virtual TUpdateInput MapToUpdateInput(TUpdateViewModel updateViewModel)
     {
-        return typeof(TUpdateInput) == typeof(TUpdateViewModel) ? 
-            updateViewModel.As<TUpdateInput>() :
-            ObjectMapper.Map<TUpdateViewModel, TUpdateInput>(updateViewModel);
+        return typeof(TUpdateInput) == typeof(TUpdateViewModel) ? updateViewModel.As<TUpdateInput>() : ObjectMapper.Map<TUpdateViewModel, TUpdateInput>(updateViewModel);
     }
 
     protected virtual Task CloseEditModalAsync()
@@ -453,10 +449,9 @@ public abstract class AbpCrudPageBase<
     }
 
     /// <summary>
-    /// Calls IAuthorizationService.CheckAsync for the given <paramref name="policyName"/>.
-    /// Throws <see cref="AbpAuthorizationException"/> if given policy was not granted for the current user.
-    ///
-    /// Does nothing if <paramref name="policyName"/> is null or empty.
+    ///     Calls IAuthorizationService.CheckAsync for the given <paramref name="policyName" />.
+    ///     Throws <see cref="AbpAuthorizationException" /> if given policy was not granted for the current user.
+    ///     Does nothing if <paramref name="policyName" /> is null or empty.
     /// </summary>
     /// <param name="policyName">A policy name to check</param>
     protected virtual async Task CheckPolicyAsync([CanBeNull] string policyName)

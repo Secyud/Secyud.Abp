@@ -8,7 +8,7 @@ public class MasaThemeOptions
     public Dictionary<string, MasaThemeStyle> Styles { get; } = new();
 
     /// <summary>
-    /// Defines the default fallback theme. Default value is <see cref="MasaStyleNames.System"/>
+    ///     Defines the default fallback theme. Default value is <see cref="MasaStyleNames.System" />
     /// </summary>
     public string DefaultStyle { get; set; } = MasaStyleNames.Light;
 

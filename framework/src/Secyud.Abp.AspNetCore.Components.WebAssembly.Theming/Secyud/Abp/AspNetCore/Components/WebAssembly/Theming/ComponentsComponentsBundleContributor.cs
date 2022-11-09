@@ -13,16 +13,9 @@ public class ComponentsComponentsBundleContributor : IBundleContributor
 
     public void AddStyles(BundleContext context)
     {
-        context.BundleDefinitions.Insert(0, new BundleDefinition
-        {
-            Source = "_content/Secyud.Abp.AspNetCore.Components.WebAssembly.Theming/libs/bootstrap/css/bootstrap.min.css"
-        });
-        context.BundleDefinitions.Insert(1, new BundleDefinition
-        {
-            Source = "_content/Secyud.Abp.AspNetCore.Components.WebAssembly.Theming/libs/fontawesome/css/all.css"
-        });
-
-        context.Add("_content/Secyud.Abp.AspNetCore.Components.WebAssembly.Theming/libs/flag-icon/css/flag-icon.css");
         context.Add("_content/Masa.Blazor/css/masa-blazor.min.css");
+        context.Add("_content/Secyud.Abp.MasaBlazorUi/libs/fontawesome/css/font-awesome.min.css");
+        context.Add("_content/Secyud.Abp.MasaBlazorUi/libs/@mdi/font/css/materialdesignicons.min.css");
+        context.Add("_content/Secyud.Abp.MasaBlazorUi/libs/flag-icons/css/flag-icons.min.css");
     }
 }

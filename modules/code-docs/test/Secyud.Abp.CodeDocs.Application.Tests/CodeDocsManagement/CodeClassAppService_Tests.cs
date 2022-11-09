@@ -16,19 +16,16 @@ public class CodeClassAppService_Tests : CodeDocsApplicationTestBase
     [Fact]
     public async Task CreateAsync()
     {
-        var entityDto = await _codeClassAppService.CreateAsync(new()
-            {
-                Name = "test class",
-                Annotation = "test class annotation",
-                Description = "this is a test class",
-            });
+        var entityDto = await _codeClassAppService.CreateAsync(new CreateCodeClassInput
+        {
+            Name = "test class",
+            Annotation = "test class annotation",
+            Description = "this is a test class"
+        });
 
-        
+
         entityDto.Name.ShouldBe("test class");
         entityDto.Annotation.ShouldBe("test class annotation");
         entityDto.Description.ShouldBe("this is a test class");
     }
-
-    
-    
 }

@@ -1,6 +1,5 @@
-﻿@using Volo.Abp.Http
+﻿@using Localization.Resources.AbpUi
 @using Microsoft.Extensions.Localization
-@using global::Localization.Resources.AbpUi
 @inject IStringLocalizer<AbpUiResource> L
 <div class="error-page-container">
     <MRow>
@@ -20,7 +19,9 @@
         </MCol>
     </MRow>
 </div>
+
 @code {
+
     [Parameter]
     public int HttpStatusCode { get; set; }
 
@@ -29,4 +30,5 @@
 
     [Parameter]
     public string Message { get; set; }
+
 }

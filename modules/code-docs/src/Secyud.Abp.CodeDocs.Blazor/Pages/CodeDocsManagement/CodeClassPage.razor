@@ -11,12 +11,12 @@
     </MCardTitle>
     <MCardText>
         <MRow>
-            <MTextField @bind-Value="GetListInput.Name" 
-                        Label="@L["SearchName"]" 
-                        Clearable 
+            <MTextField @bind-Value="GetListInput.Name"
+                        Label="@L["SearchName"]"
+                        Clearable
                         AppendIcon="@IconName.Search"/>
         </MRow>
-        
+
         <AbpExtensibleDataGrid TItem="CodeClassDto"
                                Items="@Entities"
                                Headers="CodeClassHeaders"
@@ -83,9 +83,9 @@
     <MTextarea AutoGrow Label="@L["Description"]" @bind-Value="EditingEntity.Description"/>
     <MTextarea AutoGrow Label="@L["Annotation"]" @bind-Value="EditingEntity.Annotation"/>
     <MCheckbox Label="@L["IsVisible"]" @bind-Value="EditingEntity.IsVisible"/>
-    <MAutocomplete TItem="NameValue<Guid>" TValue="Guid" TItemValue="Guid" 
-                   @bind-Value="EditingEntity.ParentId" 
-                   Label="@L["ParentClass"]" 
+    <MAutocomplete TItem="NameValue<Guid>" TValue="Guid" TItemValue="Guid"
+                   @bind-Value="EditingEntity.ParentId"
+                   Label="@L["ParentClass"]"
                    Items="CodeClassSelectList" Clearable
                    ItemText="r => r.Name"
                    ItemValue="r => r.Value"

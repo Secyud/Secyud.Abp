@@ -9,9 +9,9 @@
                 OnOptionsUpdate="OnOptionsUpdate"
                 ServerItemsLength="TotalItems"
                 DisablePagination="DisablePagination"
-                Class="@Class" Stripe 
+                Class="@Class" Stripe
                 Loading="@(Items?.Any() != true)"
-                LoadingText="Loading..." >
+                LoadingText="Loading...">
         <ItemColContent>
             @if (context.Header.Value == MasaBlazorUiConsts.ActionColName)
             {

@@ -4,7 +4,9 @@
     <MMenu OffsetY>
         <ActivatorContent>
             <MButton @attributes="@context.Attrs" Icon>
-                @CurrentLanguageTwoLetters
+                <div class="fib">
+                    <i class="fi fis fi-@(CurrentLanguage.FlagIcon) circled"></i>
+                </div>
             </MButton>
         </ActivatorContent>
         <ChildContent>
@@ -12,6 +14,11 @@
                 @foreach (var language in Languages.Where(u => u.CultureName != CurrentLanguage.CultureName))
                 {
                     <MListItem OnClick="@(() => LanguagePlatformManager.ChangeAsync(language))" Dense>
+                        <MListItemIcon>
+                            <div class="fib">
+                                <i class="fi fis fi-@(language.FlagIcon) circled"></i>
+                            </div>
+                        </MListItemIcon>
                         <MListItemContent>
                             <MListItemTitle>
                                 @language.DisplayName / @(new CultureInfo(language.CultureName).TwoLetterISOLanguageName.ToUpper())

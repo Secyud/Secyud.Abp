@@ -25,7 +25,7 @@ public class EfCoreCodeClassRepository :
         [CanBeNull] string name = null,
         [CanBeNull] bool? isVisible = null,
         [CanBeNull] string sorting = null,
-        int skipCount = 0, 
+        int skipCount = 0,
         int maxResultCount = 2147483647,
         bool withDetails = false,
         CancellationToken cancellationToken = default)
@@ -34,10 +34,10 @@ public class EfCoreCodeClassRepository :
 
         return
             (await (withDetails ? WithDetailsAsync() : GetQueryableAsync()))
-            .ApplyFilter(name: name,isVisible:isVisible)
+            .ApplyFilter(name, isVisible)
             .OrderBy(sorting.IsNullOrEmpty() ? nameof(CodeFunction.Name) : sorting)
             .PageBy(skipCount, maxResultCount)
-            .Select(u=>new NameValue<Guid>(u.Name,u.Id))
+            .Select(u => new NameValue<Guid>(u.Name, u.Id))
             .ToList();
     }
 }

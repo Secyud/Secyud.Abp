@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BlazorComponent;
-using Masa.Blazor;
 using Microsoft.AspNetCore.Components.Web;
 using Secyud.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 using Secyud.Abp.CodeDocsManagement;
@@ -11,7 +9,6 @@ using Secyud.Abp.Localization;
 using Secyud.Abp.MasaBlazorUi.Components;
 using Secyud.Abp.Permissions;
 using Volo.Abp;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 
 namespace Secyud.Abp.Pages.CodeDocsManagement;
@@ -19,8 +16,6 @@ namespace Secyud.Abp.Pages.CodeDocsManagement;
 public partial class CodeClassPage
 {
     protected readonly PageToolbar Toolbar = new();
-    protected List<DataTableHeader<CodeClassDto>> CodeClassHeaders => TableHeaders.Get<CodeClassPage>();
-    protected List<EntityAction> CodeClassEntityActions => EntityActions.Get<CodeClassPage>();
 
     protected List<NameValue<Guid>> CodeClassSelectList;
 
@@ -33,9 +28,12 @@ public partial class CodeClassPage
         DeletePolicyName = CodeDocsPermissions.CodeClass.Delete;
     }
 
+    protected List<DataTableHeader<CodeClassDto>> CodeClassHeaders => TableHeaders.Get<CodeClassPage>();
+    protected List<EntityAction> CodeClassEntityActions => EntityActions.Get<CodeClassPage>();
+
     protected override async Task GetEntitiesAsync()
     {
-        CodeClassSelectList = await AppService.GetNameValueListAsync(new GetCodeClassListInput()
+        CodeClassSelectList = await AppService.GetNameValueListAsync(new GetCodeClassListInput
         {
             MaxResultCount = int.MaxValue
         });
@@ -86,7 +84,7 @@ public partial class CodeClassPage
                 Clicked = obj => DeleteEntityAsync(obj as CodeClassDto),
                 Visible = _ => HasDeletePermission,
                 ConfirmationMessage = _ => L["DeleteCodeClassConfirmationMessage"]
-            },
+            }
         });
         return base.SetEntityActionsAsync();
     }
@@ -94,9 +92,9 @@ public partial class CodeClassPage
     protected override ValueTask SetToolbarItemsAsync()
     {
         Toolbar.AddButton(
-            text: L["NewEntity"],
-            onclick: OpenCreateModalAsync,
-            icon: IconName.Create,
+            L["NewEntity"],
+            OpenCreateModalAsync,
+            IconName.Create,
             requiredPolicyName: CreatePolicyName);
         return base.SetToolbarItemsAsync();
     }

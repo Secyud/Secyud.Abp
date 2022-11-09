@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <Import Project="../../../../common.props" />
-    <Import Project="../../../../configureawait.props" />
+    <Import Project="../../../../common.props"/>
+    <Import Project="../../../../configureawait.props"/>
 
-    <PropertyGroup><LangVersion>latest</LangVersion>
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
         <TargetFramework>net6.0</TargetFramework>
         <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
         <IsPackable>true</IsPackable>
@@ -11,7 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Secyud.Abp.AspNetCore.Components.Web.MasaTheme\Secyud.Abp.AspNetCore.Components.Web.MasaTheme.csproj" />
-        <ProjectReference Include="..\..\..\..\framework\src\Secyud.Abp.AspNetCore.Components.Server.Theming\Secyud.Abp.AspNetCore.Components.Server.Theming.csproj" />
+        <ProjectReference Include="..\Secyud.Abp.AspNetCore.Components.Web.MasaTheme\Secyud.Abp.AspNetCore.Components.Web.MasaTheme.csproj"/>
+        <ProjectReference Include="..\..\..\..\framework\src\Secyud.Abp.AspNetCore.Components.Server.Theming\Secyud.Abp.AspNetCore.Components.Server.Theming.csproj"/>
     </ItemGroup>
 </Project>

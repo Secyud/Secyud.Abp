@@ -12,14 +12,7 @@ namespace Secyud.Abp.MasaBlazorUi;
 [Dependency(ReplaceServices = true)]
 public class MasaBlazorUiMessageService : IUiMessageService, IScopedDependency
 {
-    /// <summary>
-    /// An event raised after the message is received. Used to notify the message dialog.
-    /// </summary>
-    public event EventHandler<UiMessageEventArgs> MessageReceived;
-
     private readonly IStringLocalizer<AbpUiResource> _localizer;
-    
-    public ILogger<MasaBlazorUiMessageService> Logger { get; set; }
 
     public MasaBlazorUiMessageService(
         IStringLocalizer<AbpUiResource> localizer)
@@ -28,6 +21,8 @@ public class MasaBlazorUiMessageService : IUiMessageService, IScopedDependency
 
         Logger = NullLogger<MasaBlazorUiMessageService>.Instance;
     }
+
+    public ILogger<MasaBlazorUiMessageService> Logger { get; set; }
 
     public Task Info(string message, string title = null, Action<UiMessageOptions> options = null)
     {
@@ -81,6 +76,11 @@ public class MasaBlazorUiMessageService : IUiMessageService, IScopedDependency
         return callback.Task;
     }
 
+    /// <summary>
+    ///     An event raised after the message is received. Used to notify the message dialog.
+    /// </summary>
+    public event EventHandler<UiMessageEventArgs> MessageReceived;
+
     protected virtual UiMessageOptions CreateDefaultOptions()
     {
         return new UiMessageOptions
@@ -89,7 +89,7 @@ public class MasaBlazorUiMessageService : IUiMessageService, IScopedDependency
             ShowMessageIcon = true,
             OkButtonText = _localizer["Ok"],
             CancelButtonText = _localizer["Cancel"],
-            ConfirmButtonText = _localizer["Yes"],
+            ConfirmButtonText = _localizer["Yes"]
         };
     }
 }

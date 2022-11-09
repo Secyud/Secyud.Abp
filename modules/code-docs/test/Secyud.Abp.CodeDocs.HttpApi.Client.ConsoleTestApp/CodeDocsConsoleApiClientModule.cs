@@ -8,8 +8,7 @@ namespace Secyud.Abp;
     typeof(AbpAutofacModule),
     typeof(CodeDocsHttpApiClientModule),
     typeof(AbpHttpClientIdentityModelModule)
-    )]
+)]
 public class CodeDocsConsoleApiClientModule : AbpModule
 {
-
 }

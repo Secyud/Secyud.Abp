@@ -12,26 +12,17 @@ namespace Secyud.Abp;
     typeof(CodeDocsApplicationContractsModule),
     typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(AbpAutoMapperModule)
-    )]
+)]
 public class CodeDocsBlazorModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddAutoMapperObjectMapper<CodeDocsBlazorModule>();
 
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddProfile<CodeDocsBlazorAutoMapperProfile>(validate: true);
-        });
+        Configure<AbpAutoMapperOptions>(options => { options.AddProfile<CodeDocsBlazorAutoMapperProfile>(true); });
 
-        Configure<AbpNavigationOptions>(options =>
-        {
-            options.MenuContributors.Add(new CodeDocsMenuContributor());
-        });
+        Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new CodeDocsMenuContributor()); });
 
-        Configure<AbpRouterOptions>(options =>
-        {
-            options.AdditionalAssemblies.Add(typeof(CodeDocsBlazorModule).Assembly);
-        });
+        Configure<AbpRouterOptions>(options => { options.AdditionalAssemblies.Add(typeof(CodeDocsBlazorModule).Assembly); });
     }
 }

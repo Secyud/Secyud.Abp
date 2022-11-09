@@ -42,11 +42,11 @@ public class EfCoreCodeFunctionRepository :
 
     public async Task<List<NameValue<Guid>>> GetNameValueListAsync(
         [CanBeNull] string name = null,
-        Guid classId = default, 
-        [CanBeNull] string sorting = null, 
-        int skipCount = 0, 
+        Guid classId = default,
+        [CanBeNull] string sorting = null,
+        int skipCount = 0,
         int maxResultCount = 2147483647,
-        bool withDetails = false, 
+        bool withDetails = false,
         CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -56,7 +56,7 @@ public class EfCoreCodeFunctionRepository :
             .ApplyFilter(name: name, classId: classId)
             .OrderBy(sorting.IsNullOrEmpty() ? nameof(CodeFunction.Name) : sorting)
             .PageBy(skipCount, maxResultCount)
-            .Select(u=>new NameValue<Guid>(u.Name,u.Id))
+            .Select(u => new NameValue<Guid>(u.Name, u.Id))
             .ToList();
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Volo.Abp.Localization;
 
-namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation
-{
-    public interface ILanguagePlatformManager
-    {
-        Task ChangeAsync(LanguageInfo newLanguage);
+namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
 
-        Task<LanguageInfo> GetCurrentAsync();
-    }
+public interface ILanguagePlatformManager
+{
+    Task ChangeAsync(LanguageInfo newLanguage);
+
+    Task<LanguageInfo> GetCurrentAsync();
 }

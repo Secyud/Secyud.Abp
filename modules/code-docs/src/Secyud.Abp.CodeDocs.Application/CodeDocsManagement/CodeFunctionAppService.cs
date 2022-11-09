@@ -19,19 +19,14 @@ public class CodeFunctionAppService :
         Guid,
         GetCodeFunctionListInput,
         CreateCodeFunctionInput,
-        UpdateCodeFunctionInput>, 
+        UpdateCodeFunctionInput>,
     ICodeFunctionAppService
 {
-    protected override string GetPolicyName => CodeDocsPermissions.CodeFunction.Default;
-    protected override string GetListPolicyName => CodeDocsPermissions.CodeFunction.Default;
-    protected override string CreatePolicyName => CodeDocsPermissions.CodeFunction.Create;
-    protected override string UpdatePolicyName => CodeDocsPermissions.CodeFunction.Update;
-    protected override string DeletePolicyName => CodeDocsPermissions.CodeFunction.Delete;
-
     protected readonly ICodeFunctionRepository FunctionRepository;
+
     public CodeFunctionAppService(
-        IRepository<CodeFunction, Guid> repository, 
-        ICodeFunctionRepository codeFunctionRepository) 
+        IRepository<CodeFunction, Guid> repository,
+        ICodeFunctionRepository codeFunctionRepository)
         : base(repository)
     {
         FunctionRepository = codeFunctionRepository;
@@ -39,32 +34,32 @@ public class CodeFunctionAppService :
         ObjectMapperContext = typeof(CodeDocsApplicationModule);
     }
 
-    protected override async Task<IQueryable<CodeFunction>> CreateFilteredQueryAsync(GetCodeFunctionListInput input)
-    {
-        return (await base.CreateFilteredQueryAsync(input))
-            .ApplyFilter(classId:input.ClassId,name:input.Name);
-    }
+    protected override string GetPolicyName => CodeDocsPermissions.CodeFunction.Default;
+    protected override string GetListPolicyName => CodeDocsPermissions.CodeFunction.Default;
+    protected override string CreatePolicyName => CodeDocsPermissions.CodeFunction.Create;
+    protected override string UpdatePolicyName => CodeDocsPermissions.CodeFunction.Update;
+    protected override string DeletePolicyName => CodeDocsPermissions.CodeFunction.Delete;
 
     public Task<List<NameValue<Guid>>> GetNameValueListAsync(GetCodeFunctionListInput input)
     {
         return FunctionRepository
             .GetNameValueListAsync(
-                name: input.Name,
-                classId: input.ClassId,
-                sorting:input.Sorting,
-                skipCount:input.SkipCount,
-                maxResultCount:input.MaxResultCount);
+                input.Name,
+                input.ClassId,
+                input.Sorting,
+                input.SkipCount,
+                input.MaxResultCount);
     }
 
     public async Task<List<CodeFunctionDto>> GetListWithDetailsAsync(GetCodeFunctionListInput input)
     {
         var list = await FunctionRepository
             .GetListAsync(
-                name: input.Name,
-                classId:input.ClassId,
-                sorting:input.Sorting,
-                skipCount:input.SkipCount,
-                maxResultCount:input.MaxResultCount,
+                input.Name,
+                input.ClassId,
+                input.Sorting,
+                input.SkipCount,
+                input.MaxResultCount,
                 true);
 
         return ObjectMapper.Map<List<CodeFunction>, List<CodeFunctionDto>>(list);
@@ -95,5 +90,11 @@ public class CodeFunctionAppService :
         entity = await FunctionRepository.UpdateAsync(entity);
 
         return ObjectMapper.Map<CodeFunction, CodeFunctionDto>(entity);
+    }
+
+    protected override async Task<IQueryable<CodeFunction>> CreateFilteredQueryAsync(GetCodeFunctionListInput input)
+    {
+        return (await base.CreateFilteredQueryAsync(input))
+            .ApplyFilter(input.ClassId, input.Name);
     }
 }

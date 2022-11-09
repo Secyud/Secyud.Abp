@@ -7,16 +7,14 @@ using Volo.Abp.DependencyInjection;
 namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
 
 [Dependency(ReplaceServices = true)]
-public class MasaThemeManager:IThemeManager,IScopedDependency
+public class MasaThemeManager : IThemeManager, IScopedDependency
 {
-    
-    public event EventHandler<ThemeChangeEventArgs> ThemeChangeEvent;
+    private const string CookieName = "masatheme.style";
 
     private readonly ICookieService _cookieService;
 
-    private const string CookieName = "masatheme.style";
-
     private string _theme = MasaStyleNames.Light;
+
     public MasaThemeManager(ICookieService cookieService)
     {
         _cookieService = cookieService;
@@ -27,9 +25,11 @@ public class MasaThemeManager:IThemeManager,IScopedDependency
         //TODO: CookieServiceError
         //await _cookieService.SetAsync(CookieName,args.ThemeName);
         _theme = args.ThemeName;
-        ThemeChangeEvent?.Invoke(this,args);
+        ThemeChangeEvent?.Invoke(this, args);
         await Task.CompletedTask;
     }
+
+    public event EventHandler<ThemeChangeEventArgs> ThemeChangeEvent;
 
     public ValueTask<string> GetCookiesThemeAsync()
     {

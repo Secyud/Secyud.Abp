@@ -5,5 +5,4 @@ namespace Secyud.Abp.MasaTheme.Shared.Localization;
 [LocalizationResourceName("Masa")]
 public class MasaResource
 {
-
 }

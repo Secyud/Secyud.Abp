@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
-using Masa.Blazor;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Volo.Abp.AspNetCore.Components.Messages;
 
@@ -42,7 +39,7 @@ public partial class UiMessageAlert
         UiMessageType.Warning => StyleIcon.Warning,
         UiMessageType.Error => StyleIcon.Error,
         UiMessageType.Confirmation => StyleIcon.Confirmation,
-        _ => null,
+        _ => null
     };
 
     protected virtual string MessageColor => MessageType switch
@@ -52,7 +49,7 @@ public partial class UiMessageAlert
         UiMessageType.Warning => StyleColor.Warning,
         UiMessageType.Error => StyleColor.Error,
         UiMessageType.Confirmation => StyleColor.Confirmation,
-        _ => null,
+        _ => null
     };
 
     protected virtual string OkButtonText => Options?.OkButtonText ?? "OK";
@@ -60,6 +57,12 @@ public partial class UiMessageAlert
     protected virtual string ConfirmButtonText => Options?.ConfirmButtonText ?? "Confirm";
 
     protected virtual string CancelButtonText => Options?.CancelButtonText ?? "Cancel";
+
+    public void Dispose()
+    {
+        if (UiMessageService != null)
+            UiMessageService.MessageReceived -= OnMessageReceived;
+    }
 
     protected override void OnInitialized()
     {
@@ -82,12 +85,6 @@ public partial class UiMessageAlert
     protected virtual async Task ShowMessageAlert()
     {
         await InvokeAsync(() => MessageVisible = true);
-    }
-
-    public void Dispose()
-    {
-        if (UiMessageService != null)
-            UiMessageService.MessageReceived -= OnMessageReceived;
     }
 
     protected async Task OnOkClicked()

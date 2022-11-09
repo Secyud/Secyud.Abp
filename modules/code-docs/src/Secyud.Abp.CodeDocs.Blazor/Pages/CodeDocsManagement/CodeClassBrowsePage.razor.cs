@@ -17,7 +17,7 @@ public partial class CodeClassBrowsePage
 
     protected override async Task OnInitializedAsync()
     {
-        CodeClassNameValues = (await AppService.GetNameValueListAsync(new()
+        CodeClassNameValues = (await AppService.GetNameValueListAsync(new GetCodeClassListInput
             {
                 MaxResultCount = int.MaxValue,
                 Sorting = nameof(CodeClassDto.Name),
@@ -29,5 +29,8 @@ public partial class CodeClassBrowsePage
                 u => u.ToList());
     }
 
-    protected string NavUrl(Guid codeClassId) => $"code-docs/browse/{codeClassId}";
+    protected string NavUrl(Guid codeClassId)
+    {
+        return $"code-docs/browse/{codeClassId}";
+    }
 }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 
 namespace Secyud.Abp.MasaBlazorUi.Components;
 
-public partial class SubmitButton 
+public partial class SubmitButton
 {
     [Inject] protected IStringLocalizer<AbpUiResource> StringLocalizer { get; set; }
-    
+
     [Parameter] public string Form { get; set; }
 
     [Parameter] public string Color { get; set; } = "primary";
@@ -25,7 +24,7 @@ public partial class SubmitButton
     [Parameter] public RenderFragment ChildContent { get; set; }
 
     protected bool Submiting { get; set; }
-    
+
     protected bool IsDisabled => Disabled || Submiting;
 
     protected bool IsLoading => Submiting;

@@ -8,6 +8,10 @@ namespace Secyud.Abp.EntityFrameworkCore;
 [ConnectionStringName(CodeDocsDbProperties.ConnectionStringName)]
 public class CodeDocsDbContext : AbpDbContext<CodeDocsDbContext>, ICodeDocsDbContext
 {
+    public CodeDocsDbContext(DbContextOptions<CodeDocsDbContext> options)
+        : base(options)
+    {
+    }
     /* Add DbSet for each Aggregate Root here. Example:
      * public DbSet<Question> Questions { get; set; }
      */
@@ -15,12 +19,6 @@ public class CodeDocsDbContext : AbpDbContext<CodeDocsDbContext>, ICodeDocsDbCon
     public DbSet<CodeClass> CodeClass { get; set; }
 
     public DbSet<CodeFunction> CodeFunction { get; set; }
-
-    public CodeDocsDbContext(DbContextOptions<CodeDocsDbContext> options)
-        : base(options)
-    {
-
-    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

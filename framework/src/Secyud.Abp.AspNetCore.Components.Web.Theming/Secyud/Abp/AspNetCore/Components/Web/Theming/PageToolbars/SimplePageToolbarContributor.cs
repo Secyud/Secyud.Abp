@@ -8,14 +8,6 @@ namespace Secyud.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 
 public class SimplePageToolbarContributor : IPageToolbarContributor
 {
-    public Type ComponentType { get; }
-
-    public Dictionary<string, object> Arguments { get; set; }
-
-    public int Order { get; }
-
-    public string RequiredPolicyName { get; }
-
     public SimplePageToolbarContributor(
         Type componentType,
         Dictionary<string, object> arguments = null,
@@ -28,12 +20,17 @@ public class SimplePageToolbarContributor : IPageToolbarContributor
         RequiredPolicyName = requiredPolicyName;
     }
 
+    public Type ComponentType { get; }
+
+    public Dictionary<string, object> Arguments { get; set; }
+
+    public int Order { get; }
+
+    public string RequiredPolicyName { get; }
+
     public async Task ContributeAsync(PageToolbarContributionContext context)
     {
-        if (await ShouldAddComponentAsync(context))
-        {
-            context.Items.Add(new PageToolbarItem(ComponentType, Arguments, Order));
-        }
+        if (await ShouldAddComponentAsync(context)) context.Items.Add(new PageToolbarItem(ComponentType, Arguments, Order));
     }
 
     protected virtual async Task<bool> ShouldAddComponentAsync(PageToolbarContributionContext context)
@@ -41,10 +38,7 @@ public class SimplePageToolbarContributor : IPageToolbarContributor
         if (RequiredPolicyName != null)
         {
             var authorizationService = context.ServiceProvider.GetRequiredService<IAuthorizationService>();
-            if (!await authorizationService.IsGrantedAsync(RequiredPolicyName))
-            {
-                return false;
-            }
+            if (!await authorizationService.IsGrantedAsync(RequiredPolicyName)) return false;
         }
 
         return true;

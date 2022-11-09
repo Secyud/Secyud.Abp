@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Secyud.Abp.Localization;
@@ -21,15 +20,10 @@ public class CodeClassAppService :
         UpdateCodeClassInput>,
     ICodeClassAppService
 {
-    protected override string GetPolicyName => CodeDocsPermissions.CodeClass.Default;
-    protected override string GetListPolicyName => CodeDocsPermissions.CodeClass.Default;
-    protected override string CreatePolicyName => CodeDocsPermissions.CodeClass.Create;
-    protected override string UpdatePolicyName => CodeDocsPermissions.CodeClass.Update;
-    protected override string DeletePolicyName => CodeDocsPermissions.CodeClass.Delete;
-
     protected readonly ICodeClassRepository ClassRepository;
+
     public CodeClassAppService(
-        IRepository<CodeClass, Guid> repository, 
+        IRepository<CodeClass, Guid> repository,
         ICodeClassRepository codeClassRepository)
         : base(repository)
     {
@@ -37,21 +31,21 @@ public class CodeClassAppService :
         LocalizationResource = typeof(CodeDocsResource);
         ObjectMapperContext = typeof(CodeDocsApplicationModule);
     }
-    
-    protected override async Task<IQueryable<CodeClass>> CreateFilteredQueryAsync(GetCodeClassListInput input)
-    {
-        return (await base.CreateFilteredQueryAsync(input))
-            .ApplyFilter(name: input.Name,isVisible:input.IsVisible);
-    }
+
+    protected override string GetPolicyName => CodeDocsPermissions.CodeClass.Default;
+    protected override string GetListPolicyName => CodeDocsPermissions.CodeClass.Default;
+    protected override string CreatePolicyName => CodeDocsPermissions.CodeClass.Create;
+    protected override string UpdatePolicyName => CodeDocsPermissions.CodeClass.Update;
+    protected override string DeletePolicyName => CodeDocsPermissions.CodeClass.Delete;
 
     public Task<List<NameValue<Guid>>> GetNameValueListAsync(GetCodeClassListInput input)
     {
         return ClassRepository
             .GetNameValueListAsync(
-                name: input.Name,
-                sorting:input.Sorting,
-                skipCount:input.SkipCount,
-                maxResultCount:input.MaxResultCount);
+                input.Name,
+                sorting: input.Sorting,
+                skipCount: input.SkipCount,
+                maxResultCount: input.MaxResultCount);
     }
 
     public async Task<CodeClassDto> AddParameterAsync(Guid id, string name, Guid typeId)
@@ -97,5 +91,11 @@ public class CodeClassAppService :
         entity = await ClassRepository.UpdateAsync(entity);
 
         return ObjectMapper.Map<CodeClass, CodeClassDto>(entity);
+    }
+
+    protected override async Task<IQueryable<CodeClass>> CreateFilteredQueryAsync(GetCodeClassListInput input)
+    {
+        return (await base.CreateFilteredQueryAsync(input))
+            .ApplyFilter(input.Name, input.IsVisible);
     }
 }

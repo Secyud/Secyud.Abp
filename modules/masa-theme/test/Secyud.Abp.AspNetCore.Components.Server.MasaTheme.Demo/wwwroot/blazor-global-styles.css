@@ -16,6 +16,7 @@
     right: 0.75rem;
     top: 0.5rem;
 }
+
 .lpx-brand-logo {
     background-image: url("images/logo/logo.png") !important;
 }
@@ -29,7 +30,7 @@
 .application {
     margin: 15px;
     width: 240px !important;
-    height: 136px ;
+    height: 136px;
     border-radius: 5px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -37,12 +38,13 @@
     overflow: hidden;
     float: left;
     background-color: whitesmoke;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .application .col .card {
     background: transparent;
 }
+
 .application .col .card .card-body {
     margin-top: 62px;
     margin-left: 127px;
@@ -51,11 +53,11 @@
 }
 
 .application:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .application:active {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: white;
 }
 

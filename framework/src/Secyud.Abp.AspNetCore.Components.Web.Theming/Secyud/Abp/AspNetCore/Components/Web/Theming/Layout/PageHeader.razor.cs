@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlazorComponent;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using Secyud.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 
@@ -9,8 +9,13 @@ namespace Secyud.Abp.AspNetCore.Components.Web.Theming.Layout;
 
 public partial class PageHeader
 {
+    public PageHeader()
+    {
+        ToolbarItemRenders = new List<RenderFragment>();
+    }
+
     [Inject] private IOptions<PageHeaderOptions> Options { get; set; }
-    
+
     [Inject] public IPageToolbarManager PageToolbarManager { get; set; }
 
     [Parameter] public string Title { get; set; }
@@ -24,14 +29,8 @@ public partial class PageHeader
     [Parameter] public List<BreadcrumbItem> BreadcrumbItems { get; set; }
 
     [Parameter] public PageToolbar Toolbar { get; set; }
-    
-    protected List<RenderFragment> ToolbarItemRenders { get; set; }
 
-    
-    public PageHeader()
-    {
-        ToolbarItemRenders = new List<RenderFragment>();
-    }
+    protected List<RenderFragment> ToolbarItemRenders { get; set; }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -46,13 +45,12 @@ public partial class PageHeader
                 {
                     builder.OpenComponent(sequence, item.ComponentType);
                     if (item.Arguments != null)
-                    {
                         foreach (var argument in item.Arguments)
                         {
                             sequence++;
                             builder.AddAttribute(sequence, argument.Key, argument.Value);
                         }
-                    }
+
                     builder.CloseComponent();
                 });
             }

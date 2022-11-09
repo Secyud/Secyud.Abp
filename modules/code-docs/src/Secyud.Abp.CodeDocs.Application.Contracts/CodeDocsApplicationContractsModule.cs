@@ -8,8 +8,7 @@ namespace Secyud.Abp;
     typeof(CodeDocsDomainSharedModule),
     typeof(AbpDddApplicationContractsModule),
     typeof(AbpAuthorizationModule)
-    )]
+)]
 public class CodeDocsApplicationContractsModule : AbpModule
 {
-
 }

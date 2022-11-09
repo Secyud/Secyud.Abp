@@ -10,7 +10,7 @@ public class MasaBlazorUiPageProgressService : IUiPageProgressService,
     IScopedDependency
 {
     /// <summary>
-    /// An event raised after the notification is received.
+    ///     An event raised after the notification is received.
     /// </summary>
     public event EventHandler<UiPageProgressEventArgs> ProgressChanged;
 

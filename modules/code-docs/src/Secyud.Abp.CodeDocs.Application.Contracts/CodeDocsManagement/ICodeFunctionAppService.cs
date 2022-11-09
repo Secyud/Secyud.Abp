@@ -6,7 +6,7 @@ using Volo.Abp.Application.Services;
 
 namespace Secyud.Abp.CodeDocsManagement;
 
-public interface ICodeFunctionAppService : 
+public interface ICodeFunctionAppService :
     ICrudAppService<
         CodeFunctionDto,
         Guid,
@@ -15,12 +15,12 @@ public interface ICodeFunctionAppService :
         UpdateCodeFunctionInput>
 {
     Task<List<NameValue<Guid>>> GetNameValueListAsync(GetCodeFunctionListInput input);
-    
+
     Task<List<CodeFunctionDto>> GetListWithDetailsAsync(GetCodeFunctionListInput input);
 
     Task<CodeFunctionDto> AddParameterAsync(Guid id, string name, Guid typeId);
 
     Task<CodeFunctionDto> RemoveParameterAsync(Guid id, string name);
-    
+
     Task<CodeFunctionDto> SetParameterAnnotationAsync(Guid id, string name, string annotation);
 }

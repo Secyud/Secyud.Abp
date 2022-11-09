@@ -14,10 +14,7 @@ public class CodeDocsHttpApiModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
-        PreConfigure<IMvcBuilder>(mvcBuilder =>
-        {
-            mvcBuilder.AddApplicationPartIfNotExists(typeof(CodeDocsHttpApiModule).Assembly);
-        });
+        PreConfigure<IMvcBuilder>(mvcBuilder => { mvcBuilder.AddApplicationPartIfNotExists(typeof(CodeDocsHttpApiModule).Assembly); });
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)

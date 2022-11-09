@@ -13,7 +13,7 @@ namespace Secyud.Abp;
     typeof(AbpTestBaseModule),
     typeof(AbpAuthorizationModule),
     typeof(CodeDocsDomainModule)
-    )]
+)]
 public class CodeDocsTestBaseModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)

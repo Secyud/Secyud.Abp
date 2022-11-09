@@ -7,57 +7,56 @@ using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Localization;
 
-namespace Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Navigation
+namespace Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Navigation;
+
+[ExposeServices(typeof(ILanguagePlatformManager))]
+public class MasaLanguageBlazorServerManager : ILanguagePlatformManager, ITransientDependency
 {
-    [ExposeServices(typeof(ILanguagePlatformManager))]
-    public class MasaLanguageBlazorServerManager : ILanguagePlatformManager, ITransientDependency
+    public MasaLanguageBlazorServerManager(
+        NavigationManager navigationManager,
+        ILanguageProvider languageProvider,
+        IAbpRequestLocalizationOptionsProvider requestLocalizationOptionsProvider)
     {
-        protected NavigationManager NavigationManager { get; }
+        NavigationManager = navigationManager;
+        LanguageProvider = languageProvider;
+        RequestLocalizationOptionsProvider = requestLocalizationOptionsProvider;
+    }
 
-        protected ILanguageProvider LanguageProvider { get; }
+    protected NavigationManager NavigationManager { get; }
 
-        protected IAbpRequestLocalizationOptionsProvider RequestLocalizationOptionsProvider { get; }
+    protected ILanguageProvider LanguageProvider { get; }
 
-        public MasaLanguageBlazorServerManager(
-            NavigationManager navigationManager,
-            ILanguageProvider languageProvider,
-            IAbpRequestLocalizationOptionsProvider requestLocalizationOptionsProvider)
+    protected IAbpRequestLocalizationOptionsProvider RequestLocalizationOptionsProvider { get; }
+
+    public Task ChangeAsync(LanguageInfo newLanguage)
+    {
+        var relativeUrl = NavigationManager.Uri.RemovePreFix(NavigationManager.BaseUri).EnsureStartsWith('/');
+
+        NavigationManager.NavigateTo(
+            $"/Abp/Languages/Switch?culture={newLanguage.CultureName}&uiCulture={newLanguage.UiCultureName}&returnUrl={relativeUrl}",
+            true
+        );
+
+        return Task.CompletedTask;
+    }
+
+    public async Task<LanguageInfo> GetCurrentAsync()
+    {
+        var languages = await LanguageProvider.GetLanguagesAsync();
+        var currentLanguage = languages.FindByCulture(
+            CultureInfo.CurrentCulture.Name,
+            CultureInfo.CurrentUICulture.Name
+        );
+
+        if (currentLanguage == null)
         {
-            NavigationManager = navigationManager;
-            LanguageProvider = languageProvider;
-            RequestLocalizationOptionsProvider = requestLocalizationOptionsProvider;
+            var localizationOptions = await RequestLocalizationOptionsProvider.GetLocalizationOptionsAsync();
+            currentLanguage = new LanguageInfo(
+                localizationOptions.DefaultRequestCulture.Culture.Name,
+                localizationOptions.DefaultRequestCulture.UICulture.Name,
+                localizationOptions.DefaultRequestCulture.UICulture.DisplayName);
         }
 
-        public Task ChangeAsync(LanguageInfo newLanguage)
-        {
-            var relativeUrl = NavigationManager.Uri.RemovePreFix(NavigationManager.BaseUri).EnsureStartsWith('/');
-
-            NavigationManager.NavigateTo(
-                $"/Abp/Languages/Switch?culture={newLanguage.CultureName}&uiCulture={newLanguage.UiCultureName}&returnUrl={relativeUrl}",
-                forceLoad: true
-            );
-
-            return Task.CompletedTask;
-        }
-
-        public async Task<LanguageInfo> GetCurrentAsync()
-        {
-            var languages = await LanguageProvider.GetLanguagesAsync();
-            var currentLanguage = languages.FindByCulture(
-                CultureInfo.CurrentCulture.Name,
-                CultureInfo.CurrentUICulture.Name
-            );
-
-            if (currentLanguage == null)
-            {
-                var localizationOptions = await RequestLocalizationOptionsProvider.GetLocalizationOptionsAsync();
-                currentLanguage = new LanguageInfo(
-                    localizationOptions.DefaultRequestCulture.Culture.Name,
-                    localizationOptions.DefaultRequestCulture.UICulture.Name,
-                    localizationOptions.DefaultRequestCulture.UICulture.DisplayName);
-            }
-
-            return currentLanguage;
-        }
+        return currentLanguage;
     }
 }

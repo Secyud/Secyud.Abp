@@ -12,14 +12,19 @@ public partial class MasaSideMenuLayout
     [Inject] protected IAbpUtilsService UtilsService { get; set; }
 
     [Inject] protected IOptions<MasaThemeOptions> Options { get; set; }
-        
+
     [Inject] protected MasaThemeManager ThemeManager { get; set; }
 
-    
+
     private bool CascadingIsDark { get; set; }
-    
+
     private bool NavBarCollapsed { get; set; }
-    
+
+    public void Dispose()
+    {
+        ThemeManager.ThemeChangeEvent -= ChangeTheme;
+    }
+
     protected override async Task OnInitializedAsync()
     {
         if (await ThemeManager.GetCookiesThemeAsync() == MasaStyleNames.Dark)
@@ -36,10 +41,5 @@ public partial class MasaSideMenuLayout
     {
         CascadingIsDark = args.ThemeName == MasaStyleNames.Dark;
         StateHasChanged();
-    }
-    
-    public void Dispose()
-    {
-        ThemeManager.ThemeChangeEvent -= ChangeTheme;
     }
 }

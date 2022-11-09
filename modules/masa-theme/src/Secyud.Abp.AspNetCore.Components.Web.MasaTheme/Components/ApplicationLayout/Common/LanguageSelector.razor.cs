@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
@@ -19,8 +18,6 @@ public partial class LanguageSelector
 
     public LanguageInfo CurrentLanguage { get; private set; }
 
-    public string CurrentLanguageTwoLetters { get; private set; }
-
     public bool HasLanguages { get; private set; }
 
 
@@ -28,11 +25,6 @@ public partial class LanguageSelector
     {
         Languages = await LanguageProvider.GetLanguagesAsync();
         CurrentLanguage = await LanguagePlatformManager.GetCurrentAsync();
-
-        if (CurrentLanguage != null && !CurrentLanguage.CultureName.IsNullOrWhiteSpace())
-        {
-            CurrentLanguageTwoLetters = new CultureInfo(CurrentLanguage.CultureName).TwoLetterISOLanguageName.ToUpperInvariant();
-        }
 
         HasLanguages = Languages.Any() || CurrentLanguage == null;
     }

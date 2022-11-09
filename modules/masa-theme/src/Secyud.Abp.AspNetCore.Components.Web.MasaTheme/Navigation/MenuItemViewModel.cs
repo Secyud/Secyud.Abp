@@ -14,8 +14,7 @@ public class MenuItemViewModel
 
     public bool IsOpen { get; set; }
 
-    [CanBeNull]
-    public MenuItemViewModel Parent { get; set; }
+    [CanBeNull] public MenuItemViewModel Parent { get; set; }
 
     public void Activate()
     {

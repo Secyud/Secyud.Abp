@@ -3,7 +3,7 @@ using BlazorComponent;
 
 namespace Secyud.Abp.MasaBlazorUi;
 
-public class TableHeaderDictionary<TItem>: Dictionary<string, List<DataTableHeader<TItem>>>
+public class TableHeaderDictionary<TItem> : Dictionary<string, List<DataTableHeader<TItem>>>
 {
     public List<DataTableHeader<TItem>> Get<T>()
     {

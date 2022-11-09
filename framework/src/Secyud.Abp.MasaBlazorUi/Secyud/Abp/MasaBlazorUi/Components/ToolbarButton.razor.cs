@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Secyud.Abp.MasaBlazorUi.Components;
 
-public partial class ToolbarButton 
+public partial class ToolbarButton
 {
     [Parameter] public string Color { get; set; }
 

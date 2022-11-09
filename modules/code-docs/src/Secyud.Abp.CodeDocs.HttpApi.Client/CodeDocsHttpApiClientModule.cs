@@ -17,10 +17,6 @@ public class CodeDocsHttpApiClientModule : AbpModule
             CodeDocsRemoteServiceConsts.RemoteServiceName
         );
 
-        Configure<AbpVirtualFileSystemOptions>(options =>
-        {
-            options.FileSets.AddEmbedded<CodeDocsHttpApiClientModule>();
-        });
-
+        Configure<AbpVirtualFileSystemOptions>(options => { options.FileSets.AddEmbedded<CodeDocsHttpApiClientModule>(); });
     }
 }

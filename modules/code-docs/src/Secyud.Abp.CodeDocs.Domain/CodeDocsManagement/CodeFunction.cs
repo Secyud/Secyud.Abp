@@ -9,18 +9,8 @@ namespace Secyud.Abp.CodeDocsManagement;
 
 public sealed class CodeFunction : AuditedAggregateRoot<Guid>
 {
-    [NotNull] public string Name { get; set; } 
-    public string Annotation { get; set; }
-    public Guid ClassId { get; set; }
-    public Guid ReturnId { get; set; }
-    public bool IsStatic { get; set; }
-    public bool IsVirtual { get; set; }
-
-    public List<FunctionParameter> Parameters { get; set; }
-    
     private CodeFunction()
     {
-
     }
 
     public CodeFunction(
@@ -38,7 +28,16 @@ public sealed class CodeFunction : AuditedAggregateRoot<Guid>
         IsVirtual = isVirtual;
         Parameters = new List<FunctionParameter>();
     }
-    
+
+    [NotNull] public string Name { get; set; }
+    public string Annotation { get; set; }
+    public Guid ClassId { get; set; }
+    public Guid ReturnId { get; set; }
+    public bool IsStatic { get; set; }
+    public bool IsVirtual { get; set; }
+
+    public List<FunctionParameter> Parameters { get; set; }
+
     public void AddParameter(string name, Guid type)
     {
         if (Parameters.Any(u => u.Name == name))
@@ -51,7 +50,7 @@ public sealed class CodeFunction : AuditedAggregateRoot<Guid>
     {
         return Parameters.Find(u => u.Name == name);
     }
-    
+
     public void RemoveParameter(string name)
     {
         var parameter = Parameters

@@ -1,12 +1,12 @@
-﻿@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.Navigation
+﻿@inherits LayoutComponentBase
 @using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.MainHeader
-@using Secyud.Abp.AspNetCore.Components.Web.Theming.Components;
-@inherits LayoutComponentBase
+@using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu.Navigation
+@using Secyud.Abp.AspNetCore.Components.Web.Theming.Components
 @implements IDisposable
 
 <CascadingValue Value="@CascadingIsDark" Name="IsDark">
     <MApp Class="overflow-hidden">
-        <MainHeader OnToggle="()=>NavBarCollapsed=!NavBarCollapsed"/>
+        <MainHeader OnToggle="() => NavBarCollapsed = !NavBarCollapsed"/>
         <MainMenu @bind-Value="@NavBarCollapsed"/>
         <MMain>
             <MContainer Fluid>

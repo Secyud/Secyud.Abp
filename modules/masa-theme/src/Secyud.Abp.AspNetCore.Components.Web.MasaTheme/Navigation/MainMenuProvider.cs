@@ -12,8 +12,6 @@ public class MainMenuProvider : IScopedDependency
     private readonly IMenuManager _menuManager;
     private readonly IObjectMapper<AbpAspNetCoreComponentsWebMasaThemeModule> _objectMapper;
 
-    private MenuViewModel Menu { get; set; }
-
     public MainMenuProvider(
         IMenuManager menuManager,
         IObjectMapper<AbpAspNetCoreComponentsWebMasaThemeModule> objectMapper)
@@ -21,6 +19,8 @@ public class MainMenuProvider : IScopedDependency
         _menuManager = menuManager;
         _objectMapper = objectMapper;
     }
+
+    private MenuViewModel Menu { get; set; }
 
     public async Task<MenuViewModel> GetMenuAsync()
     {
@@ -43,7 +43,7 @@ public class MainMenuProvider : IScopedDependency
     {
         var viewModel = new MenuItemViewModel
         {
-            MenuItem = applicationMenuItem,
+            MenuItem = applicationMenuItem
         };
 
         viewModel.Items = new List<MenuItemViewModel>();

@@ -12,20 +12,14 @@ namespace Secyud.Abp.EntityFrameworkCore;
     typeof(CodeDocsTestBaseModule),
     typeof(CodeDocsEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCoreSqliteModule)
-    )]
+)]
 public class CodeDocsEntityFrameworkCoreTestModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         var sqliteConnection = CreateDatabaseAndGetConnection();
 
-        Configure<AbpDbContextOptions>(options =>
-        {
-            options.Configure(abpDbContextConfigurationContext =>
-            {
-                abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnection);
-            });
-        });
+        Configure<AbpDbContextOptions>(options => { options.Configure(abpDbContextConfigurationContext => { abpDbContextConfigurationContext.DbContextOptions.UseSqlite(sqliteConnection); }); });
     }
 
     private static SqliteConnection CreateDatabaseAndGetConnection()

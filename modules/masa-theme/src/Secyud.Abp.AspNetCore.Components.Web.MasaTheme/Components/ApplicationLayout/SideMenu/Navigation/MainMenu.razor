@@ -8,7 +8,7 @@
                     <MListItemAvatar>
                         <MImage Src="@ProfileImageUrl"/>
                     </MListItemAvatar>
-                
+
                     <MListItemTitle>@UserName</MListItemTitle>
                     <MListItemSubtitle>@UserFullName</MListItemSubtitle>
                     @if (!TenantName.IsNullOrEmpty())
@@ -20,7 +20,7 @@
                         <MListItemSubtitle>@UserEmail</MListItemSubtitle>
                     }
                 </MListItem>
-                
+
                 <MList Dense>
                     @foreach (var menuItem in UserMenu.Items)
                     {
@@ -35,12 +35,12 @@
                 </MList>
             </Authorized>
             <NotAuthorized>
-                <MListItem  Href="Account/Login">
-                        <MIcon>mdi-account</MIcon>
+                <MListItem Href="Account/Login">
+                    <MIcon>mdi-account</MIcon>
                 </MListItem>
             </NotAuthorized>
         </AuthorizeView>
-       
+
 
         <MDivider/>
 

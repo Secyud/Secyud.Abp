@@ -1,12 +1,12 @@
-using Microsoft.Extensions.Configuration;
-using System.IO;
 using System;
+using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo;
 using Serilog;
 using Serilog.Events;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo;
 
 var assemblyName = typeof(Program).Assembly.GetName().Name;
 

@@ -15,43 +15,28 @@ namespace Secyud.Abp.CodeDocs.Web;
     typeof(CodeDocsApplicationContractsModule),
     typeof(AbpAspNetCoreMvcUiThemeSharedModule),
     typeof(AbpAutoMapperModule)
-    )]
+)]
 public class CodeDocsWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
-        context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
-        {
-            options.AddAssemblyResource(typeof(CodeDocsResource), typeof(CodeDocsWebModule).Assembly);
-        });
+        context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options => { options.AddAssemblyResource(typeof(CodeDocsResource), typeof(CodeDocsWebModule).Assembly); });
 
-        PreConfigure<IMvcBuilder>(mvcBuilder =>
-        {
-            mvcBuilder.AddApplicationPartIfNotExists(typeof(CodeDocsWebModule).Assembly);
-        });
+        PreConfigure<IMvcBuilder>(mvcBuilder => { mvcBuilder.AddApplicationPartIfNotExists(typeof(CodeDocsWebModule).Assembly); });
     }
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpNavigationOptions>(options =>
-        {
-            options.MenuContributors.Add(new CodeDocsMenuContributor());
-        });
+        Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new CodeDocsMenuContributor()); });
 
-        Configure<AbpVirtualFileSystemOptions>(options =>
-        {
-            options.FileSets.AddEmbedded<CodeDocsWebModule>();
-        });
+        Configure<AbpVirtualFileSystemOptions>(options => { options.FileSets.AddEmbedded<CodeDocsWebModule>(); });
 
         context.Services.AddAutoMapperObjectMapper<CodeDocsWebModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<CodeDocsWebModule>(validate: true);
-        });
+        Configure<AbpAutoMapperOptions>(options => { options.AddMaps<CodeDocsWebModule>(true); });
 
         Configure<RazorPagesOptions>(options =>
         {
-                //Configure authorization.
-            });
+            //Configure authorization.
+        });
     }
 }

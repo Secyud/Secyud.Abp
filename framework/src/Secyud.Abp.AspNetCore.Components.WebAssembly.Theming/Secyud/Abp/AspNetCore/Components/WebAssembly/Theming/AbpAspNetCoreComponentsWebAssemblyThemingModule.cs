@@ -10,5 +10,4 @@ namespace Secyud.Abp.AspNetCore.Components.WebAssembly.Theming;
 )]
 public class AbpAspNetCoreComponentsWebAssemblyThemingModule : AbpModule
 {
-
 }

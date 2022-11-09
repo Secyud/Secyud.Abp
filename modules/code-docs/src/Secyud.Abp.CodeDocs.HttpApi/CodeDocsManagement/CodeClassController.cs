@@ -25,12 +25,13 @@ public class CodeClassController : CodeDocsController, ICodeClassAppService
         return _codeClassAppService.GetAsync(id);
     }
 
-    [HttpGet,Route("list")]
+    [HttpGet]
+    [Route("list")]
     public Task<PagedResultDto<CodeClassDto>> GetListAsync(GetCodeClassListInput input)
     {
         return _codeClassAppService.GetListAsync(input);
     }
-    
+
     [HttpPost]
     public Task<CodeClassDto> CreateAsync(CreateCodeClassInput input)
     {
@@ -49,37 +50,43 @@ public class CodeClassController : CodeDocsController, ICodeClassAppService
         return _codeClassAppService.DeleteAsync(id);
     }
 
-    [HttpGet,Route("name-value-list")]
+    [HttpGet]
+    [Route("name-value-list")]
     public Task<List<NameValue<Guid>>> GetNameValueListAsync(GetCodeClassListInput input)
     {
         return _codeClassAppService.GetNameValueListAsync(input);
     }
 
-    [HttpPost,Route("parameter")]
+    [HttpPost]
+    [Route("parameter")]
     public Task<CodeClassDto> AddParameterAsync(Guid id, string name, Guid typeId)
     {
         return _codeClassAppService.AddParameterAsync(id, name, typeId);
     }
 
-    [HttpDelete,Route("parameter")]
+    [HttpDelete]
+    [Route("parameter")]
     public Task<CodeClassDto> RemoveParameterAsync(Guid id, string name)
     {
         return _codeClassAppService.RemoveParameterAsync(id, name);
     }
 
-    [HttpPut,Route("parameter/annotation")]
+    [HttpPut]
+    [Route("parameter/annotation")]
     public Task<CodeClassDto> SetParameterAnnotationAsync(Guid id, string name, string annotation)
     {
         return _codeClassAppService.SetParameterAnnotationAsync(id, name, annotation);
     }
 
-    [HttpPut,Route("parameter/public")]
+    [HttpPut]
+    [Route("parameter/public")]
     public Task<CodeClassDto> SetParameterPublicAsync(Guid id, string name)
     {
         return _codeClassAppService.SetParameterPublicAsync(id, name);
     }
 
-    [HttpPut,Route("parameter/private")]
+    [HttpPut]
+    [Route("parameter/private")]
     public Task<CodeClassDto> SetParameterPrivateAsync(Guid id, string name)
     {
         return _codeClassAppService.SetParameterPrivateAsync(id, name);

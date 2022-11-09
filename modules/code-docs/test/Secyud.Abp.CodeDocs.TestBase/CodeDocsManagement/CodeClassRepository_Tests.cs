@@ -23,9 +23,9 @@ public abstract class CodeClassRepository_Tests<TStartupModule> : CodeDocsTestBa
     [Fact]
     public async Task CreateAsync()
     {
-        var entity = await _codeClassRepository.InsertAsync(new CodeClass(Guid.NewGuid(),"test class","this is a test class","test class annotation",Guid.Empty, true));
-        
-        
+        var entity = await _codeClassRepository.InsertAsync(new CodeClass(Guid.NewGuid(), "test class", "this is a test class", "test class annotation", Guid.Empty, true));
+
+
         entity.Name.ShouldBe("test class");
         entity.Annotation.ShouldBe("test class annotation");
         entity.Description.ShouldBe("this is a test class");

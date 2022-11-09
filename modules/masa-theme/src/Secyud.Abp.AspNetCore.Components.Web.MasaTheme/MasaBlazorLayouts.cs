@@ -1,6 +1,5 @@
 ﻿using System;
 using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout;
-using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components.ApplicationLayout.SideMenu;
 
 namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme;
 

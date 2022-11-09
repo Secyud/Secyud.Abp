@@ -1,6 +1,5 @@
 namespace Secyud.Abp.CodeDocsManagement;
 
-public class CreateCodeClassInput:CreateUpdateCodeClassDtoBase
+public class CreateCodeClassInput : CreateUpdateCodeClassDtoBase
 {
-    
 }

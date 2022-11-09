@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Import Project="..\..\..\..\common.props" />
+    <Import Project="..\..\..\..\common.props"/>
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -10,12 +10,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.VirtualFileSystem" Version="6.0.1" />
+        <PackageReference Include="Volo.Abp.VirtualFileSystem" Version="6.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="..\..\Secyud.Abp.CodeDocs.abpmdl.json" />
-      <EmbeddedResource Include="..\..\Secyud.Abp.CodeDocs.abpmdl.json" />
+        <None Remove="..\..\Secyud.Abp.CodeDocs.abpmdl.json"/>
+        <EmbeddedResource Include="..\..\Secyud.Abp.CodeDocs.abpmdl.json"/>
     </ItemGroup>
 
 </Project>

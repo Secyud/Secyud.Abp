@@ -9,18 +9,10 @@ namespace Secyud.Abp.CodeDocsManagement;
 
 public sealed class CodeClass : FullAuditedAggregateRoot<Guid>
 {
-    [NotNull] public string Name { get; set; } = "";
-    public string Description { get; set; }
-    public string Annotation { get; set; }
-    public Guid ParentId { get; set; }
-    public bool IsVisible { get; set; }
-    
-    public List<ClassParameter> Parameters { get; set; }
-    
     private CodeClass()
     {
     }
-    
+
     public CodeClass(Guid id, string name, string description, string annotation, Guid parentId, bool isVisible)
     {
         Check.NotNull(name, nameof(name));
@@ -33,11 +25,19 @@ public sealed class CodeClass : FullAuditedAggregateRoot<Guid>
         Parameters = new List<ClassParameter>();
     }
 
+    [NotNull] public string Name { get; set; } = "";
+    public string Description { get; set; }
+    public string Annotation { get; set; }
+    public Guid ParentId { get; set; }
+    public bool IsVisible { get; set; }
+
+    public List<ClassParameter> Parameters { get; set; }
+
     public ClassParameter GetParameter(string name)
     {
         return Parameters.Find(u => u.Name == name);
     }
-    
+
     public void AddParameter(string name, Guid type)
     {
         if (Parameters.Any(u => u.Name == name))
@@ -50,6 +50,4 @@ public sealed class CodeClass : FullAuditedAggregateRoot<Guid>
     {
         Parameters.Remove(GetParameter(name));
     }
-
-    
 }

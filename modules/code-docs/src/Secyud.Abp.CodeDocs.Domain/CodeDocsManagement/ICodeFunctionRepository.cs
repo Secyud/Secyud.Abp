@@ -17,8 +17,8 @@ public interface ICodeFunctionRepository : IBasicRepository<CodeFunction, Guid>
         int maxResultCount = int.MaxValue,
         bool withDetails = false,
         CancellationToken cancellationToken = default);
-    
-    
+
+
     Task<List<NameValue<Guid>>> GetNameValueListAsync(
         string name = null,
         Guid classId = default,

@@ -10,15 +10,12 @@ namespace Secyud.Abp;
     typeof(CodeDocsApplicationContractsModule),
     typeof(AbpDddApplicationModule),
     typeof(AbpAutoMapperModule)
-    )]
+)]
 public class CodeDocsApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddAutoMapperObjectMapper<CodeDocsApplicationModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<CodeDocsApplicationModule>(validate: true);
-        });
+        Configure<AbpAutoMapperOptions>(options => { options.AddMaps<CodeDocsApplicationModule>(true); });
     }
 }

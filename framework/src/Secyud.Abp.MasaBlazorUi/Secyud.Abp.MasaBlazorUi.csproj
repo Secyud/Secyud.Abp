@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-    
+
     <Import Project="..\..\..\configureawait.props" />
     <Import Project="..\..\..\common.props" />
 
@@ -9,22 +9,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Masa.Blazor" Version="0.6.0-rc.9" />
+        <PackageReference Include="Masa.Blazor" Version="0.6.0" />
         <PackageReference Include="Volo.Abp.AspNetCore.Components.Web" Version="6.0.1" />
         <PackageReference Include="Volo.Abp.Authorization" Version="6.0.1" />
         <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="6.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Secyud\Abp\MasaBlazorUi\Components\ObjectExtending\CheckExtensionProperty.razor" />
-      <_ContentIncludedByDefault Remove="Layout\PageHeader.razor" />
+        <_ContentIncludedByDefault Remove="Secyud\Abp\MasaBlazorUi\Components\ObjectExtending\CheckExtensionProperty.razor" />
+        <_ContentIncludedByDefault Remove="Layout\PageHeader.razor" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot" />
+        <Folder Include="wwwroot" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="C:\Users\zangwanyu\.nuget\packages\masa.blazor\0.6.0-rc.9\contentFiles\any\net6.0\package.json" />
+        <Content Remove="C:\Users\zangwanyu\.nuget\packages\masa.blazor\0.6.0-rc.9\contentFiles\any\net6.0\package.json" />
     </ItemGroup>
 </Project>

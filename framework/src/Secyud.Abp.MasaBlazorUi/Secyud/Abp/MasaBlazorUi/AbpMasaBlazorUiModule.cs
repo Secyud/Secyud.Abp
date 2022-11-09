@@ -10,7 +10,7 @@ namespace Secyud.Abp.MasaBlazorUi;
     typeof(AbpAspNetCoreComponentsWebModule),
     typeof(AbpDddApplicationContractsModule),
     typeof(AbpAuthorizationModule)
-    )]
+)]
 public class AbpMasaBlazorUiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
@@ -20,10 +20,7 @@ public class AbpMasaBlazorUiModule : AbpModule
 
     private void ConfigureMasaBlazor(ServiceConfigurationContext context)
     {
-        context.Services.AddMasaBlazor(options =>
-        {
-            options.RTL = false;
-        });
+        context.Services.AddMasaBlazor(options => { options.RTL = false; });
 
         context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
     }

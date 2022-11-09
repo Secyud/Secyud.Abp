@@ -8,8 +8,8 @@ namespace Secyud.Abp;
 
 public class CodeDocsDataSeedContributor : IDataSeedContributor, ITransientDependency
 {
-    private readonly IGuidGenerator _guidGenerator;
     private readonly ICurrentTenant _currentTenant;
+    private readonly IGuidGenerator _guidGenerator;
 
     public CodeDocsDataSeedContributor(
         IGuidGenerator guidGenerator, ICurrentTenant currentTenant)

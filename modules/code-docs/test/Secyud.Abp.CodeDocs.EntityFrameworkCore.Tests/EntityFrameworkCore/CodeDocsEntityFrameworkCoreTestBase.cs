@@ -5,5 +5,4 @@
  */
 public abstract class CodeDocsEntityFrameworkCoreTestBase : CodeDocsTestBase<CodeDocsEntityFrameworkCoreTestModule>
 {
-
 }

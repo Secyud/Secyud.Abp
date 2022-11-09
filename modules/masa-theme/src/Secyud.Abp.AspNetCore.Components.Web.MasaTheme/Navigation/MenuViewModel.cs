@@ -6,11 +6,10 @@ namespace Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Navigation;
 
 public class MenuViewModel
 {
+    public EventHandler StateChanged;
     public ApplicationMenu Menu { get; set; }
 
     public List<MenuItemViewModel> Items { get; set; }
-
-    public EventHandler StateChanged;
 
     public void SetParents()
     {

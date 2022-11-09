@@ -9,8 +9,7 @@ namespace Secyud.Abp;
  */
 [DependsOn(
     typeof(CodeDocsEntityFrameworkCoreTestModule)
-    )]
+)]
 public class CodeDocsDomainTestModule : AbpModule
 {
-
 }

@@ -1,5 +1,4 @@
-﻿
-namespace Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo.Menus;
+﻿namespace Secyud.Abp.AspNetCore.Components.Server.MasaTheme.Demo.Menus;
 
 public class MasaThemeDemoMenus
 {

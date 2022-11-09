@@ -7,8 +7,7 @@ namespace Secyud.Abp;
     typeof(CodeDocsBlazorModule),
     typeof(CodeDocsHttpApiClientModule),
     typeof(AbpAspNetCoreComponentsWebAssemblyThemingModule)
-    )]
+)]
 public class CodeDocsBlazorWebAssemblyModule : AbpModule
 {
-
 }

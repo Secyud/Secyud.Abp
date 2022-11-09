@@ -9,25 +9,28 @@ namespace Secyud.Abp.AspNetCore.Components.Web.Theming.Layout;
 
 public class PageLayout : IScopedDependency, INotifyPropertyChanged
 {
+    private string _menuItemName;
     private string title;
 
     // TODO: Consider using this property for setting Page Title too.
-    public virtual string Title {
+    public virtual string Title
+    {
         get => title;
-        set {
+        set
+        {
             title = value;
             OnPropertyChanged();
         }
     }
 
-    private string _menuItemName;
-
-    public string MenuItemName {
-         get => _menuItemName; 
-         set {
+    public string MenuItemName
+    {
+        get => _menuItemName;
+        set
+        {
             _menuItemName = value;
             OnPropertyChanged();
-         }
+        }
     }
 
     public virtual ObservableCollection<BreadcrumbItem> BreadcrumbItems { get; set; } = new();
@@ -36,7 +39,7 @@ public class PageLayout : IScopedDependency, INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 
-    protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

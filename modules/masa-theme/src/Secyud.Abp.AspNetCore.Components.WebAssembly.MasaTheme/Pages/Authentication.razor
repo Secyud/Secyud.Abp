@@ -1,7 +1,7 @@
 ﻿@page "/Account/{action}"
+@using Masa.Blazor
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using Secyud.Abp.AspNetCore.Components.Web.MasaTheme.Components
-@using Masa.Blazor
 @inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
 
 <MCard>
@@ -20,7 +20,7 @@
                 <LoadingIndicator/>
             </CompletingLogOut>
             <LogOutSucceeded>
-                 @L["Authentication:YouAreLoggedOut"]
+                @L["Authentication:YouAreLoggedOut"]
             </LogOutSucceeded>
         </RemoteAuthenticatorView>
     </MCardText>

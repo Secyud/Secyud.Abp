@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <Import Project="..\..\..\configureawait.props" />
-    <Import Project="..\..\..\common.props" />
-    
+    <Import Project="..\..\..\configureawait.props"/>
+    <Import Project="..\..\..\common.props"/>
+
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace />
+        <RootNamespace/>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Secyud.Abp.MasaBlazorUi\Secyud.Abp.MasaBlazorUi.csproj" />
-        <PackageReference Include="Volo.Abp.UI.Navigation" Version="6.0.1" />
+        <ProjectReference Include="..\Secyud.Abp.MasaBlazorUi\Secyud.Abp.MasaBlazorUi.csproj"/>
+        <PackageReference Include="Volo.Abp.UI.Navigation" Version="6.0.1"/>
     </ItemGroup>
 </Project>

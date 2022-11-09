@@ -2,10 +2,9 @@ namespace Secyud.Abp.MasaBlazorUi.Components;
 
 public static class StyleIcon
 {
-   // TODO(Secyud): IconName should be set
-   public const string Info = "";
-   public const string Success = "";
-   public const string Warning = "";
-   public const string Error = "";
-   public const string Confirmation = "";
+    public const string Info = "mdi-information-outline";
+    public const string Success = "mdi-check-circle-outline";
+    public const string Warning = "mdi-alert-circle-outline";
+    public const string Error = "mdi-close-circle-outline";
+    public const string Confirmation = "mdi-minus-circle-outline";
 }

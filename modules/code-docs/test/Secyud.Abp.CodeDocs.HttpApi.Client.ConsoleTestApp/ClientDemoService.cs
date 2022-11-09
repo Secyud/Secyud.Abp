@@ -11,8 +11,8 @@ namespace Secyud.Abp;
 
 public class ClientDemoService : ITransientDependency
 {
-    private readonly ICodeClassAppService _codeClassAppService;
     private readonly IIdentityModelAuthenticationService _authenticationService;
+    private readonly ICodeClassAppService _codeClassAppService;
     private readonly IConfiguration _configuration;
 
     public ClientDemoService(
@@ -38,18 +38,16 @@ public class ClientDemoService : ITransientDependency
      */
     private async Task TestWithDynamicProxiesAsync()
     {
-        
-        
         Console.WriteLine();
         Console.WriteLine($"***** {nameof(TestWithDynamicProxiesAsync)} *****");
 
-        var entity = await _codeClassAppService.CreateAsync(new()
+        var entity = await _codeClassAppService.CreateAsync(new CreateCodeClassInput
         {
             Name = "test class",
             Annotation = "test class annotation",
-            Description = "this is a test class",
+            Description = "this is a test class"
         });
-        
+
         Console.WriteLine("Name: " + entity.Name);
 
         var result = await _codeClassAppService.GetAsync(entity.Id);

@@ -78,8 +78,8 @@
                 {
                     <MExpansionPanel>
                         @{
-                            var typeParameters =(
-                                from u in function.Parameters 
+                            var typeParameters = (
+                                from u in function.Parameters
                                 join v in CodeClassNameValueList
                                     on u.TypeId equals v.Value
                                 select new { Type = v.Name, TypeId = v.Value, u.Name, u.Annotation })

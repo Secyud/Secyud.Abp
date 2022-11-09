@@ -15,10 +15,7 @@ public class CodeDocsDomainSharedModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<AbpVirtualFileSystemOptions>(options =>
-        {
-            options.FileSets.AddEmbedded<CodeDocsDomainSharedModule>();
-        });
+        Configure<AbpVirtualFileSystemOptions>(options => { options.FileSets.AddEmbedded<CodeDocsDomainSharedModule>(); });
 
         Configure<AbpLocalizationOptions>(options =>
         {
@@ -28,9 +25,6 @@ public class CodeDocsDomainSharedModule : AbpModule
                 .AddVirtualJson("/Localization/CodeDocs");
         });
 
-        Configure<AbpExceptionLocalizationOptions>(options =>
-        {
-            options.MapCodeNamespace("CodeDocs", typeof(CodeDocsResource));
-        });
+        Configure<AbpExceptionLocalizationOptions>(options => { options.MapCodeNamespace("CodeDocs", typeof(CodeDocsResource)); });
     }
 }
