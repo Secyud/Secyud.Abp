@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Domain.Entities.Auditing;
@@ -31,4 +32,24 @@ public sealed class CodeClass : FullAuditedAggregateRoot<Guid>
         IsVisible = isVisible;
         Parameters = new List<ClassParameter>();
     }
+
+    public ClassParameter GetParameter(string name)
+    {
+        return Parameters.Find(u => u.Name == name);
+    }
+    
+    public void AddParameter(string name, Guid type)
+    {
+        if (Parameters.Any(u => u.Name == name))
+            throw new UserFriendlyException("Parameters' name in class shouldn't be repeated! ");
+
+        Parameters.Add(new ClassParameter(Id, name, type));
+    }
+
+    public void RemoveParameter(string name)
+    {
+        Parameters.Remove(GetParameter(name));
+    }
+
+    
 }

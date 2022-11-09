@@ -7,31 +7,45 @@ namespace Secyud.Abp.CodeDocsManagement
 {
     public class ClassParameter : Entity
     {
-        [NotNull] public string Name { get; set; }
-        public Guid ClassId { get; set; }
-        public Guid TypeId { get; set; }
-        public string Annotation { get; set; }
-        public bool IsPublic { get; set; }
+        public Guid ClassId { get; }
+        [NotNull] public string Name { get; }
+        public Guid TypeId { get; }
+        public string Annotation { get; private set; }
+        public bool IsPublic { get; private set; }
 
         private ClassParameter()
         {
 
         }
+        
         public ClassParameter(
-            string name, Guid classId,
-            Guid typeId, string annotation, bool isPublic)
+            Guid classId,
+            string name, 
+            Guid typeId)
         {
             Check.NotNull(name, nameof(name));
             Name = name;
             ClassId = classId;
             TypeId = typeId;
-            Annotation = annotation;
-            IsPublic = isPublic;
         }
 
         public override object[] GetKeys()
         {
-            return new object[] { Name, ClassId };
+            return new object[] { ClassId,Name };
+        }
+        
+        public void SetAnnotation(string annotation)
+        {
+            Annotation = annotation;
+        }
+        public void SetPrivate()
+        {
+            IsPublic = false;
+        }
+    
+        public void SetPublic()
+        {
+            IsPublic = true;
         }
     }
 }

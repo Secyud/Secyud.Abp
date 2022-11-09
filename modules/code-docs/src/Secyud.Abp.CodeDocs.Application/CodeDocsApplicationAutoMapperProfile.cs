@@ -11,11 +11,11 @@ public class CodeDocsApplicationAutoMapperProfile : Profile
         CreateMap<ClassParameter,ClassParameterDto>();
         
         CreateMap<CodeClass,CodeClassDto>();
-        CreateMap<CodeClassCreateInput,CodeClass>()
+        CreateMap<CreateCodeClassInput,CodeClass>()
             .Ignore(u=>u.Id)
             .Ignore(u=>u.Parameters)
             .IgnoreFullAuditedObjectProperties();
-        CreateMap<CodeClassUpdateInput,CodeClass>()
+        CreateMap<UpdateCodeClassInput,CodeClass>()
             .Ignore(u=>u.Id)
             .Ignore(u=>u.Parameters)
             .IgnoreFullAuditedObjectProperties();
@@ -23,11 +23,11 @@ public class CodeDocsApplicationAutoMapperProfile : Profile
         CreateMap<FunctionParameter,FunctionParameterDto>();
 
         CreateMap<CodeFunction,CodeFunctionDto>();
-        CreateMap<CodeFunctionCreateInput,CodeFunction>()
+        CreateMap<CreateCodeFunctionInput,CodeFunction>()
             .Ignore(u=>u.Id)
             .Ignore(u=>u.Parameters)
             .IgnoreAuditedObjectProperties();
-        CreateMap<CodeFunctionUpdateInput,CodeFunction>()
+        CreateMap<UpdateCodeFunctionInput,CodeFunction>()
             .Ignore(u=>u.Id)
             .Ignore(u=>u.Parameters)
             .IgnoreAuditedObjectProperties();

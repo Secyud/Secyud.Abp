@@ -31,11 +31,11 @@ public static class CodeDocsDbContextModelCreatingExtensions
         {
             b.ToTable(nameof(ClassParameter));
             b.ConfigureByConvention();
-            b.HasKey(q=> new { q.Name, q.ClassId });
+            
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
 
-            b.HasKey(u => new { u.Name, u.ClassId });
+            b.HasKey(u => new {u.ClassId, u.Name,  });
         });
         
         builder.Entity<CodeFunction>(b =>
@@ -56,11 +56,11 @@ public static class CodeDocsDbContextModelCreatingExtensions
         {
             b.ToTable(nameof(FunctionParameter));
             b.ConfigureByConvention();
-            b.HasKey(q => new {q.Name,q.FunctionId });
+            
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength); 
             
-            b.HasKey(u => new { u.Name, u.FunctionId });
+            b.HasKey(u => new { u.FunctionId, u.Name });
         });
     }
 }

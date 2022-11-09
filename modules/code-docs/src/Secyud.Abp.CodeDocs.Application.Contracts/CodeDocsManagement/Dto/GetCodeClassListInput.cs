@@ -2,7 +2,7 @@
 
 namespace Secyud.Abp.CodeDocsManagement;
 
-public class CodeClassGetListInput : ExtensiblePagedAndSortedResultRequestDto
+public class GetCodeClassListInput : ExtensiblePagedAndSortedResultRequestDto
 {
     public string Name { get; set; }
     public bool? IsVisible { get; set; }

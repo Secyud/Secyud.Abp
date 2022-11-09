@@ -6,7 +6,7 @@ namespace Secyud.Abp.CodeDocsManagement
 {
     public class FunctionParameter : Entity
     {
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
         public Guid FunctionId { get; set; }
 
@@ -16,20 +16,27 @@ namespace Secyud.Abp.CodeDocsManagement
 
         private FunctionParameter()
         {
-
         }
-        public FunctionParameter(string name, Guid functionId, Guid typeId, string annotation)
+
+        public FunctionParameter(
+            Guid functionId,
+            string name,
+            Guid typeId)
         {
             Check.NotNull(name, nameof(name));
             Name = name;
             FunctionId = functionId;
             TypeId = typeId;
-            Annotation = annotation;
         }
 
         public override object[] GetKeys()
         {
-            return new object[] { Name, FunctionId };
+            return new object[] { FunctionId, Name };
+        }
+        
+        public void SetAnnotation(string annotation)
+        {
+            Annotation = annotation;
         }
     }
 }
