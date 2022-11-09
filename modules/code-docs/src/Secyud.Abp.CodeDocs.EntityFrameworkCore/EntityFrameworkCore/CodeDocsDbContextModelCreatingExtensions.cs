@@ -20,7 +20,11 @@ public static class CodeDocsDbContextModelCreatingExtensions
             b.Property(q => q.Description).HasMaxLength(CodeDocsConsts.MaxDescriptionLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxDescriptionLength);
 
-            b.HasMany(x => x.Parameters).WithOne().HasForeignKey(x => x.ClassId).IsRequired();
+            b.HasMany(x => x.Parameters)
+                .WithOne()
+                .HasForeignKey(x => x.ClassId);
+            
+            b.HasIndex(u => u.Name);
         });
         
         builder.Entity<ClassParameter>(b =>
@@ -30,7 +34,10 @@ public static class CodeDocsDbContextModelCreatingExtensions
             b.HasKey(q=> new { q.Name, q.ClassId });
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
+
+            b.HasKey(u => new { u.Name, u.ClassId });
         });
+        
         builder.Entity<CodeFunction>(b =>
         {
             b.ToTable(nameof(CodeFunction));
@@ -38,15 +45,22 @@ public static class CodeDocsDbContextModelCreatingExtensions
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
             b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
 
-            b.HasMany(x => x.Parameters).WithOne().HasForeignKey(x => x.FunctionId).IsRequired();
+            b.HasMany(x => x.Parameters)
+                .WithOne()
+                .HasForeignKey(x => x.FunctionId);
+
+            b.HasIndex(u => u.ClassId);
         });
+        
         builder.Entity<FunctionParameter>(b =>
         {
             b.ToTable(nameof(FunctionParameter));
             b.ConfigureByConvention();
             b.HasKey(q => new {q.Name,q.FunctionId });
             b.Property(q => q.Name).IsRequired().HasMaxLength(CodeDocsConsts.MaxNameLength);
-            b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength);
+            b.Property(q => q.Annotation).HasMaxLength(CodeDocsConsts.MaxAnnotationLength); 
+            
+            b.HasKey(u => new { u.Name, u.FunctionId });
         });
     }
 }
