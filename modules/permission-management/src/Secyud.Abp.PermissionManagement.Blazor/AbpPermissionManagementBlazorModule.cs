@@ -9,7 +9,7 @@ namespace Secyud.Abp;
     typeof(AbpPermissionManagementApplicationContractsModule),
     typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(AbpAutoMapperModule)
-    )]
+)]
 public class AbpPermissionManagementBlazorModule : AbpModule
 {
 }

@@ -8,8 +8,7 @@ namespace Secyud.Abp;
     typeof(AbpPermissionManagementBlazorModule),
     typeof(AbpPermissionManagementHttpApiClientModule),
     typeof(AbpAspNetCoreComponentsWebAssemblyThemingModule)
-    )]
+)]
 public class AbpPermissionManagementBlazorWebAssemblyModule : AbpModule
 {
-
 }

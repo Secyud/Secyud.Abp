@@ -14,26 +14,31 @@ namespace Secyud.Abp.Pages.PermissionManagement;
 
 public partial class PermissionManagementModal
 {
-    [Inject] protected IPermissionAppService AppService { get; set; }
-    [Inject] protected ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
+    protected readonly List<PermissionGrantInfoDto> DisabledPermissions = new();
 
-    [Inject] protected IOptions<AbpLocalizationOptions> LocalizationOptions { get; set; }
-
-    protected bool ModalVisible;
-
-    protected string ProviderName;
-    protected string ProviderKey;
+    protected readonly UpdatePermissionsDto UpdateDto = new();
 
     protected string EntityDisplayName;
     protected List<PermissionGroupDto> Groups;
 
-    protected readonly List<PermissionGrantInfoDto> DisabledPermissions = new();
+    protected bool ModalVisible;
+
+    protected int NotGrantedPermissionCount;
+    protected string ProviderKey;
+
+    protected string ProviderName;
 
     protected StringNumber SelectedTabName;
 
-    protected int NotGrantedPermissionCount = 0;
+    public PermissionManagementModal()
+    {
+        LocalizationResource = typeof(AbpPermissionManagementResource);
+    }
 
-    protected readonly UpdatePermissionsDto UpdateDto = new();
+    [Inject] protected IPermissionAppService AppService { get; set; }
+    [Inject] protected ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
+
+    [Inject] protected IOptions<AbpLocalizationOptions> LocalizationOptions { get; set; }
 
     protected bool GrantAll
     {
@@ -55,11 +60,6 @@ public partial class PermissionManagementModal
                     NotGrantedPermissionCount++;
             }
         }
-    }
-
-    public PermissionManagementModal()
-    {
-        LocalizationResource = typeof(AbpPermissionManagementResource);
     }
 
     public virtual async Task OpenAsync(string providerName, string providerKey, string entityDisplayName = null)
@@ -119,9 +119,7 @@ public partial class PermissionManagementModal
 
             if (!UpdateDto.Permissions.Any(x => x.IsGranted) &&
                 !await Message.Confirm(L["SaveWithoutAnyPermissionsWarningMessage"]))
-            {
                 return;
-            }
 
             await AppService.UpdateAsync(ProviderName, ProviderKey, UpdateDto);
 
