@@ -18,6 +18,18 @@ namespace Secyud.Abp.Components.FeatureManagement;
 
 public partial class FeatureManagementModal
 {
+    protected readonly UpdateFeaturesDto Features = new();
+
+    protected bool ModalVisible;
+    protected string ProviderKey;
+
+    protected string ProviderName;
+
+    protected StringNumber SelectedTabName;
+
+    protected Dictionary<string, string> SelectionStringValues;
+
+    protected Dictionary<string, bool> ToggleValues;
     [Inject] protected IFeatureAppService AppService { get; set; }
 
     [Inject] protected IUiMessageService UiMessageService { get; set; }
@@ -28,20 +40,7 @@ public partial class FeatureManagementModal
 
     [Inject] protected ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
 
-    protected bool ModalVisible;
-
-    protected string ProviderName;
-    protected string ProviderKey;
-
-    protected StringNumber SelectedTabName;
-
     protected List<FeatureGroupDto> Groups { get; set; }
-
-    protected Dictionary<string, bool> ToggleValues;
-
-    protected Dictionary<string, string> SelectionStringValues;
-
-    protected readonly UpdateFeaturesDto Features = new();
 
     public virtual async Task OpenAsync([NotNull] string providerName, string providerKey = null)
     {
@@ -57,25 +56,14 @@ public partial class FeatureManagementModal
 
             Groups = result?.Groups ?? new List<FeatureGroupDto>();
 
-            if (Groups.Any())
-            {
-                SelectedTabName = GetNormalizedGroupName(Groups.First().Name);
-            }
+            if (Groups.Any()) SelectedTabName = GetNormalizedGroupName(Groups.First().Name);
 
             foreach (var featureGroupDto in Groups)
+            foreach (var featureDto in featureGroupDto.Features)
             {
-                foreach (var featureDto in featureGroupDto.Features)
-                {
-                    if (featureDto.ValueType is ToggleStringValueType)
-                    {
-                        ToggleValues.Add(featureDto.Name, bool.Parse(featureDto.Value));
-                    }
+                if (featureDto.ValueType is ToggleStringValueType) ToggleValues.Add(featureDto.Name, bool.Parse(featureDto.Value));
 
-                    if (featureDto.ValueType is SelectionStringValueType)
-                    {
-                        SelectionStringValues.Add(featureDto.Name, featureDto.Value);
-                    }
-                }
+                if (featureDto.ValueType is SelectionStringValueType) SelectionStringValues.Add(featureDto.Name, featureDto.Value);
             }
 
             ModalVisible = true;
@@ -88,7 +76,7 @@ public partial class FeatureManagementModal
 
     public virtual Task CloseModal()
     {
-        return InvokeAsync(()=>ModalVisible=false);
+        return InvokeAsync(() => ModalVisible = false);
     }
 
     protected virtual async Task SaveAsync()
@@ -136,13 +124,9 @@ public partial class FeatureManagementModal
     protected virtual async Task OnFeatureValueChangedAsync(string value, FeatureDto feature)
     {
         if (feature?.ValueType?.Validator.IsValid(value) == true)
-        {
             feature.Value = value;
-        }
         else
-        {
             await UiMessageService.Warn(L["Volo.Abp.FeatureManagement:InvalidFeatureValue", feature!.DisplayName]);
-        }
     }
 
     protected virtual Task OnSelectedValueChangedAsync(bool value, FeatureDto feature)
@@ -150,50 +134,35 @@ public partial class FeatureManagementModal
         ToggleValues[feature.Name] = value;
 
         if (value)
-        {
             CheckParents(feature.ParentName);
-        }
         else
-        {
             UncheckChildren(feature.Name);
-        }
 
         return Task.CompletedTask;
     }
 
     protected virtual void CheckParents(string parentName)
     {
-        if (parentName.IsNullOrWhiteSpace())
-        {
-            return;
-        }
+        if (parentName.IsNullOrWhiteSpace()) return;
 
         foreach (var featureGroupDto in Groups)
-        {
-            foreach (var featureDto in featureGroupDto.Features)
+        foreach (var featureDto in featureGroupDto.Features)
+            if (featureDto.Name == parentName && ToggleValues.ContainsKey(featureDto.Name))
             {
-                if (featureDto.Name == parentName && ToggleValues.ContainsKey(featureDto.Name))
-                {
-                    ToggleValues[featureDto.Name] = true;
-                    CheckParents(featureDto.ParentName);
-                }
+                ToggleValues[featureDto.Name] = true;
+                CheckParents(featureDto.ParentName);
             }
-        }
     }
 
     protected virtual void UncheckChildren(string featureName)
     {
         foreach (var featureGroupDto in Groups)
-        {
-            foreach (var featureDto in featureGroupDto.Features)
+        foreach (var featureDto in featureGroupDto.Features)
+            if (featureDto.ParentName == featureName && ToggleValues.ContainsKey(featureDto.Name))
             {
-                if (featureDto.ParentName == featureName && ToggleValues.ContainsKey(featureDto.Name))
-                {
-                    ToggleValues[featureDto.Name] = false;
-                    UncheckChildren(featureDto.Name);
-                }
+                ToggleValues[featureDto.Name] = false;
+                UncheckChildren(featureDto.Name);
             }
-        }
     }
 
     protected virtual IStringLocalizer CreateStringLocalizer(string resourceName)
@@ -204,8 +173,6 @@ public partial class FeatureManagementModal
             .Values
             .FirstOrDefault(x => x.ResourceName == resourceName);
         return HtmlLocalizerFactory
-            .Create(resource != null ? 
-                resource.ResourceType :
-                LocalizationOptions.Value.DefaultResourceType);
+            .Create(resource != null ? resource.ResourceType : LocalizationOptions.Value.DefaultResourceType);
     }
 }

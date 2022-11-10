@@ -8,13 +8,10 @@ using Volo.Abp.Features;
 
 namespace Secyud.Abp.Components.SettingGroup;
 
-public partial class FeatureSettingManagementComponent 
+public partial class FeatureSettingManagementComponent
 {
-    [Inject]
-    protected PermissionChecker PermissionChecker { get; set; }
-    
     protected FeatureManagementModal ManagementModal;
-    
+
     protected FeatureSettingViewModel Settings;
 
     public FeatureSettingManagementComponent()
@@ -22,9 +19,11 @@ public partial class FeatureSettingManagementComponent
         LocalizationResource = typeof(AbpFeatureManagementResource);
     }
 
-    protected async override Task OnInitializedAsync()
+    [Inject] protected PermissionChecker PermissionChecker { get; set; }
+
+    protected override async Task OnInitializedAsync()
     {
-        Settings = new FeatureSettingViewModel 
+        Settings = new FeatureSettingViewModel
         {
             HasManageHostFeaturesPermission = await PermissionChecker.IsGrantedAsync(FeatureManagementPermissions.ManageHostFeatures)
         };
@@ -32,6 +31,6 @@ public partial class FeatureSettingManagementComponent
 
     protected virtual async Task OnManageHostFeaturesClicked()
     {
-       await ManagementModal.OpenAsync(TenantFeatureValueProvider.ProviderName);
+        await ManagementModal.OpenAsync(TenantFeatureValueProvider.ProviderName);
     }
 }

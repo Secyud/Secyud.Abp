@@ -6,8 +6,7 @@ namespace Secyud.Abp;
 [DependsOn(
     typeof(AbpAspNetCoreComponentsServerThemingModule),
     typeof(AbpFeatureManagementBlazorModule)
-    )]
+)]
 public class AbpFeatureManagementBlazorServerModule : AbpModule
 {
-
 }

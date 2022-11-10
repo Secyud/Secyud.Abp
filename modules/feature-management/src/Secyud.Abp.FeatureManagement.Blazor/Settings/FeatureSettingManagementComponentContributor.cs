@@ -9,14 +9,11 @@ using Volo.Abp.FeatureManagement.Localization;
 
 namespace Secyud.Abp.Settings;
 
-public class FeatureSettingManagementComponentContributor: ISettingComponentContributor
+public class FeatureSettingManagementComponentContributor : ISettingComponentContributor
 {
     public virtual async Task ConfigureAsync(SettingComponentCreationContext context)
     {
-        if (!await CheckPermissionsInternalAsync(context))
-        {
-            return;
-        }
+        if (!await CheckPermissionsInternalAsync(context)) return;
 
         var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<AbpFeatureManagementResource>>();
         context.Groups.Add(

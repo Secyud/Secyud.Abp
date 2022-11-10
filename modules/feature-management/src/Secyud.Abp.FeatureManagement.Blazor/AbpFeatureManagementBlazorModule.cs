@@ -12,14 +12,11 @@ namespace Secyud.Abp;
     typeof(AbpFeatureManagementApplicationContractsModule),
     typeof(AbpFeaturesModule),
     typeof(AbpSettingManagementBlazorModule)
-    )]
+)]
 public class AbpFeatureManagementBlazorModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        Configure<SettingManagementComponentOptions>(options =>
-        {
-            options.Contributors.Add(new FeatureSettingManagementComponentContributor());
-        });
+        Configure<SettingManagementComponentOptions>(options => { options.Contributors.Add(new FeatureSettingManagementComponentContributor()); });
     }
 }
