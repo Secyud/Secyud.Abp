@@ -26,7 +26,7 @@ public class SettingManagementMenuContributor : IMenuContributor
         var settingPageCreationContext = new SettingComponentCreationContext(context.ServiceProvider);
         if (settingManagementPageOptions.Contributors.Any() &&
             await CheckAnyOfPagePermissionsGranted(settingManagementPageOptions, settingPageCreationContext)
-        )
+           )
         {
             var l = context.GetLocalizer<AbpSettingManagementResource>();
 
@@ -37,7 +37,7 @@ public class SettingManagementMenuContributor : IMenuContributor
                         SettingManagementMenus.GroupName,
                         l["Settings"],
                         "~/setting-management",
-                        icon: "mdi-settings-box"
+                        "mdi-settings-box"
                     ).RequireFeatures(SettingManagementFeatures.Enable)
                 );
         }
@@ -54,6 +54,7 @@ public class SettingManagementMenuContributor : IMenuContributor
                 return true;
             }
         }
+
         return false;
     }
 }

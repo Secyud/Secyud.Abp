@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <Import Project="..\..\..\..\common.props" />
+    <Import Project="..\..\..\..\common.props"/>
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -8,11 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\framework\src\Secyud.Abp.AspNetCore.Components.Server.Theming\Secyud.Abp.AspNetCore.Components.Server.Theming.csproj" />
+        <ProjectReference Include="..\..\..\..\framework\src\Secyud.Abp.AspNetCore.Components.Server.Theming\Secyud.Abp.AspNetCore.Components.Server.Theming.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Secyud.Abp.SettingManagement.Blazor\Secyud.Abp.SettingManagement.Blazor.csproj" />
+        <ProjectReference Include="..\Secyud.Abp.SettingManagement.Blazor\Secyud.Abp.SettingManagement.Blazor.csproj"/>
     </ItemGroup>
 
 </Project>

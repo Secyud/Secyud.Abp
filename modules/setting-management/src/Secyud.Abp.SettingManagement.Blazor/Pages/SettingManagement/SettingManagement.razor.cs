@@ -18,19 +18,18 @@ namespace Secyud.Abp.Pages.SettingManagement;
 [RequiresFeature(SettingManagementFeatures.Enable)]
 public partial class SettingManagement
 {
+    protected readonly List<BreadcrumbItem> BreadcrumbItems = new();
+
+    protected StringNumber SelectedGroup;
     [Inject] protected IServiceProvider ServiceProvider { get; set; }
 
     protected SettingComponentCreationContext SettingComponentCreationContext { get; set; }
 
     [Inject] protected IOptions<SettingManagementComponentOptions> OptionsContainer { get; set; }
-    
+
     [Inject] protected IStringLocalizer<AbpSettingManagementResource> L { get; set; }
 
     protected SettingManagementComponentOptions Options => OptionsContainer.Value;
-
-    protected StringNumber SelectedGroup;
-    
-    protected readonly List<BreadcrumbItem> BreadcrumbItems = new();
 
     protected override async Task OnInitializedAsync()
     {

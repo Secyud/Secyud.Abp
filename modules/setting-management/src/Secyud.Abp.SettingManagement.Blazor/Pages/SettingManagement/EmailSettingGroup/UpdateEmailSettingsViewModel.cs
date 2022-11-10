@@ -3,7 +3,6 @@ using Volo.Abp.Auditing;
 
 namespace Secyud.Abp.Pages.SettingManagement.EmailSettingGroup;
 
-
 public class UpdateEmailSettingsViewModel
 {
     [MaxLength(256)]
@@ -28,8 +27,7 @@ public class UpdateEmailSettingsViewModel
     [Display(Name = "SmtpDomain")]
     public string SmtpDomain { get; set; }
 
-    [Display(Name = "SmtpEnableSsl")]
-    public bool SmtpEnableSsl { get; set; }
+    [Display(Name = "SmtpEnableSsl")] public bool SmtpEnableSsl { get; set; }
 
     [Display(Name = "SmtpUseDefaultCredentials")]
     public bool SmtpUseDefaultCredentials { get; set; }

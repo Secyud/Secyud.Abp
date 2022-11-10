@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Components;
 using Volo.Abp.AspNetCore.Components.Messages;
-using Volo.Abp.AspNetCore.Components.Web;
 using Volo.Abp.AspNetCore.Components.Web.Configuration;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.SettingManagement;
@@ -13,20 +11,11 @@ namespace Secyud.Abp.Pages.SettingManagement.EmailSettingGroup;
 
 public partial class EmailSettingGroupViewComponent
 {
-    [Inject] protected IEmailSettingsAppService EmailSettingsAppService { get; set; }
-
-    [Inject] protected IPermissionChecker PermissionChecker { get; set; }
-
-    [Inject] private ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
-
-    [Inject] protected IUiMessageService UiMessageService { get; set; }
-
     protected UpdateEmailSettingsViewModel EmailSettings;
 
     protected SendTestEmailViewModel SendTestEmailInput;
 
     protected bool SendTestEmailModalVisible;
-    protected bool HasSendTestEmailPermission { get; set; }
 
 
     public EmailSettingGroupViewComponent()
@@ -34,6 +23,15 @@ public partial class EmailSettingGroupViewComponent
         ObjectMapperContext = typeof(AbpSettingManagementBlazorModule);
         LocalizationResource = typeof(AbpSettingManagementResource);
     }
+
+    [Inject] protected IEmailSettingsAppService EmailSettingsAppService { get; set; }
+
+    [Inject] protected IPermissionChecker PermissionChecker { get; set; }
+
+    [Inject] private ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
+
+    [Inject] protected IUiMessageService UiMessageService { get; set; }
+    protected bool HasSendTestEmailPermission { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -70,7 +68,7 @@ public partial class EmailSettingGroupViewComponent
         try
         {
             var emailSettings = await EmailSettingsAppService.GetAsync();
-            
+
             SendTestEmailInput = new SendTestEmailViewModel
             {
                 SenderEmailAddress = emailSettings.DefaultFromAddress,

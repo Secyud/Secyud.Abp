@@ -14,26 +14,17 @@ namespace Secyud.Abp;
     typeof(AbpSettingManagementApplicationContractsModule),
     typeof(AbpAspNetCoreComponentsWebThemingModule),
     typeof(AbpAutoMapperModule)
-    )]
+)]
 public class AbpSettingManagementBlazorModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddAutoMapperObjectMapper<AbpSettingManagementBlazorModule>();
 
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddProfile<SettingManagementBlazorAutoMapperProfile>(validate: true);
-        });
+        Configure<AbpAutoMapperOptions>(options => { options.AddProfile<SettingManagementBlazorAutoMapperProfile>(true); });
 
-        Configure<AbpNavigationOptions>(options =>
-        {
-            options.MenuContributors.Add(new SettingManagementMenuContributor());
-        });
+        Configure<AbpNavigationOptions>(options => { options.MenuContributors.Add(new SettingManagementMenuContributor()); });
 
-        Configure<AbpRouterOptions>(options =>
-        {
-            options.AdditionalAssemblies.Add(typeof(AbpSettingManagementBlazorModule).Assembly);
-        });
+        Configure<AbpRouterOptions>(options => { options.AdditionalAssemblies.Add(typeof(AbpSettingManagementBlazorModule).Assembly); });
     }
 }

@@ -6,25 +6,9 @@ namespace Secyud.Abp.SettingManagement;
 
 public class SettingComponentGroup
 {
-    public string Id {
-        get => _id;
-        set => _id = Check.NotNullOrWhiteSpace(value, nameof(Id));
-    }
-    private string _id;
-
-    public string DisplayName {
-        get => _displayName;
-        set => _displayName = Check.NotNullOrWhiteSpace(value, nameof(DisplayName));
-    }
-    private string _displayName;
-
-    public Type ComponentType {
-        get => _componentType;
-        set => _componentType = Check.NotNull(value, nameof(ComponentType));
-    }
     private Type _componentType;
-
-    public object Parameter { get; set; }
+    private string _displayName;
+    private string _id;
 
     public SettingComponentGroup([NotNull] string id, [NotNull] string displayName, [NotNull] Type componentType, object parameter = null)
     {
@@ -33,4 +17,24 @@ public class SettingComponentGroup
         ComponentType = componentType;
         Parameter = parameter;
     }
+
+    public string Id
+    {
+        get => _id;
+        set => _id = Check.NotNullOrWhiteSpace(value, nameof(Id));
+    }
+
+    public string DisplayName
+    {
+        get => _displayName;
+        set => _displayName = Check.NotNullOrWhiteSpace(value, nameof(DisplayName));
+    }
+
+    public Type ComponentType
+    {
+        get => _componentType;
+        set => _componentType = Check.NotNull(value, nameof(ComponentType));
+    }
+
+    public object Parameter { get; set; }
 }

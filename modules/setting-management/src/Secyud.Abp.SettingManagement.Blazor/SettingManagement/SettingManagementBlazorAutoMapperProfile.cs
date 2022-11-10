@@ -4,8 +4,4 @@ namespace Secyud.Abp.SettingManagement;
 
 public class SettingManagementBlazorAutoMapperProfile : Profile
 {
-    public SettingManagementBlazorAutoMapperProfile()
-    {
-        
-    }
 }
