@@ -14,21 +14,13 @@ namespace Secyud.Abp.Pages.TenantManagement;
 public partial class TenantManagement
 {
     protected const string FeatureProviderName = "T";
-
-    protected bool HasManageFeaturesPermission;
     protected readonly string ManageFeaturesPolicyName;
+
+    private bool _createPasswordShow;
 
     protected FeatureManagementModal FeatureManagementModal;
 
-    protected PageToolbar Toolbar { get; } = new();
-
-    protected List<DataTableHeader<TenantDto>> TenantManagementTableHeaders => 
-        TableHeaders.Get<TenantManagement>();
-    
-    protected List<EntityAction> TenantManagementEntityActions => 
-        EntityActions.Get<TenantManagement>();
-
-    private bool _createPasswordShow;
+    protected bool HasManageFeaturesPermission;
 
     public TenantManagement()
     {
@@ -42,10 +34,18 @@ public partial class TenantManagement
         ManageFeaturesPolicyName = TenantManagementPermissions.Tenants.ManageFeatures;
     }
 
+    protected PageToolbar Toolbar { get; } = new();
+
+    protected List<DataTableHeader<TenantDto>> TenantManagementTableHeaders =>
+        TableHeaders.Get<TenantManagement>();
+
+    protected List<EntityAction> TenantManagementEntityActions =>
+        EntityActions.Get<TenantManagement>();
+
     protected override ValueTask SetBreadcrumbItemsAsync()
     {
-        BreadcrumbItems.Add(new BreadcrumbItem {Text = L["Menu:TenantManagement"]});
-        BreadcrumbItems.Add(new BreadcrumbItem {Text = L["Tenants"]});
+        BreadcrumbItems.Add(new BreadcrumbItem { Text = L["Menu:TenantManagement"] });
+        BreadcrumbItems.Add(new BreadcrumbItem { Text = L["Tenants"] });
         return base.SetBreadcrumbItemsAsync();
     }
 
@@ -81,13 +81,13 @@ public partial class TenantManagement
                 {
                     Text = L["Edit"],
                     Visible = _ => HasUpdatePermission,
-                    Clicked = async (data) => { await OpenEditModalAsync(data.As<TenantDto>()); }
+                    Clicked = async data => { await OpenEditModalAsync(data.As<TenantDto>()); }
                 },
                 new()
                 {
                     Text = L["Features"],
                     Visible = _ => HasManageFeaturesPermission,
-                    Clicked = async (data) =>
+                    Clicked = async data =>
                     {
                         var tenant = data.As<TenantDto>();
                         await FeatureManagementModal.OpenAsync(FeatureProviderName, tenant.Id.ToString());
@@ -97,8 +97,8 @@ public partial class TenantManagement
                 {
                     Text = L["Delete"],
                     Visible = _ => HasDeletePermission,
-                    Clicked = async (data) => await DeleteEntityAsync(data.As<TenantDto>()),
-                    ConfirmationMessage = (data) => GetDeleteConfirmationMessage(data.As<TenantDto>())
+                    Clicked = async data => await DeleteEntityAsync(data.As<TenantDto>()),
+                    ConfirmationMessage = data => GetDeleteConfirmationMessage(data.As<TenantDto>())
                 }
             });
 
@@ -110,17 +110,17 @@ public partial class TenantManagement
         TenantManagementTableHeaders
             .Add(new DataTableHeader<TenantDto>
             {
-                Text = L["Actions"], 
+                Text = L["Actions"],
                 Value = "actions"
             });
         TenantManagementTableHeaders
             .Add(new DataTableHeader<TenantDto>
             {
-                Text = L["TenantName"], 
-                Value = "TenantName", 
+                Text = L["TenantName"],
+                Value = "TenantName",
                 Sortable = true
             });
-        
+
         // TODO(Secyud): add extension table columns.
         // TenantManagementTableHeaders.AddRange(GetExtensionTableColumns(
         //     TenantManagementModuleExtensionConsts.ModuleName,

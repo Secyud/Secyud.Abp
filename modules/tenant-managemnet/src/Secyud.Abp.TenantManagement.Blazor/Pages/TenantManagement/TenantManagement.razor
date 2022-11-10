@@ -1,12 +1,11 @@
-﻿@using Secyud.Abp.AspNetCore.Components.Web.Theming.Layout
-@using Secyud.Abp.Components.FeatureManagement
-@using Microsoft.AspNetCore.Authorization
-@using Volo.Abp.TenantManagement
-
-@page "/tenant-management/tenants"
+﻿@page "/tenant-management/tenants"
 @namespace Secyud.Abp.Pages.TenantManagement
 @attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
-@inherits AbpCrudPageBase<ITenantAppService, TenantDto, Guid, GetTenantsInput, TenantCreateDto, TenantUpdateDto>
+@using Microsoft.AspNetCore.Authorization
+@using Secyud.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Secyud.Abp.Components.FeatureManagement
+@using Volo.Abp.TenantManagement
+@inherits AbpCrudPageBase<Volo.Abp.TenantManagement.ITenantAppService, Volo.Abp.TenantManagement.TenantDto, Guid, Volo.Abp.TenantManagement.GetTenantsInput, Volo.Abp.TenantManagement.TenantCreateDto, Volo.Abp.TenantManagement.TenantUpdateDto>
 
 <MCard>
     <MCardTitle>

@@ -10,10 +10,7 @@ public class TenantManagementBlazorMenuContributor : IMenuContributor
 {
     public virtual Task ConfigureMenuAsync(MenuConfigurationContext context)
     {
-        if (context.Menu.Name != StandardMenus.Main)
-        {
-            return Task.CompletedTask;
-        }
+        if (context.Menu.Name != StandardMenus.Main) return Task.CompletedTask;
 
         var administrationMenu = context.Menu.GetAdministration();
 
@@ -29,7 +26,7 @@ public class TenantManagementBlazorMenuContributor : IMenuContributor
         tenantManagementMenuItem.AddItem(new ApplicationMenuItem(
             TenantManagementMenuNames.Tenants,
             l["Tenants"],
-            url: "~/tenant-management/tenants"
+            "~/tenant-management/tenants"
         ).RequirePermissions(TenantManagementPermissions.Tenants.Default));
 
         return Task.CompletedTask;

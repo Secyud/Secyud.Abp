@@ -1,5 +1,4 @@
-﻿using Secyud.Abp.FeatureManagement.Blazor.WebAssembly;
-using Volo.Abp.Modularity;
+﻿using Volo.Abp.Modularity;
 using Volo.Abp.TenantManagement;
 
 namespace Secyud.Abp;
@@ -8,8 +7,7 @@ namespace Secyud.Abp;
     typeof(AbpTenantManagementBlazorModule),
     typeof(AbpFeatureManagementBlazorWebAssemblyModule),
     typeof(AbpTenantManagementHttpApiClientModule)
-    )]
+)]
 public class AbpTenantManagementBlazorWebAssemblyModule : AbpModule
 {
-
 }

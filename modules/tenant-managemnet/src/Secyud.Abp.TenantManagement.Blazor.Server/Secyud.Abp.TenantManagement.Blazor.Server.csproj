@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <Import Project="..\..\..\..\configureawait.props" />
-    <Import Project="..\..\..\..\common.props" />
+    <Import Project="..\..\..\..\configureawait.props"/>
+    <Import Project="..\..\..\..\common.props"/>
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -9,11 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\modules\feature-management\src\Secyud.Abp.FeatureManagement.Blazor.Server\Secyud.Abp.FeatureManagement.Blazor.Server.csproj" />
+        <ProjectReference Include="..\..\..\..\modules\feature-management\src\Secyud.Abp.FeatureManagement.Blazor.Server\Secyud.Abp.FeatureManagement.Blazor.Server.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Secyud.Abp.TenantManagement.Blazor\Secyud.Abp.TenantManagement.Blazor.csproj" />
+        <ProjectReference Include="..\Secyud.Abp.TenantManagement.Blazor\Secyud.Abp.TenantManagement.Blazor.csproj"/>
     </ItemGroup>
 
 </Project>
