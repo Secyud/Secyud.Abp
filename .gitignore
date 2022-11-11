@@ -3,5 +3,4 @@ bin
 .idea
 .vs
 Logs
-libs
 node_modules
